@@ -5,12 +5,24 @@
 
 Often when developers are faced with a design challenge, they will turn to the whiteboard.  This is typical during the conceptual stages of software design, when no code is in existence yet, but may also happen when a significant code base has already been developed, for instance, to plan new functionality or discuss optimizing a key component. Design sessions at the whiteboard may even arise spontaneously, such as when a developer has to refactor some code or discuss how to best integrate a new feature.
 
+Compared to the polished, precise, and typically detailed models software designers produce using modern software design tools, the content they create at the whiteboard rough sketches and imprecise approximations of the design they have in mind, which are continuously modified and refined as part of the design activity [3]. The sketches on the wall of Figure 1 illustrate this point. The sketches are taken from actual design sessions from an open-source software company, which depict various parts of a database system such as pieces of software architecture and process flow diagrams. While the sketch is may not be particularly enlightening to those who were not present during the design session, they served a crucial role for those who were: they were the vehicle for working through a complex design problem and making key decisions that defined the software to be developed.
+
+%\section{Architectural Overview}
+\begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=16cm,keepaspectratio]{./figures/software-whiteboard}
+  \caption{Example sketches taken from actual design sessions}
+  \label{figure:software-whiteboard}
+\end{figure*}
+
 Developers turn to the whiteboard for the flexibility and fluidity that it offers in the design experience \cite{cherubini2007let}. On a whiteboard, developers can freely sketch, branch off to another part of the design problem, return to a previous part, erase some portion of their work, redraw it, and so on, all without the typical restrictions one might find in a traditional software design environment. 
+
 While a preferred medium for design, a significant disadvantage of the whiteboard is that it is a passive medium: it has no facilities that purposefully support the design process. Particularly, whatever is drawn or written remains static and cannot be manipulated, other than drawing over it or erasing it. This is a less than desirable situation, because it is known that software designers often wish to manipulate a design at hand in more advanced ways than merely adding or erasing content \cite{dekel2007notation}.
 
 The research community has acknowledged this problem and has contributed many approaches that rely on an electronic whiteboard to provide more advanced support. This support can be divided into two broad categories: (1) approaches that focus on sketch recognition, and (2) approaches that focus on management of sketched content. Approaches in the first category, sketch recognition, attempt to interpret the strokes made by the user to turn them into formal  objects. Early work offered a predefined visual vocabulary for converting sketches into formal objects, such as UML diagrams \cite{chen2008sumlow} or user interface mockups \cite{landay1995interactive}. These tools provide feedback to the designer based on the rules of the formal notation they support. Later work made visual vocabularies expandable by users \cite{hammond2006ladder} and made using the tools more flexible by delaying interpretation until it was desired by the user \cite{damm2000supporting}, sometimes even while retaining a sketchy appearance \cite{chung2005inkkit}.
 
 Approaches in the second category, sketch management, help organize the potentially many and varied sketched artifacts that may be produced during meetings. Early approaches provided access to a large number of whiteboards through a filmstrip \cite{stefik1987beyond}, hyperlinks \cite{Streitz:1994:DIM:192844.193044}, or hierarchical perspectives \cite{newman2003denim}. Later work automated particular aspects of managing sketches by automatically grouping clusters of sketches in close spatial proximity \cite{mynatt1999flatland}, shrinking sketches when moved to the periphery \cite{guimbretiere2001fluid}, or using metaphors such as Post-It Notes to organize and relate sketches \cite{klemmer2001designers}.  
+
 In examining these and other existing sketching tools, it is useful to consider their respective underlying motivations. In so doing, we observe that every sketch tool was designed to support a particular way of working at the whiteboard. For instance, Knight supports designers in refining initial rough sketches into more formal representations \cite{damm2000supporting}. As another example, Flatland supports designers in creating many different diagrams by automatically clustering sketches and adding specialized behaviors to those clusters \cite{mynatt1999flatland}.
 
 In this paper, we define these ways of working as design behaviors. More precisely, we define a design behavior as a recurrent, recognizable set of actions serving a single purpose within a design meeting. Quite a few design behaviors have been identified in the literature, despite the fact that the study of software designers ``in action'' is still in its infancy. For example, in addition to refinement of sketches and supporting multiple different types of sketches, studies of designers at OOPSLA’s DesignFest have found that software designers improvise their own notations and evolve their diagrams across many canvases \cite{dekel2007notation}. As another example, in-the-field observations at software companies further found that software designers deliberately switch among formalisms and use provisionality to engage in a dialog with incomplete ideas \cite{petre2009insights}. 
@@ -20,13 +32,48 @@ The key insight motivating our research is that software designers do not ``oper
 During a meeting, it is a natural choice for designers to limit themselves to a single tool to support them. That tool is typically a whiteboard or paper \cite{petre2009insights}, though in some cases it may be a computerized tool like the ones we have described above (e.g., SUMLOW \cite{chen2008sumlow}, Knight \cite{damm2000tool}, Flatland \cite{mynatt1999flatland}. In the latter case, the choice of tool determines the behavior or small set of behaviors that are now supported, as designers will seldom move between tools during meetings because of the high cost associated with switching, both in terms of the cognitive burden on the user to switch contexts and in terms of the effort required to import or manually copy the contents. The cost is simply too great and designers, thus, are stuck with support for at best a few of their behaviors as embedded in the tool they happen to be using.
 
 What is desired is a tool that supports a broad range of behaviors and allows developers to fluidly switch among them. Creating such a tool, however, is a non-trivial exercise. Simply picking up functionality from one tool and dropping it in another, and doing this repeatedly to support a multitude of behaviors, leads to tools that are highly disjoint. What does it mean to have available both multiple canvases in a filmstrip and functionality that automatically makes room on the current board?  What does it mean to automatically recognize sketches in tools that also support emergent notations? Existing solutions do not necessarily stack their functionality gracefully, and the approach taken by one tool may collide with the support provided by another.
-Our work explicitly addresses the interleaving behaviors that designers exhibit during software design at the whiteboard by taking a step back, examining a collection of behaviors, and contributing a new tool that is designed from the ground up to support this collection of behaviors with a small set of conceptually coherent functionalities.  This proposal lays out our plan for doing so:
 
-•	It introduces and motivates the set of design behaviors that we wish to support.
-•	It presents a novel set of features that together support those behaviors.
-•	It outlines our plan for assessing the impact of those features on design meetings at the whiteboard. 
+This work explicitly addresses the interleaving behaviors that designers exhibit during software design at the whiteboard by taking a step back, examining a collection of behaviors, and contributing a new tool that is designed from the ground up to support this collection of behaviors with a small set of conceptually coherent functionalities. In this work, we first built a basic sketching inteface so that, as a baseline, designers may sketch and perform the same activities as they normally would on a whiteboard, but in a digital medium. Building on this foundation, features are incrementally introduced to support one or more design behaviors, while minimally obstructing the performance of other behaviors.
 
+In this work I identify a set of design behaviors to support that are inspired by the general design literature and confirmed within software design. The set of design behaviors evolved from a small set of four and, across several studies, to fourteen design behaviors. Broadly speaking, those design behaviors fell into three high level categories that software designers perform: 1) the kinds of things they draw, 2) how they navigate, and 3) how they collaborate. Chapter 4 performs an analysis that confirms these design behaviors at the whiteboard from a study of professional software designers working on a challenging design problem.
 
+In order to address these design behaviors, we implemented the tool called Calico. In building Calico, we first built a generic sketching tool in order to allow users to sketch as they normally would on a normal whiteboard. With an established baseline, features were added incrementally such that they did not obstruct the support for design behaviors provided by the previous features. In this work I describe two versions of Calico, the first of which is an initial exploration in supporting design behaviors with a sketch-based tool that is evaluted in a laboratory setting, and the second of which is a re-implemenation based on the lessons from the first version that is evaluated in the field.
+
+The first version of Calico targeted a subset of design behaviors with three main features. The first feature, scraps, supported the kinds of sketches that designers created by providing a mechanism to create representations for box-and-arrow type diagrams and for manipulating sketches. The second feature, the grid, supported designers in navigating between sketches by providing a grid-layout of all canvases. The third feature, the palette, works in harmony with the new interaction offered by scraps. Chapter 3 explains these features in greater detail.
+
+\begin{figure}
+  \centering
+  \subfigure[Canvas perspective] {
+      \label{fig:calico-version-one-canvas}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionOneCanvas}}
+   }
+  \subfigure[Grid perspective] {
+      \label{fig:calico-version-one-grid}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionOneGrid}}
+   }
+   \caption {Calico version one}
+   \label{fig:calico-version-one}
+\end{figure}
+
+In the analysis of the first version, graduate students are shown to perform the same design behaviors in both Calico and the whiteboard, and the study also verifies that the participants are indeed engaging in design while using Calico. In this study, I examine and compared the design behaviors as they were performed within calico against how they were performed at the whiteboard by qualitatively describing how the graduate students carried out theri design. I also perform a protocol analysis of the design conversation that breaks down the sessions into segmented phrases belong to categories of design. The breakdown of the categories demonstrated a very high correlation with reports from past research of how software design was performed at actual software companies.
+
+The second version of Calico significantly iterates on the first version to support the whole set of fourteen design behaviors. The interactions for scraps were significantly revised based on user feedback to better support the designers in the kinds of sketches designers create. The grid feature was replaced with a new feature called intentional interfaces in order to better support designers in navigating between canvases. Within intentional interfaces, relationships between canvases are explicitly captured using light-weight tagging. The application architecture was also implemented using a client-server architecture in order to support designers on different machines to collaborate on the same sketch. Chapter 5 goes into these features, as well as others, in more detail.
+
+\begin{figure}
+  \centering
+  \subfigure[Canvas perspective] {
+      \label{fig:calico-version-two-canvas}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionTwoCanvas}}
+   }
+  \subfigure[Cluster perspective] {
+      \label{fig:calico-version-two-grid}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionTwoCluster}}
+   }
+   \caption {Calico version two}
+   \label{fig:calico-version-two}
+\end{figure}
+
+Evaluation of calico version two.
 
 %%% Local Variables: ***
 %%% mode: latex ***
