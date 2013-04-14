@@ -55,12 +55,12 @@ When working on a design problem, software designers switch context continuously
 % For example, with the graphicx package use
   \subfigure[] {
   	\label{fig:1a} 
-  	\resizebox{0.8\hsize}{0.6\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1a.png}} 
+  	\resizebox{0.48\hsize}{0.36\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1a.png}} 
   }
 
-  \subfigure[] { \label{fig:1b} \resizebox{0.8\hsize}{0.6\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1b.png}} }
+  \subfigure[] { \label{fig:1b} \resizebox{0.48\hsize}{0.36\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1b.png}} }
 
-  \subfigure[] { \label{fig:1c} \resizebox{0.8\hsize}{0.6\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1c.png}} }
+  \subfigure[] { \label{fig:1c} \resizebox{0.48\hsize}{0.36\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1c.png}} }
  
 % figure caption is below the figure
 \caption{Example whiteboard content from several design sessions at a local software company}
@@ -130,8 +130,9 @@ Note that all of the examples we use in this section draw from the evaluation de
 %
 
 \begin{table}
+\centering
 \caption{Calico features as they address the behaviors discussed in Section 3}
-\begin{tabular}{ p{2cm}p{2cm}p{6.5cm} }
+\begin{tabular}{ p{2cm}p{2cm}p{10cm} }
 \toprule
 Behavior & Feature & Effect \\
 \midrule
@@ -367,12 +368,12 @@ In order to verify the validity of the coding, we performed an interrater reliab
 % For example, with the graphicx package use
   \subfigure[] {
   	\label{fig:6a} 
-  	\resizebox{0.8\hsize}{0.45\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6a.pdf}} 
+  	\resizebox{0.64\hsize}{0.36\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6a.pdf}} 
   }
 
-  \subfigure[] {\label{fig:6b} \resizebox{0.8\hsize}{0.45\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6b.pdf}} }
+  \subfigure[] {\label{fig:6b} \resizebox{0.64\hsize}{0.36\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6b.pdf}} }
 
-  \subfigure[] {\label{fig:6c} \resizebox{0.8\hsize}{0.45\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6c.pdf}} }
+  \subfigure[] {\label{fig:6c} \resizebox{0.64\hsize}{0.36\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6c.pdf}} }
  
 % figure caption is below the figure
 \caption{Feature usage across the eight calico pairs}
@@ -548,29 +549,29 @@ We first determined the structure of the design process by measuring the total t
 Category & Whiteboard Pairs & Sum & Calico Pairs & Sum \\
 \midrule
 Issue 		& 6.37		&	& 7.34 		&  \\
-%\tab   Clar Issue	& 1.06		&	& 0.15 		&  \\
-%Alternative	& 37.04	&	& 41.83 	& \\
-%\tab Clar Alt	& 2.08		&	& 1.30 		&	\\
-%Criteria		& 15.63	& 	& 16.47 	&	\\
-%\tab Clar Criteria	& 0.48		&	& 0.42		& \\
-%		&		& 62.66 &		& 67.50 \\
-%General Clar	& 0.04		&	& 0.08		&	\\
-%Artifact Clar	& 0.11		&	& 0.21		&	\\
-%Summary	& 1.32		& 	& 1.57		&	\\
-%\tab Clar Summary & 0.00	&	& 0.41		&	\\
-%Walkthrough	& 2.05		&	& 1.90		&	\\
-%\tab Clar Walk	& 0.00		&	& 0.07		&	\\
-%Goal		& 1.07		&	& 0.91		&	\\
-%\tab Clar Goal	& 0.52		& 	& 0.18		&	\\
-%Meeting Mgmt	& 6.37		& 	& 7.34		&	\\
-%\tab Clar Meeting Mgmt & 0.00 &	& 0.01		&	 \\
-%Digression	& 0.82		&	& 0.48		& 	\\
-%\tab Clar Digression & 0.00	&	& 0.00		&	\\
-%Manage Technology & 0.35	&	& 3.66		&	\\
-%Technology Conf & 0.04	&	& 5.09		&	\\
-%Other		& 0.00		&	& 0.91		&	\\
-%		&		& 12.43 & 	& 22.79 \\
-%Pause		& 24.01	& 24.01 & 9.67 & .67 \\
+   Clar Issue	& 1.06		&	& 0.15 		&  \\
+Alternative	& 37.04	&	& 41.83 	& \\
+ Clar Alt	& 2.08		&	& 1.30 		&	\\
+Criteria		& 15.63	& 	& 16.47 	&	\\
+ Clar Criteria	& 0.48		&	& 0.42		& \\
+		&		& 62.66 &		& 67.50 \\
+General Clar	& 0.04		&	& 0.08		&	\\
+Artifact Clar	& 0.11		&	& 0.21		&	\\
+Summary	& 1.32		& 	& 1.57		&	\\
+ Clar Summary & 0.00	&	& 0.41		&	\\
+Walkthrough	& 2.05		&	& 1.90		&	\\
+ Clar Walk	& 0.00		&	& 0.07		&	\\
+Goal		& 1.07		&	& 0.91		&	\\
+ Clar Goal	& 0.52		& 	& 0.18		&	\\
+Meeting Mgmt	& 6.37		& 	& 7.34		&	\\
+ Clar Meeting Mgmt & 0.00 &	& 0.01		&	 \\
+Digression	& 0.82		&	& 0.48		& 	\\
+ Clar Digression & 0.00	&	& 0.00		&	\\
+Manage Technology & 0.35	&	& 3.66		&	\\
+Technology Conf & 0.04	&	& 5.09		&	\\
+Other		& 0.00		&	& 0.91		&	\\
+		&		& 12.43 & 	& 22.79 \\
+Pause		& 24.01	& 24.01 & 9.67 & .67 \\
 \bottomrule
 \end{tabular}
 \label{table:2}
