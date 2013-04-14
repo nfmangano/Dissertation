@@ -1,6 +1,771 @@
 \chapter{Calico Version One}
 \label{chapter:calico-version-one}
 
+\section{Introduction}
+\label{intro}
+While many software design tools exist and are in use daily, when faced with a given design problem, more often than not developers will turn to the whiteboard, informally sketching and writing to work through potential solutions \citep{Cherubini,Damm,Mangano,Nickerson,Petre}. This is typical during the conceptual stages of software design, when no code is in existence yet, but frequently also takes place during maintenance design \citep{grisham}, when a code base has been developed but must be modified to, for instance, incorporate new functionality or optimize a key part. Design issues also may arise spontaneously, such as when a developer works on a task, becomes stuck, and involves one or more colleagues in an impromptu design session at the whiteboard to work through the issue \citep{Cherubini}.
+
+One reason developers turn to the whiteboard is the flexibility and fluidity it offers in the design experience. Existing software design tools, with their requirement to precisely use prescribed notations, focus on correctness and completeness and can be said to primarily support documenting a design after it is thought out. However, software design, as any kind of design, is a highly creative endeavor \citep{Petre,Brooks}. On a whiteboard, developers can freely sketch, branch off to another part of the design problem, return to a previous part, erase some portion of their work, redraw it, and so on – all without being forced into using a specific notation or being required to provide any more detail than they want. 
+
+At the same time, the whiteboard does not help the exercise either. Particularly, whatever is drawn or written remains static and cannot be manipulated other than drawing over it or erasing it. This is a less than desirable situation, as it is known that software designers often wish to manipulate a design at hand in more advanced ways than merely adding or erasing content \citep{Dekela}.
+
+In this paper, we present Calico, a novel software design tool for the electronic whiteboard that supports software designers in the process of sketching. Calico targets four natural behaviors exhibited by software designers while they sketch. Particularly, they: (1) regularly shift focus, (2) typically draw low-detail models, (3) move from abstract to more refined representations, and (4) use a variety of notations. Calico offers the following set of features that is designed to maintain the same flexible and fluid nature of the whiteboard while offering specific support for these behaviors. The features are: (1) a grid to manage multiple canvases in the workspace, (2) scraps that enable advanced manipulation of sketched content, (3) a palette that works in harmony with the new interaction offered by scraps, and (4) a gesture-based interaction scheme to tie all features to stylus-based input. 
+
+To evaluate Calico, we conducted a laboratory experiment in which pairs of participants designed an educational traffic simulator using either Calico or a regular whiteboard. For each of the sessions in the laboratory experiment, we reviewed video recordings, analyzed detailed logs of use created by Calico, and interviewed the participants after each session. We then performed a three-step evaluation. We first investigated if participants moved beyond using Calico as a basic whiteboard by observing the frequency of use for each feature. We then performed a qualitative analysis of the videos and reviewed the videos with respect to the design behaviors we identified. Lastly, we compared the structure of the design conversations as they occured within each pair of participants to identify any potential differences between those pairs that used Calico and those that used the regular whiteboard.
+
+Results are promising, and show that the participants did move beyond Calico as a basic whiteboard by using its more advanced functionalities to carry out their normal software design behaviors. The first analysis, of the frequency of use for each feature, shows that both the grid and scraps were used repeatedly and often by participants, though the palette received much less use in comparison. The second, qualitative, analysis reveals many occurrences of the four software design behaviors, including several creative uses of Calico's features to accomplish these behaviors. Finally, the comparison of the structure of design conversations between the Calico pairs and the whiteboard pairs shows that the design activities across the two conditions are remarkably similar, providing evidence that Calico does not inadvertently influence the normal design conversation in undesirable ways. Overall, then, Calico represents an advance over typical design at the whiteboard, providing designers with advanced capabilities while at the same time preserving the fluid and flexible nature of their work.
+
+The remainder of this paper is organized as follows. In Section 2, we review the role of sketching in software design. Section 3 reviews the four behaviors of software designs that we support. Section 4 presents Calico and how it addresses the stated goals. Section 5 presents our methods for evaluating Calico. Our results are presented in Section 6. Section 7 includes a discussion of our results and Section 8 reviews the threats to validity within out study. Section 9 presents related work. Lastly, Section 10 concludes our study and presents future work.
+
+\section{Sketching}
+\label{sketching}
+To position our work, we introduce relevant background material regarding the role of sketching. We first discuss sketching in design in general, then examine sketching in software design in particular, and conclude with a discussion of the specific behaviors of software designers that we want to support.
+
+\subsection{Sketching in Design}
+\label{sketching:1}
+Sketching plays an important role in the design process, regardless of discipline. Designers use sketching as an extension of their own thinking process \citep{Petre,Lawson}. Sketching not only acts as an external memory \citep{Newell} by offloading ideas from the mind onto paper, but there is also additional value in the act of doing so \citep{Schutze}. Sketching is unique in that it affords great fluidly and flexibility in expression \citep{Csikszentmihalyi}, enabling designers to focus on the ideas and discussion rather than the means by which the discussion is being recorded. The benefits of utilizing sketching in the design activity are numerous, and here we list those that stand out most.
+
+First, sketching provides a mechanism to quickly externalize thought, both for the individual and a group, so that abstract ideas can be viewed, analyzed, and discussed \citep{Petrea}. A person may want to scribble an idea before it escapes their mind, or may create a partial diagram in reference to an idea while explaining a concept to another individual. Ferguson \citep{Ferguson} calls these thinking and talking sketches, respectively, because of their ability to support the thinking process and the discussion of an idea, respectively. 
+Second, the rapid form of externalization allows the designer to engage in a tight cycle of drawing, understanding, and reinterpretation. Sch\"{o}n described this process as having a ``reflective conversation'' with the material \citep{schon}. Often this leads to ``unexpected discoveries'', as Gero and Suwa call them \citep{Suwa}, stemming from attending to visual details that were not intended when they were drawn. Goldschmidt distinguished between ``seeing that'', the act of summarizing what is seen, and ``seeing as'', the act of reinterpreting the sketching or making analogies \citep{Goldschmidt}. Buxton noted that experts are better at distinguishing between ``seeing that'' and ``seeing as'' \citep{Buxton}, and will get more information out of a sketch than novices \citep{Goldschmidt}. 
+
+Third, and last, sketching allows designers to reason with the abstract and intangible by using symbols to create representations. Larkin and Simon argue that designers create symbolic representations of abstract concepts to engage in diagrammatic reasoning. Once an abstraction is reduced to symbols using external imagery, designers can use spatial metaphors, such as grouping or scale, to reflect on qualities of the drawn representations and develop new insights \citep{Larkin}. Sketching also allows the designer to generate new notations on the fly if no suitable notation exists. Indeed, designers not only use different symbols for different activities, but also for different phases within that same activity \citep{Goel}. 
+
+\subsection{Sketching in Software Design}
+\label{sketching:2}
+Software designers sketch too, and we are not the first to observe this. Dekel and Herbsleb's studies of participants in OOPSLA's DesignFest, for instance, resulted in a set of observations on how software design teams use and manipulate sketches \citep{Dekela}. Petre's work added observations on use of sketches to support design thinking and mental imagery in actual professional practice \citep{Petre}.
+
+The advantages of sketching reviewed in Section 2.1 are beginning to be echoed in these and other studies. For example, Cherubini et al. articulate goals such as sharing thoughts, grounding ideas, manipulating concepts, and brainstorming as reasons why software designers sketch \citep{Cherubini}. In both co-located and distributed teams, diagrams are indispensible for explaining core design concepts to new team members \citep{Yatani}. Although future research is necessary to extend these studies, they begin to show that sketching plays a crucial a role in software design, just as it does in other design disciplines.
+
+The tools that software designers use have an impact on the quality of exploration of a design problem. For instance, Zannier et. al. examined factors involved in design decisions that software teams make, finding that tools that encourage conversation and do not force structure encourage a broader consideration of alternatives \citep{Zannier}. These kinds of tools allow software designs to generate several solutions concurrently and then choose the solution or mixture of solutions that leads to the optimal result. 
+Petre provides an indepth look at a variety of aspects of software design sketches \citep{Petre}. One aspect of particular interest is how software designers use mental imagery and how sketching serves as a natural extension. Petre observes that software designers use mental images because they allow flexible selection of focus, have implied provisionality, and enable juxtaposition of elements. That is, sketching allows software designers to shift their focus fluidly among provisional ideas, which allows concepts to be juxtaposed early and often. Moreover, she found that the degree of formalism of notations varies with the completeness of the idea, i.e., provisional ideas will lack many details of their notations and mature ideas will have more detail.
+
+\subsection{Behaviors of Software Designers While Sketching}
+\label{behaviorsofsoftwaredesignerswhilesketching}
+Also emerging from the literature studying software designers ``in action'' is a set of behaviors that software designers exhibit while they work at the whiteboard. These behaviors are ubiquitous, and give rise to exactly the question Calico attempts to answer: can these behaviors be supported such that the design experience at the whiteboard is enhanced? In the below, we discuss the four behaviors towards which Calico is designed.
+
+\subsubsection{Shifts in Focus}
+\label{behaviorsofsoftwaredesignerswhilesketching:1}
+
+When working on a design problem, software designers switch context continuously. For instance, in Figure \ref{fig:1a}, the designers first drew the different kinds of databases for patients that they will need as circles on the left, then jumped to brainstorming a list of elements relevant to the database on the right, and then began drafting a high-level perspective of how those databases would interact with the rest of the system on the bottom. Such switching between contexts is an essential part of design, as designers must consider alternatives, explore different perspectives, and develop detail where and when necessary to create a satisfactory solution \citep{Petre,Myers,Zannier}.
+
+% For one-column wide figures use
+\begin{figure}
+  \centering
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \subfigure[] {
+  	\label{fig:1a} 
+  	\resizebox{0.8\hsize}{0.6\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1a.png}} 
+  }
+
+  \subfigure[] { \label{fig:1b} \resizebox{0.8\hsize}{0.6\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1b.png}} }
+
+  \subfigure[] { \label{fig:1c} \resizebox{0.8\hsize}{0.6\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure1c.png}} }
+ 
+% figure caption is below the figure
+\caption{Example whiteboard content from several design sessions at a local software company}
+\label{fig:1}       % Give a unique label
+\end{figure}
+%
+
+Jones observed that three identifiable phases occur in creative design: divergence, transformation, and convergence \citep{Jones}. In the divergence phase, the objective of the activity is to generate a high quantity of alternatives without evaluating any particular one. The transformation phase includes the refinement of those alternatives by splitting them into subproblems, identifying constraints, and evaluating those subparts. The third phase, convergence, involves distilling those alternatives until a single choice is selected from the many, or emerges from combining aspects from those choices. These phases are clearly not linear; shifts in focus are pertinent in all of these phases. 
+
+Goel echoed these ideas several decades later in his theories about the importance of sketching \citep{Goel}. Goel closely examined the transitions that take place when designers work with sketches, and he observed that two, quite different, transitions frequently take place, namely vertical transitions and lateral transitions. In vertical transitions, designers shift their focus from a high level of abstraction to a lower level with more detail. In lateral transitions, designers switch from one idea to another, attempting different strategies to solving the same problem.
+
+\subsubsection{Use of Low-Detail Models}
+\label{behaviorsofsoftwaredesignerswhilesketching:2}
+Software designers make use of low-detail models during exploration at the whiteboard. Figure \ref{fig:1b} highlights this observation. Most boxes remain unlabeled, various forms of shorthand are used, and the sketches remain abstract in nature. Various studies of software designers confirm the prevalence of low-detail models, particularly early in design sessions, noting that they allow ideas to be expressed quickly and modified easily \citep{Cherubini,Petre}. Often, too, quick sketches of prototypes can find the same usability problems as high fidelity prototypes \citep{Virzi}. Additionally, people tend to ``incorporate relevant information and omit the irrelevant'' \citep{Tversky} in their sketches, using only as much detail as necessary to advance their thinking.
+
+The sketchy look, as well as the flexible nature of sketching, allows designers to not commit to ideas too early. If ideas are too structured too soon, or even just appear too formal when they are put into drawing form, they tend to become unconscious barriers to change \citep{Wong}. A design that is too high fidelity too soon causes a designer to be less likely to reconsider the ideas underlying it, resulting in a less exploratory and a less broad search for candidate solutions \citep{Wong}.
+
+Also, whether consciously or subconsciously so, the low-detail sketches of software designers' early models tend to leave room for alternative interpretations, which has been shown to have beneficial effects on the quality of the eventual design that is delivered \citep{Goel,Yamamoto}. While a general lack of detail in the sketches that are used contributes to this effect simply by the nature of sketching, it is a conscious strategy of many expert designers to create interpretation-rich representations, purposely not committing unnecessary detail early on so that they can use the same drawing to imagine several different perspectives. 
+
+\subsubsection{Use of a Mix of Notations}
+\label{behaviorsofsoftwaredesignerswhilesketching:3}
+
+Software designers make use of a mix of notations. In Figure \ref{fig:1c}, on the left-hand size, a module within the system (Client Plugin) is represented using a box-and-arrow representation,  while a custom notation is used to represent database interactions in the bottom-right of the same image (the diagram with the ``L's'' inside circles that connect to ``slots'' on the right). 
+
+This mixture of notations is commonplace in design, and forcing the designer to use just one notation at a time can be harmful to the design activity \citep{Goel,Yatani}. A study by Goel showed that groups using tools with structured diagrammatic elements to perform a design activity was less successful in exploring alternatives than groups using a tool that did not have structured elements \citep{Goel}. In another study by Shipman and Marshall, participants circumvented formalisms early in their design process, stating that they did not want to prematurely commit to ideas. Further, the study found that the cognitive overhead required for participants to adapt their thinking to a given notation hindered their creativity \citep{Shipman}.
+
+Additionally, software designers have been observed to create models that are specialized to support their understanding in a specific context \citep{Petre}, and the notations for such models may emerge on the fly to adapt to the needs of a new context \citep{Dekela}. The internal data structure of L's and slots in Figure \ref{fig:1c}, for instance, uses an impromptu notation that does not resemble any known approach (e.g., UML or Entity Relations).
+
+\subsubsection{Refinement of Representations Over Time}
+\label{behaviorsofsoftwaredesignerswhilesketching:4}
+
+Crosscutting the other behaviors discussed thus far is the tendency for software designers to move from generic representations to more refined ones. Early sketches are typically low in detail and visually imprecise, as in Figure \ref{fig:1b}. These early sketches are then iterated upon and refined over time, with each refinement recording new design decisions and each iteration reflecting a revised understanding of the design. Later iterations, then, tend to be more organized to reflect the relationships between elements of the system and tend to be drawn with more aesthetic detail to reflect a firmer commitment to the design decisions made.
+
+In addition to the visual quality, the formalism of the notations, i.e., the amount of visual syntax that a computer could hypothetically recognize, that software designers use also increases as they refine their diagrams. During the early stages, while the design problem is still ill defined and the constraints have not yet been clearly defined, software designers may liberally omit parts of notations to delay decisions. However, as the constraints become increasingly defined, so does the formality and detail of the representations \citep{Ossher}. 
+
+Lastly, the evolution of these notations is not linear, but instead involves designers moving back and forth between notations opportunistically. The developer may create a symbol to serve a particular purpose, abandon the use of that symbol in favor of another one, and then return to using that original symbol again later \citep{Dekela}. The choice in representation during the early phases can be volatile, but designers typically settle into a uniform notation eventually.
+
+\section{Calico}
+\label{calico}
+As already alluded to, Calico was created to address the behaviors described in Section 3. To do so, we introduce a number of new features, specifically: the grid, scraps, and the palette. In this section, we present these novel features, describe them in detail through various examples, and carefully relate them back to the design behaviors of Section 3. As a guide, Table \ref{table:1} shows a mapping between each of the four behaviors of Section 3 and the main features of Calico.
+Before we discuss the features, we reiterate that Calico is meant to be used on an electronic whiteboard (or Tablet PC, in the case of sole person use), and is optimized to take its input from a digital stylus, not a mouse. The designer stands in front of the electronic whiteboard and uses the digital stylus to draw, write, and control Calico (see Figure \ref{fig:2}). The nature of this interaction shaped the design of Calico, particularly the mechanisms with which it enables designers to manipulate a design.
+
+Note that all of the examples we use in this section draw from the evaluation design sessions we describe in Section 5.
+
+\subsection {Basic Features}
+\label{calico:1}
+
+% For one-column wide figures use
+\begin{figure}
+  \centering
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \resizebox{0.8\hsize}{!}{ \includegraphics{./figures/CalicoVersionOne/figure2.png}}
+ 
+% figure caption is below the figure
+\caption {Physical setup of Calico}
+\label{fig:2}       % Give a unique label
+\end{figure}
+%
+
+\begin{figure}
+  \centering
+  \resizebox{0.8\hsize}{!}{ \includegraphics{./figures/CalicoVersionOne/figure3.png}}
+  \caption {Calico appearance at the start of a design session}
+\label{fig:3}       % Give a unique label
+\end{figure}
+%
+
+\begin{table}
+\caption{Calico features as they address the behaviors discussed in Section 3}
+\begin{tabular}{ p{2cm}p{2cm}p{6.5cm} }
+\toprule
+Behavior & Feature & Effect \\
+\midrule
+\multirow{2}{2cm}{Shifts in focus} & \multirow{2}{2cm}{Grid} & Sketching effort can be partitioned across multiple canvases \\
+	& & Tabs permit quick shifting between, and copying of, canvases \\
+\midrule
+Use of low-detail models & Scraps &	User-drawn shape can be preserved in order to enable informal models, Strokes are grouped implicitly, which makes them moveable, stackable, and relatable \\
+\midrule
+\multirow{2}{2cm} {Use of a mix of notations}  &	Scraps	& Emerging notations are captured by scraps and can then be easily copied for reuse \\ 
+	& Palette	 & Scraps are stored in a central location and can be reused anywhere \\
+\midrule
+\multirow{2}{2cm} {Refinement of  representations over time} & Grid & Abstract sketches can be partitioned and expanded upon across several canvases, which can be meaningfully organized on the grid   \\ 
+	& Scraps & Sketches can be transformed from plain sketches to first order objects by making them into scraps, and then related to one another with arrows \\
+\bottomrule
+\end{tabular}
+\label{table:1}
+\end{table}	
+ 
+Figure \ref{fig:3} presents Calico as it first appears when a developer starts it. Users can immediately draw or write, without needing to enter any mode or selecting a widget to create new content. Just as on a standard whiteboard, they make any marks they wish, anywhere, in any shape. The drawing canvas has just a few visible widgets to maintain the appearance of a standard whiteboard. Seven colored buttons at the bottom left allow a user to change colors. The colors were carefully chosen to be in direct correspondence to the standard pen colors available on a regular whiteboard.
+
+In addition to changing colors, Calico provides a small handful of features familiar to computer users. Users can pan a canvas, save and load designs, export sketches as images for use in other programs, as well as undo and redo actions. The undo and redo actions are globally stored, so if a previous action was performed on another canvas, the user's view will shift to that canvas and the action will be undone. Also, while Calico does not recognize or formalize shapes drawn by the user, Calico does compensate for the typically low polling rate of touch-based hardware by appoximating the curve of the user's strokes using B\'ezier curves. Calico does not support text entry, relying on users to simply write on the board in order to avoid unwanted breaks in concentration due to the need to switch to an extraneous keyboard. While Calico will run on any touch-based device with Windows, Linux, or Mac OS (see Section 3.5), all of our experimentation was performed on a board with a projector
+ resolution of 1024x768.
+
+Calico's first novel feature is the grid, which is our answer to the designer's need to not only easily shift focus, but to also be able to keep track of their design at hand. Shown in Figure \ref{fig:4}, the grid provides the designer with a bird's eye perspective of the design process as it has unfolded thus far by showing multiple canvases at once. By tapping on a canvas on the grid, the developer enters that particular canvas, where they can create new sketches or modify any sketches already in existence. By tapping the grid icon (see top right of Figure \ref{fig:3}), the designer returns to the grid. 
+
+\subsection {Grid}
+\label{calico:2}
+
+% For one-column wide figures use
+\begin{figure}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \resizebox{1\hsize}{!}{ \includegraphics{./figures/CalicoVersionOne/figure4.png}}
+ 
+% figure caption is below the figure
+\caption {Grid in use}
+\label{fig:4}       % Give a unique label
+\end{figure}
+%
+
+The grid naturally leads to a partitioning of design effort, while at the same time supporting straightforward movement between the emerging parts of this overall effort. For instance, a designer can make a to-do list in one canvas, use other canvases to work out each item on the to-do list in isolation, and return to the to-do list periodically to check and mark progress. As another example, the designer could choose to examine a design problem from various perspectives or at varying levels of detail in different canvases. The grid becomes the record keeper of this exploration, allowing rapid shifting from one perspective or level of detail to another.
+
+Previous tools have used the filmstrip metaphor to support multiple canvases, with a scrollbar at the bottom, typically in reverse order of manipulation \citep{Stefik}. With frequent updating of the content of different canvases, this leads to a volatile representation in terms of the order of the canvases in the filmstrip, making it difficult to navigate and easily shift focus. The grid advances on the filmstrip by transitioning from a time-based metaphor to a spatial metaphor. The grid keeps all of the canvases in a constant location, which means that a user can not only  easily locate individual sketches based on where they exist in the grid relative to each other, but also navigate to adjacent canvases without first having to switch to the grid. They can move left, right, up, or down one canvas at a time by using the tabs that are located in the middle of each edge of the canvas (see Figure \ref{fig:3}). Tapping the white part of the tab enacts the move to the adjacent canvas in that direction.
+
+Tabs also support a different form of shifting focus: exploration of alternatives. On a standard whiteboard, it is difficult to fork ideas. One has to manually replicate a sketch elsewhere before modifying it. This is clearly undesirable and either leads to less exploration or direct manipulation of the sketch in question, the latter destroying the original from which the departure is being made and making it difficult to return to a previous state. By tapping the grey half of a tab, a canvas' content is copied in its entirety to the corresponding adjacent canvas, which in turn is placed into focus. With a single ``click'', thus, the designer is provided with a fresh copy of an entire canvas, which they can then further explore, refine, or modify. Using this technique repeatedly, a trail of historical revisions is built that documents how an idea evolved, providing a safety net to always return to previous versions.
+
+Shifts in focus are further aided by the fact that canvases are moveable on the grid, allowing a user to rearrange the various canvases according to whichever concern they wish to address. That is, they may move ``old'' ideas aside, cluster canvases by phases of design, group topics, or even juxtapose different perspectives.
+
+\subsection {Scraps}
+\label{calico:3}
+
+% For one-column wide figures use
+\begin{figure}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \centering
+  \resizebox{0.8\hsize}{!}{ \includegraphics{./figures/CalicoVersionOne/figure5.png}}
+ 
+% figure caption is below the figure
+\caption {Scraps}
+\label{fig:5}       % Give a unique label
+\end{figure}
+%
+
+Scraps address three of the behaviors discussed in Section 3: (1) the use of low-detail models, (2) the use of a mix of notations, and (3) the tendency to move from generic representations to more refined ones.
+
+Scraps leverage a key action that users of a whiteboard naturally perform: circumscribing some area of sketched or written content \citep{Hendry}. They typically do this to indicate some object of sorts, or to simply mark an area as important. In Calico, the act of circumscription using the secondary button on the digital stylus has visually the same result: the area that is circumscribed is highlighted with a thin border and grey background. In addition, however, the area becomes an object in Calico that can be further manipulated and has several preassigned behaviors. In particular, scraps are implicit groups that are movable, stackable, and relatable. We review these properties one by one.
+
+\emph{Implicit groups}. Scraps build upon the approach taken in Translucent Patches \citep{Kramer}, which allows users to explicitly declare an area as a group. Anything that is either entirely circumscribed in the first place or otherwise written or drawn in this area afterwards is automatically part of the group. Consider the literal sketch of a car visible in the bottom right of Figure \ref{fig:5}. It was first drawn on the canvas, then circumscribed by the stylus to become a scrap. The scrap is now a persistent object with a grey background. Any further additions to the car automatically become part of the scrap.
+
+\emph{Movable}. Scraps are movable. Right-clicking and dragging using the digital stylus will move a scrap and its contents to a different location on the board. This seemingly innocuous action in reality represents a significant improvement over the standard whiteboard: content drawn can be rapidly reorganized. It particularly is important that such reorganization takes place in the language of the user: elements that they have deemed of sufficient importance to promote to being a scrap are the elements that are moved.
+
+\emph{Stackable}. Moving a scrap to a position where some part, or all of it, overlaps another scrap attaches it to the scrap behind it, allowing users to quickly create a stack of scraps (thereby creating hierarchically composed groups), as one would a pile of papers. For instance, the scraps labeled ``Speed'' and ``Position'' in Figure \ref{fig:5} are part of the scrap labeled ``Car Component.'' If ``Car Component'' is moved, ``Speed'' and ``Position'' are moved as well. Dragging a scrap off of another scrap un-groups it. Moving the scrap labeled ``Position'' from its current location on the canvas to where it overlaps the scrap containing the intersection will ungroup it from ``Car Component'' and group it with the intersection scrap in one fluid motion. Note that dragging a scrap implicitly moves it to the top of the order of scraps; scraps do not slide under other scraps. 
+
+\emph{Relatable}.  By dragging the digital stylus from one scrap to another, an arrow is created between two scraps. The arrow is persistent and anchored to the places where it originated and ended. When scraps are moved, the arrows move accordingly and keep the two scraps related. In Figure \ref{fig:5}, the scrap ``Position'' relates to the intersection scrap, and the scrap ``Car Component'' relates to the car scrap.
+
+Complementing these basic scrap behaviors are several more specialized behaviors accessible via a small radial menu on the scrap itself. First, a scrap's content can be dropped onto a scrap behind it or, if there is no scrap behind it, back onto the canvas. This allows designers to combine content from multiple scraps. Second, scraps can be given a more regular box shape, and, third, scraps can be made transparent. This latter functionality supports divergence at the micro level of individual scraps (as opposed to the macro level of entire canvases through the grey tabs). By drawing on a translucent scrap that overlays another scrap, developers can explore modifications to this other scrap's content without overwriting its content. If they are satisfied with the result, they could choose to combine the two scraps by dropping the content of the translucent scrap. Alternatives can be compared in this manner as well via multiple translucent scraps capturing different deviations.
+
+Scraps are also fundamental to addressing the behavior of using a mix of notations. By virtue of having physical presence, scraps provide a natural basis for serving as a representation for more structured, though still informally drawn, figures, such as user interface sketches or class diagrams. Since scraps are amorphous, and take on the shape of a designer's stroke, shaping them in visually identifiable forms (e.g., boxes, circles, buttons) allows the designer to informally convey a certain meaning. Particularly when combined with arrows, this supports sketching of numerous types of box-and-arrow-like diagrams. 
+
+\subsection {Palette}
+\label{calico:4}
+
+The palette is the third feature that we incorporated in response to the behaviors discussed in Section 3. It specifically addresses the issue of varying notations.
+
+Palettes are not new, but their typical incarnation in drawing programs is to include a prepopulated set of figures that are not configurable beyond changing the entire set. In design, however, it is not uncommon that a spontaneous notational convention emerges that does not necessarily adhere to any pre-existing or fixed set of figures. Calico's palette, thus, starts empty, and is filled with content by the designer, enabling the reuse of sketched elements. This allows a temporary vocabulary to be created and leveraged within a design session (as exemplified by the impromptu notations in Figure \ref{fig:11}, as further described in Section 6). 
+
+% For one-column wide figures use
+%\begin{figure}
+%  \centering
+%  \resizebox{1\hsize}{!}{ \includegraphics{figure-palette.png}}
+ 
+% figure caption is below the figure
+%\caption {Palette populated with scraps from the lefthand side}
+%\label{fig:palette}       % Give a unique label
+%\end{figure}
+%
+
+The palette leverages scraps for this purpose. Designers can store a scrap simply by dragging it into the palette on the side of Calico's canvas. The palette has a number of cells, each of which may hold one or more scraps. By dragging from a palette cell onto the canvas, any scraps inside that cell are copied to the canvas at the position of the stylus. Once populated, the user can rapidly create variations of a design simply by dragging key scraps from the palette.
+Note that the palette serves as a global clipboard; scraps can be stored and reused from any canvas. 
+
+
+
+\subsection {Implementation Notes}
+\label{calico:5}
+
+Calico's implementation consists of approximately 37,000 lines of code written in Java 6.0. Calico was developed using the Eclipse development environment, and was tested on Hitachi FX-Duo Starboard interactive whiteboards. It is portable across several operating systems (i.e., Windows XP/Vista, Linux, and Mac OSX), though all of our laboratory evaluations described below were performed using a Starboard connected to a Windows laptop that ran Calico. 
+
+\subsubsection {Architecture}
+\label{calico:5.1}
+
+Figure \ref{fig:arch} provides a summary of the architecture of Calico, which is based on the model-view-controller pattern.  The model is responsible for keeping track of all of the sketched content, including strokes, scraps, arrows, and any relationships that exist among them.  Strokes and scraps are stored as sequences of raw coordinates; arrows are stored as a start point and end point.  Two relationships are supported. First, when scraps fully contain other content, whether strokes, other scraps, or arrows, a containment relation is kept so that, when scraps are moved, copied, or deleted, the contained elements are also moved, copied, or deleted. Second, an anchoring relation is kept if an arrow's start point or end point is within a scrap, so that when the scrap is moved, the corresponding point also moves.  All content is managed by an ObjectHandler, which is responsible to provide not just convenient access, but also accessory methods for creating and restoring from a serialied back-up. 
+
+Lastly, the grid of canvases exists virtually as a set of two-dimensional coordinates within the components in the model.  Each stroke, scrap, or arrow has attached an (x, y) identifier to which canvas it belongs. 
+
+The Controller is responsible for interpreting the actions of the user on the canvas and translating those, if needed, to Calico actions.  The Gesture Controller is the primary point of access, taking as input the mouse events that are generated when the user interacts with the Hitachi Starboard (we use mouse events only and specifically chose not to take advantage of any special Hitachi Starboard features in order to avoid limiting ourselves to just this electronic whiteboard).  Based on the location of the stroke and any pre-existing content that may already exist on its path, the Gesture Controller distinguishes strokes that draw on the canvas from strokes that indicate some action to be performed (see also Section \ref{calico:5}).  Strokes that draw on the canvas are passed on directly to the Canvas Controller for creation in the model.  Strokes that represent actions are passed on to the Canvas Controller as ``action objects'' using a command pattern, in order to facilitate future extensions with other gestures and actions.
+
+% For one-column wide figures use
+\begin{figure}
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \centering
+  \resizebox{0.5\hsize}{!}{ \includegraphics{./figures/CalicoVersionOne/arch.png}}
+ 
+% figure caption is below the figure
+\caption {Calico architecture}
+\label{fig:arch}       % Give a unique label
+\end{figure}
+%
+
+The User Interface is built using Piccolo \citep{Bederson}, a zoomable interface that optimizes screen refreshing.  Piccolo was chosen because of its available source code and relatively lightweight footprint.  The Shape Painters, UI Widgets, Palette, and Grid all extend the Piccolo Framework and comprise the interface with which the user interacts. The Shape Painters mirror the data model using nodes  from the Piccolo Framework to draw content on the canvas; any changes to the data model are then automatically propagated. The UI Widgets take care of Calico functionality such as the tabs, panning, and undo and redo. The Palette also exists as a separate UI widget, albeit with special functionality to hold scraps that can be reused. Upon initialization, Calico instanciates a fixed number of canvases and stores them in the grid, which can be referenced using the (x,y) identifier. 
+
+\subsubsection {Gesture-Based Input}
+\label{calico:5}
+
+Permeating across the four design behaviors discussed in Section 3 is the need for gesture-based input. Many of the creative, exploratory activities that Calico supports rely on the fluidity and quickness of sketching. Interactions supplemental to the primary sketching activity should be equally quick. The design flow must be maintained, shapes should be created the way designers want them, and the effort of making changes should be low. Essentially, ``viscosity'' \citep{Petre}, the cost of making changes, has to be low or designers will be discouraged from exploring opportunities in design. 
+
+In order to maintain the natural feel of sketching in the interaction, we have chosen to use a mixed mode approach: many features are ready-at-hand through simple gestures, but some more esoteric functionality that would otherwise require integration of complicated gestures is available in a pie menu off of scraps (visible in Figure \ref{fig:gesturespie}).
+
+\label{results:22}
+
+\begin{figure}%
+  \centering
+  \subfigure[Create scrap] {
+      \label{fig:gesturesa}
+      \resizebox{.2\hsize}{.15\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gesturesa.png}}
+   }
+  \subfigure[Delete scrap] {
+      \label{fig:gesturesb}
+      \resizebox{.2\hsize}{.15\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gesturesb.png}}
+   }
+  \subfigure[Expand scrap] {
+      \label{fig:gesturesc}
+      \resizebox{.2\hsize}{.15\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gesturesc.png}}
+   }
+   \subfigure[Pie Menu] {
+      \label{fig:gesturespie}
+      \resizebox{.2\hsize}{.11\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gestures-piemenu.png}}
+   }
+
+
+
+  \subfigure[Create arrow] {
+      \label{fig:gesturesd}
+      \resizebox{.4\hsize}{.15\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gesturesd.png}}
+   }
+  \subfigure[Delete arrow] {
+      \label{fig:gesturese}
+      \resizebox{.4\hsize}{.15\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gesturese.png}}
+   }
+  \subfigure[Expand arrow] {
+      \label{fig:gesturesf}
+      \resizebox{.4\hsize}{.15\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gesturesf.png}}
+   }
+  \subfigure[Contract arrow] {
+      \label{fig:gesturesg}
+      \resizebox{.4\hsize}{.15\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure-gesturesg.png}}
+   }
+   \caption {Gestures in Calico for scraps and arrows}
+   \label{fig:gestures}
+\end{figure}%
+
+Interaction is driven by a small set of context-sensitive gestures, as shown in Figure \ref{fig:gestures}. Each stroke of the stylus performs a unique action depending on where it travels. For example,  dragging the pen while holding the secondary stylus button on the canvas creates a scrap,  but performing the same action on a scrap will move the scrap. With ordinary strokes, dragging the stylus along the canvas draws directly onto the canvas, but slashing it across a scrap, as shown in Figure \ref{fig:gesturesb}, will delete it.  The gestures take into consideration where the stylus begins, which object(s) it intersects along its path, and where the stylus ends. This is sufficient to build a straightforward interaction scheme that allows the user to create scraps, manipulate them in various ways, draw arrows from one scrap to another, and navigate the entire Calico interface with ease. Each action has a priority, such that stylus strokes spanning multiple interactions behave predictably. For instance, when a user draws a line from one scrap to another that crosses an existing arrow, a new arrow is created and the existing arrow is not deleted, despite the fact that the stroke struck through it (a gesture that normally deletes that arrow).
+
+\section{Experimental Design}
+\label{experimentaldesign}
+To evaluate Calico, we conducted an exploratory, comparative study in which we asked pairs of participants to perform a software design task using either Calico or a regular whiteboard. Our goals were threefold: first, we wanted to ensure that, when Calico is used for an actual design activity, people moved beyond basic whiteboard sketching and used Calico's advanced features. Second, given that Calico was designed to support specific design behaviors, we wished to observe whether these behaviors actually did occurred. Lastly, we wished to assess the structure of the design conversation in the pairs that used Calico, and compare it with that of the pairs that used the whiteboard.
+
+\subsection {Recruitment and Participants}
+\label{experimentaldesign:1}
+
+Sixteen pairs of participants (32 participants in total) were given one hour and fifty minutes to complete a given design task. Eight of the pairs used Calico to perform the design task, and eight of the pairs used the regular whiteboard. 
+We recruited participants at our university using email advertisements and snowball sampling. In a pre-experiment survey, we asked participants to declare their area of expertise, and their industrial experience. All participants were computer science graduate students with some degree of experience designing software systems. The average amount of industrial experience was three years, and ranged from none to seven years of experience. To balance pairs, we paired participants with the similar industrial experience together to avoid having the more experienced designer take over the session. We then gave each pair a rating based on the average experience of its members, and distributed these pairs equally among the whiteboard and Calico conditions so that each condition had an equal amount of experienced and inexperienced pairs.
+
+\subsection {Procedure}
+\label{experimentaldesign:2}
+
+Each session lasted between two and two a half hours. When participants arrived, they were given an informed-consent form that included details about the nature of the study. Those in the Calico session were given a 30-minute tutorial, while those in the whiteboard activity were allowed to begin immediately, upon which they were given the two page prompt (see below). Participants were asked to use the whiteboard and to not write on the prompt or any other paper so that cameras could have a clear view of anything they wrote. Pairs were given one hour and fifty minutes of design time, after which they briefly recapped their design in their own words (5-10 minutes). After pairs finished their design activity, they were given five minutes to collect their thoughts and then to summarize their design in a ten-minute explanation. Afterward, we interviewed them for ten minutes about their opinions and experience concerning the activity, and their past experience with similar technology. At the end of the session, each participant was given \$100 as an incentive and a \$250 prize was awarded to the pair with the best design. As a result, all pairs took the exercise seriously and were fully engaged throughout the design exercise. 
+
+Each session was recorded on video camera for subsequent analysis. Additionally, Calico produced detailed logs that captured each individual user action (e.g., scribble drawn; scrap created, moved, or deleted; switch canvas in the grid).
+
+\subsection {Task}
+\label{experimentaldesign:3}
+
+Each pair received the same design prompt, asking for the design of an educational traffic signal simulator to be used by students in a civil engineering course (the same prompt was used in the Studying Professional Software Design workshop; it is included in its entirety in the introduction to the Design Studies journal special issue dedicated to this workshop \citep{Petreb}). The prompt, provided a series of open-ended goals and requirements, asking the pairs to design a system that allowed engineering students to: (1) create a visual map of the roads, (2) describe the behavior of the lights at each intersection, (3) simulate traffic flow, and (4) change parameters of the simulation, such as traffic density. The prompt also instructed pairs to produce a design that they could present ``to a pair of software developers who will be tasked with implementing it.'' 
+
+\subsection {Measures}
+\label{experimentaldesign:4}
+
+Our goal was to: (1) measure how often Calico's advanced features were used, (2) examine how those features were used with respect to the design behaviors we outlined earlier, and (3) assess the structure of the design conversation in both the whiteboard and Calico sessions. We also asked a standard set of exit interview questions concerning the group's satisfaction with the tool and the design process that they followed.
+
+    \emph{Use of Features}. In order to objectively verify that participants move beyond just sketching like they would on a regular whiteboard and actually use the advanced features of Calico, we measured the amount of usage that each feature received. To perform this, we reviewed the videos and made a note of each time a particular feature was used. 
+
+    \emph{Design Behaviors}. After we had recorded all instances of the features being used, we performed a qualitative analysis of how the features were used. We were interested in seeing how well those features supported the behaviors outlined in Section 3. When considering the shifting of focus, we were particularly attentive to the reason that participants moved out of one canvas and into another within the grid, and we classified the general activities that occurred in each one as well. For low-detail models, we noted the general diagrams that participants sketched, and paid particular attention to what models participants created, and if and how they used scraps to do so. For the third design behavior, mix of notations, we watched out for situations where participants mixed several notations together in a single canvas, and highlighted occurrences of impromptu notations that were unique to a particular pair and did not appear in others. Lastly, for the design behavior of moving from abstract to concrete, we compared photos of diagrams at various stages, and noted how pairs restructured their diagrams and added additional detail.
+
+    \emph{Structure of Design Conversations}. After qualitatively assessing the videos for evidence of the design behaviors, we assessed the impact that Calico had on the structure of the design conversation by coding audio transcripts of the design sessions for what kinds of activity took place at each moment. The categories and guidelines for the coding scheme were adopted, with minor changes, from a previous study on design meetings \citep{Olson}. As the authors of that study explain, the categories were derived from the Design Rationale literature \citep{Moran} as well as studies of group activity \citep{PUTNAM}, and reflect key aspects of the design activity. With respect to the activities from design rationale, statements were separated into \emph{Issues} at hand, the \emph{Alternatives} or solutions raised, and the \emph{Criteria} used to evaluate an idea. Within the same coding scheme, statements could also be organized into organizational activities, i.e., conversations the group had to organize itself (specifically called \emph{Meeting Management}, \emph{Summary}, \emph{Walkthrough}, and \emph{Goal}), to \emph{Clarify} their ideas, or to engage in \emph{Digressions}. Two additional categories not part of the original coding scheme, \emph{Technology Management} and \emph{Technology Confusion}, were inspired by a previous study based on the same coding method that analyzed a tool's effect on the design process \citep{Olsonb}. \emph{Technology Management} refers to the times when the participants' focus was devoted to the tool itself rather than the activity at hand, and \emph{Technology Confusion} refers to time lost due to system failure. Lastly, any category that did not fit into any of the above was categorized as \emph{Other}. 
+
+Due to limited time and resources, only a subset of the sessions, specifically six Calico and six whiteboard sessions, were coded. While this is not enough to claim statistical significance, it is enough to gain a sense if there is, in fact, an apparent difference in process between the two conditions.
+
+In order to verify the validity of the coding, we performed an interrater reliability test, and also consulted with researchers who previously applied this coding in their own past studies. After initial training, two individuals independently coded a session, and then compared their coded transcripts to perform an interrater reliability test. We obtained a Cohen's k value of 82\% at this level of granularity. We then compared the total time that each coder had for each category, and found a correlation of .998. These measures are well within the accepted tolerance for behavioral analysis.
+
+    \emph{Satisfaction and perceptions of participants}. At the end of each session, we interviewed participants in order to learn how Calico affected their approach to the design task, and what the positive or negative aspects of Calico were for the users. We did this by first asking participants to reflect on their designs and the process they used to get there. We then asked them explain how they used each of the advanced features, their overall satisfaction with each feature, and whether they had any suggestions for improvement. 
+
+\section{Results}
+\label{results}
+
+
+
+% For one-column wide figures use
+\begin{figure}
+  \centering
+% Use the relevant command to insert your figure file.
+% For example, with the graphicx package use
+  \subfigure[] {
+  	\label{fig:6a} 
+  	\resizebox{0.8\hsize}{0.45\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6a.pdf}} 
+  }
+
+  \subfigure[] {\label{fig:6b} \resizebox{0.8\hsize}{0.45\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6b.pdf}} }
+
+  \subfigure[] {\label{fig:6c} \resizebox{0.8\hsize}{0.45\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure6c.pdf}} }
+ 
+% figure caption is below the figure
+\caption{Feature usage across the eight calico pairs}
+\label{fig:6}       % Give a unique label
+\end{figure}
+%
+
+
+The discussion of our results is organized by the major categories of analysis described in the previous section: use of features, design behaviors, design conversations, and satisfaction. In this section, we only present the results that we observed; we do not make attempts to interpret them. In Section 7, we bring the results together and draw our conclusions about the value of Calico.
+
+\subsection {Feature Use}
+\label{results:1}
+
+We first focused on whether participants would move beyond just basic sketching to using the advanced features of Calico. This point is important, given that there was no incentive for participants to use any of the advanced features other than the features being useful to their task at hand; they could have instead chosen to sketch as they normally would on a standard whiteboard without the help of scraps or the grid. 
+
+Figure \ref{fig:6} shows the result, marking each time the grid (a), scraps (b), or palette (c) was used. From the graph, we note that the grid was unanimously used by all pairs, with heavy usage by most pairs and moderate by some. The pairs predominantly switched to the grid view first for navigating to different canvases, though as time went on, several incorporated the use of the tabs to navigate to adjacent canvases (see Section 4). 
+
+There was a wide distribution in the frequency of scrap use, with some pairs strongly relying on scraps, others exhibiting more moderate use, and a few barely using them. The palette was the least used feature, with just two pairs using it some and three other pairs using it twice each.
+
+\subsection {Design Behaviors}
+\label {results:2}
+
+Given our goal of supporting the specific design behaviors identified in Section 3, this section focuses on occurrences of these behaviors in the various pairs, as well as how the advanced functionality of Calico was used in the presence of these behaviors.
+
+\subsubsection {Shifting focus}
+\label{results:21}
+
+\begin{figure}%
+  \centering
+  \subfigure[List of requirements in bullet point form] {
+     \label{fig:7-a}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure7a.png}}
+   }
+  \subfigure[UI mockup of the traffic simulator interface] {
+      \label{fig:7-b}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure7b.png}}
+   }
+  \subfigure[Architecture in the form of boxes and arrows] {
+      \label{fig:7-c}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure7c.png}}
+   }
+   \caption {Participants tended to focus their efforts towards a particular theme in each canvas}
+   \label{fig:7}
+\end{figure}%
+
+As the heavy use of the grid would suggest, Calico assisted designers readily in shifting focus. All sessions resulted in grids similar to the one shown in Figure \ref{fig:4}, with the designers moving back and forth among canvases frequently. Pairs switched to a new canvas to either: (1) address additional detail generated by the current sketch, or (2) generate a new alternative. In the majority of cases it did not matter where on the grid a pair went to continue their design activities, as a consequence of which we observed quite a few linear chains of canvases on the grid in use. Several interesting cases did emerge, however. For example, in one session, each of the pair members ``owned'' a grid row of design content in that they were the primary designer for all of the sketches in their row. As another example, one pair used the spatial metaphor extensively, with members talking about moving in a given direction (i.e., left, right, up, down) to navigate to certain sketches. While not all pairs operated as explicitly in terms of direction, the grid's spatial orientation did provide a consistent layout that enabled the pairs to shift focus by navigating to different canvases that they knew existed in certain locations.   
+
+A number of pairs exhibited bursts of back-and-forth switching between canvases to compare content, as illustrated in Figure \ref{fig:6a} by the overlapping sequences of dots. This happened for two reasons. First, participants moved back-and-forth when they needed to mentally juxtapose two concepts, such as when they were working to improve their design for the user interface in conjunction with the underlying model. Second, they would take stock to verify that the different sketches were consistent with one another to make sure they had not inadvertently introduced problems when they furthered some aspect of their design.
+
+The contents of the canvases tended to break down in three categories: (1) requirements, (2) code structures, and (3) UI mockups, with examples of each depicted in Figure \ref{fig:7}. Every pair used the first canvases to lay out their requirements in a list, as in Figure \ref{fig:7-a}, after which they would move to another canvas to embark on the design proper, producing diagrams similar to Figures \ref{fig:7-b} and \ref{fig:7-c}. Pairs would frequently return to the requirements for inspection and assessment of their progress.
+
+The ability to copy canvases proved useful not only to generate alternatives (one can see several variant sketches in Figure \ref{fig:4}), but also when it was desirable to divide the contents of a canvas between two canvases so to be able to work on each part separately. Copy followed by subsequent deletion of the respective halves of the copied content achieved this desired result. One of the pairs used the copy feature to create backups of individual canvases, and moved these backup copies out of the way by dragging the canvases to the outer edges of the grid. Several other pairs moved canvases in the grid around to more clearly organize their design.
+
+Overall, we observed that participants use the grid as a tool to divide design content across canvases, where a shift in attention was commonly accompanied by a change of canvas, and long periods of attention were marked by extended periods of continued activity in a single canvas (visible as gaps between points in Figure \ref{fig:6}). Additionally, we observed the spatial layout to be helpful to designers, both in providing clear references to design content and in organizing the overall design effort.
+
+
+\subsubsection {Low-detail models}
+\label{results:22}
+
+\begin{figure}%
+  \centering
+  \subfigure[] {
+      \label{fig:8a}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure8a.png}}
+   }
+  \subfigure[] {
+      \label{fig:8b}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure8b.png}}
+   }
+  \subfigure[] {
+      \label{fig:8c}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure8c.png}}
+   }
+  \subfigure[] {
+      \label{fig:8d}
+      \resizebox{.45\hsize}{.35\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure8d.png}}
+   }
+   \caption {Examples of models in varying amounts of detail}
+   \label{fig:8}
+\end{figure}%
+
+We observed the use of low-detail models in every single design session. The pairs that used Calico created the same type of low-detail models that we saw on the whiteboard, and in most cases they used scraps to create these models. Of the eight Calico pairs, two simply sketched directly on the canvas as they would have on a traditional whiteboard, and did not further manipulate their sketches. In the cases where pairs did use scraps, they benefited from the extra functionality, such as moving scraps to reorganize a design, copying them in order to create variations, and arrows to define relatioships.
+
+The images in Figure \ref{fig:8a} and \ref{fig:8b} illustrate an example of how many of the pairs used scraps to create box-and-arrow representations of code structures. The pairs that did not use scraps, such as the pair that produced Figure \ref{fig:8c}, drew boxes and arrows, but did not heavily restructure their diagrams. The pairs that did use scraps engaged in more organization of their box-and-arrow diagrams through the moving and copying of scraps. Additionally, they typically refined their scrap-based models into UML-like models, showing how scraps can be used as the basis for such refinement from low detail to more detail. In the case of Figure \ref{fig:8b}, the designers annotated some of their scraps with ``I'' to indicate that it is an interface, and on the right-hand side they created lists of parameters for each object.
+
+Many of the other diagrams produced in Calico shared similar qualities with the low-detail diagrams, with Figures \ref{fig:8c} and \ref{fig:8d} providing two more examples. These diagrams were quick sketches that participants initially used to help them understand a particular situation. The designers in Figure \ref{fig:8c} did not use scraps heavily and so they experimented with traffic configurations by simply drawing and erasing different scenarios. The designers in Figure \ref{fig:8d} used scraps to accomplish a similar task. In this case, they used scraps of different shades to represent traffic configurations, and experimented with different configurations by moving and copying the scraps. Additionally, they used scraps to pull pieces of the design from surrounding canvases in order to understand how a particular traffic configuration would work within the context of other parts of the system. 
+
+\subsubsection {Mix of notations}
+\label{results:23}
+
+As expected, numerous notations were used by the participants as part of their design process. These include class diagrams, user interface components, and diagrams specific to the domain of traffic simulation. These different types of diagrams were often created in response to one another. In the whiteboard sessions, this led to heterogenous content in different notations spread out over the whiteboard. In the Calico sessions, the pairs broke up their designs across different canvases, as exemplified in Figure \ref{fig:7}, and as a result most canvases used just a single notation. Pairs sometimes did mix different notations in a single canvas, such as in the Figure \ref{fig:8d}, where one of the pairs uses representations of a traffic intersection in the top of the image with pieces of code representations in the bottom-right of the image, on the same canvas. This pair, as well as other pairs that similarly mixed representations, used the different representations to juxtapose different views of the design.
+
+Pairs had no ready notation to represent traffic structions, and so they created their own on the fly. For instance, the image in Figure \ref{fig:9-a} shows how one pair used scraps to model a state diagram that is part of their vision for how civil engineering students will specify the timing of traffic lights in their simulation. Note how the state diagram exists on one of two tabs meant to be part of the user interface. Next, in Figure \ref{fig:9-b}, the same pair applied a similar notation to define the logic that is executed once a car arrives at an intersection. Here the pair reused the same diagrammatic elements by copying scraps. In Figure \ref{fig:9-c}, another pair created dozens of small scraps and placed them in a grid configuration to simulate the interface for traffic flow. They filled in select canvases with the pen to simulate a particular route, and experimented with different routes by erasing and filling in other scraps. In all three examples within Figure \ref{fig:9}, pairs were able to create copies of their scraps and reuse them to attempt alternate combinations. 
+
+\begin{figure}%
+  \centering
+  \subfigure[State diagram for defining light combinations at an intersection] {
+     \label{fig:9-a}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure9a.png}}
+   }
+  \subfigure[State machine that is executed when a car arrives at an intersection] {
+      \label{fig:9-b}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure9b.png}}
+   }
+  \subfigure[Simulation of traffic flow on the map and the controls to regulate it] {
+      \label{fig:9-c}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure9c.png}}
+   }
+   \caption {Several impromptu notations emerged in the design sessions}
+   \label{fig:9}
+\end{figure}%
+
+\subsubsection {Refinement of representations}
+\label{results:24}
+
+Both the grid and scraps were used in the refinement of representations over time. At the most general level, the grid partitioned the design space so that participants could separate high level and low level representations. Many pairs used spatial orientation to navigate from higher level representations to lower level representations, where higher level representations would exist at the typically left-most canvases, and the details of components in adjacent canvases to the right or below the originating canvas. Next, when members made the transition to more concrete representations, they would transform sketches into scraps, and create copies on other canvases where they would expand them in more detail and create relationships between them. 
+
+There were two patterns of this behavior that occurred frequently within pairs. Figure \ref{fig:11} illustrates a representative example of the first pattern, which occurred in over half of the Calico pairs. Most pairs, but not all, began by creating several lists of design requirements, goals, and what they viewed as major aspects of the system. The example in Figure \ref{fig:11-a} contains several high-level components such as Maps, Intersections, Cars, and so on. After brainstorming lists such as these, pairs would commonly convert them into scraps (Figure \ref{fig:11-b}) and copy them into another canvas, where they would expand on these in more detail, as in Figure \ref{fig:11-c}. However, creating lists such as these was not common in all pairs, two pairs chose to jump right to diagramming. In the exit interviews, these two pairs both reported that they were first concerned with understanding the requirements and the world that they were modeling. They both began by creating concrete representations of what they knew was true within intersections, and then developed a high level understanding by drawing on top of and discussing these models with their partner. To accomplish this, they created many diagrams of intersections, and from these jumped to writing down assumptions in lists contained in other canvases. When they encountered a new concept that they sensed was complex, such as how to handle the timing within intersections, they would loudly say, ``let's leave this for later'', and leave it as a generic annotation.
+
+A second pattern that occurred more frequently was the breaking down of the design across multiple canvases. A representative example is depicted in Figure \ref{fig:12}, in which the participants from that pair partitioned their code structure across many spaces. They created a high level perspective of the architecture in one canvas using scraps (Figure \ref{fig:12-a}) and then copied these scraps to adjacent canvases, where a particular scrap would be expanded to include more detail. In Figure \ref{fig:12}, the participants divided the architecture of their program into UI, Map, and Simulation Logic. They copied the contents of this canvas to an adjacent canvas, where they subsequently fleshed out the details of Simulation Logic, but left Map and UI with no additional detail. They then used a third canvas to work out the details of Map, while leaving Simulation Logic and UI as is. Using this divide and conquer strategy, the participants were able to effectively partition their design. This behavior of spreading diagrams across several canvases is similar to what Dekel and Herbsleb \citep{Dekela} observed in their studies, where diagrams in one drawing space would depend on references located in other spaces. 
+
+\begin{figure}%
+  \centering
+  \subfigure[List of high level objects] {
+     \label{fig:11-a}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure11a.png}}
+   }
+  \subfigure[List of high level objects converted to scraps] {
+      \label{fig:11-b}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure11b.png}}
+   }
+  \subfigure[High level objects refactored and expanded] {
+      \label{fig:11-c}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure11c.png}}
+   }
+   \caption {Lists were converted into representations of software components using scraps}
+   \label{fig:11}
+\end{figure}%
+
+\begin{figure}%
+  \centering
+  \subfigure[High level perspective of system architecture] {
+     \label{fig:12-a}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure12a.png}}
+   }
+  \subfigure[Definition of Simulation Logic] {
+      \label{fig:12-b}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure12b.png}}
+   }
+  \subfigure[Definition of Map] {
+      \label{fig:12-c}
+      \resizebox{.3\hsize}{.4\hsize}{ \includegraphics{./figures/CalicoVersionOne/figure12c.png}}
+   }
+   \caption {Representations of software components were broken up across several canvases}
+   \label{fig:12}
+\end{figure}%
+
+\subsection {Structure of Design Conversations}
+\label{results:3}
+
+We now examine the structure of the design conversations within the Calico pairs, and see how it compares with the pairs that performed the activity on the whiteboard. 
+
+\subsubsection {How time was spent}
+\label{results:31}
+
+We first determined the structure of the design process by measuring the total time spent in each design category during conversation. We coded the transcripts of the spoken parts of the meetings, summarizing the total time spent in each category, as shown in Table \ref{table:2}. 
+
+\begin{table}
+\centering
+\caption{Summary of design conversation categories.}
+\begin{tabular}{ p{3.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm} }
+\toprule
+Category & Whiteboard Pairs & Sum & Calico Pairs & Sum \\
+\midrule
+Issue 		& 6.37		&	& 7.34 		&  \\
+%\tab   Clar Issue	& 1.06		&	& 0.15 		&  \\
+%Alternative	& 37.04	&	& 41.83 	& \\
+%\tab Clar Alt	& 2.08		&	& 1.30 		&	\\
+%Criteria		& 15.63	& 	& 16.47 	&	\\
+%\tab Clar Criteria	& 0.48		&	& 0.42		& \\
+%		&		& 62.66 &		& 67.50 \\
+%General Clar	& 0.04		&	& 0.08		&	\\
+%Artifact Clar	& 0.11		&	& 0.21		&	\\
+%Summary	& 1.32		& 	& 1.57		&	\\
+%\tab Clar Summary & 0.00	&	& 0.41		&	\\
+%Walkthrough	& 2.05		&	& 1.90		&	\\
+%\tab Clar Walk	& 0.00		&	& 0.07		&	\\
+%Goal		& 1.07		&	& 0.91		&	\\
+%\tab Clar Goal	& 0.52		& 	& 0.18		&	\\
+%Meeting Mgmt	& 6.37		& 	& 7.34		&	\\
+%\tab Clar Meeting Mgmt & 0.00 &	& 0.01		&	 \\
+%Digression	& 0.82		&	& 0.48		& 	\\
+%\tab Clar Digression & 0.00	&	& 0.00		&	\\
+%Manage Technology & 0.35	&	& 3.66		&	\\
+%Technology Conf & 0.04	&	& 5.09		&	\\
+%Other		& 0.00		&	& 0.91		&	\\
+%		&		& 12.43 & 	& 22.79 \\
+%Pause		& 24.01	& 24.01 & 9.67 & .67 \\
+\bottomrule
+\end{tabular}
+\label{table:2}
+\end{table}	
+
+Categories related to design rationale (i.e., \emph{issues}, \emph{alternatives}, and \emph{criteria}) took up the majority of the design sessions. In the Calico pairs, these took up 67.5\% of the meeting time, and in the whiteboard pairs they took up 62.7\% of the meeting. Both Calico and the whiteboard had a similar breakdown within the design rationale categories. Within the Calico and whiteboard pairs, discussing \emph{alternatives} occupied 41.8\% and 37.0\% of the time, respectively. Both pairs spent roughly the same amount of time discussing \emph{issues}, at 7.3\% and 6.4\% for Calico and whiteboard pairs, respectively, and also the same amount of time evaluating solutions in the \emph{criteria} category, with 16.5\% and 15.6\% for Calico and whiteboard, respectively. However, the average length of stay in each category, i.e. the average uninterrupted time for a particular category, was higher for the Calico pairs than the whiteboard pairs. The average length of stay for \emph{alternative} in Calico pairs was 13.0 seconds compared to 8.7 seconds for whiteboards. The average length of stay for \emph{criteria} in Calico pairs, 11.0 seconds, was also longer than that for the whiteboard pairs, 7.5 seconds. However, the average length of time per \emph{issue} proposed was similar, with Calico pairs averaging 8.1 seconds and whiteboard pairs average 7.1 seconds.
+
+Roughly double the amount of time was devoted to management related activities in Calico pairs compared to whiteboard pairs, however this time difference was due to discussion of the technology. Management related categories occupied 22.8\% of the meeting in Calico, while they only occupied 12.4\% of the meeting in the whiteboard pairs. Of that time in Calico, 8.8\% was spent discussing the technology (combined sum of \emph{Management of Technology} and \emph{Technology Confusion} categories). Both pairs spent relatively the same amount of time explicitly discussing meeting management, 7.3\% and 6.4\% for Calico and whiteboard pairs, respectively. The other categories were roughly similar as well.
+
+We also recorded the amount of time spent not talking, which we recorded as \emph{pause}. We found that the whiteboard pairs were quiet for more than double the period of Calico pairs, with whiteboard pairs silent for 24.0\% compared to 9.7\% for Calico pairs. Upon closer inspection, we saw that the majority of whiteboard pairs used this period of silence to work independently of each other. Calico pairs were not given this opportunity since the system only permits one user to write at a time. While we do not measure the impact that this had here, during the exit interview participants reported frustration over their inability to work independently. As a result, they reported that they had to force their attention on what the other person was writing, and abandon ideas they were thinking of independently because they could not write them down.
+
+We then recorded time spent clarifying answers across all categories, though we found that little time was dedicated to clarification within both sessions. The combined percentage of clarification across all categories for the Calico pairs was 2.8\%, while it was 4.3\% for the whiteboard pairs. 
+
+Lastly, we examined pairwise levels of similarity across all pairs, shown in Table \ref{table:3}. We compared the average time spent within each category across Calico and the whiteboard conditions, and found a correlation of .92, indicating a strong relationship. All Calico pairs had a strong correlation with one another, ranging from .90 to .98. Within the whiteboard pairs, there was a much larger variability, with correlations ranging from .16 to .98, with a median of .58. A major way in which the meetings varied, particularly between Whiteboard Session 2 and Session 5, was in the amount of time that was categorized as \emph{pause}. Removing the pause category from the pairs raises the correlations significantly to the range of .93 to .99 (not visible in table). Overall there appears to be much similarly across all sessions, with pairs within the Calico condition having the tightest range when considering all of the categories.
+
+\begin{table}
+\centering
+\caption{Correlations between sessions for total time spent (dark cells pertain only to Calico sessions, white cells pertain only to whiteboard sessions, and lightly shaded cells are the intersection of both)}
+\begin{tabular}{ p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}}
+\toprule
+&	C.1 &	C.2 &	C.3 &	C.4 &	C.5 &	C.6 &	W.1 &	W.2 &	W.3 &	W.4 &	W.5 \\
+\midrule
+C.1 	 & & & & & & & & & & & 								 \\		
+C.2  &	0.90 & & & & & & & & & & 								 \\		
+C.3 & 	0.98 &	0.94 & & & & & & & & & 							 \\		
+C.4 & 	0.97 &	0.96 &	0.98 & & & & & & & & 						 \\		
+C.5 & 	0.94 &	0.98 &	0.97 &	0.98 & & & & & & & 						 \\	
+C.6 & 	0.95 &	0.95 &	0.98 &	0.98 &	0.97 & & & & & & 					 \\	
+W.1 &	0.94 &	0.96 &	0.97 &	0.96 &	0.99 &	0.97 & & & & & 				 \\	
+W.2 &	0.41 &	0.20 &	0.44 &	0.33 &	0.27 &	0.43 &	0.29 & & & & 			 \\	
+W.3 &	0.92 &	0.97 &	0.94 &	0.95 &	0.98 &	0.94 &	0.98 &	0.20 & & & 			 \\
+W.4 &	0.92 &	0.98 &	0.94 &	0.98 &	0.99 &	0.95 &	0.98 &	0.16 &	0.99 & & 		 \\
+W.5 &	0.61 &	0.55 &	0.73 &	0.67 &	0.61 &	0.74 &	0.61 &	0.92 &	0.54 &	0.53 & 	 \\
+W.6 &	0.91 &	0.91 &	0.95 &	0.93 &	0.93 &	0.97 &	0.93 &	0.57 &	0.91 &	0.90 &	0.83 	\\
+\bottomrule
+\end{tabular}
+\label{table:3}
+\end{table}
+
+\subsubsection {Transitions Between Activities}
+\label{results:32}
+
+\begin{figure}
+  \resizebox{1\hsize}{!}{ \includegraphics{./figures/CalicoVersionOne/figure13.png}}
+\caption{How time was spent within and between the design activities}
+\label{fig:13}      
+\end{figure}
+%
+
+In addition to total time, we also examined all incoming and outgoing transitions that pairs made between categories in order to understand the flow of design conversations. We first computed the total number of times the participants transitioned from one category to another, which is shown in Figure \ref{fig:13} through arrows, the thickness of which representing the relative frequency that a particular transition occurred. The most common transitions that occurred belonged to the design rationale categories: \emph{issues}, \emph{alternatives}, and their \emph{criteria}. In Calico they were involved in 76.8\% of all transitions, and 77.7\% of all transitions in the whiteboard pairs. 
+
+We then computed the correlation matrix for the Calico and whiteboard pairs, and found striking similarities between the transitions of all 22 categories. In order to get the correlation matrix, we computed the average percentage that a given transition happens between one category to the next, and established the correlation matrix shown in Table \ref{table:4}. The average transition that happens in the Calico pairs was strongly correlated with that of the whiteboard pairs at .92. As with the previous table of correlations, the Calico pairs, on average, are more highly correlated with one another than the whiteboard pairs and have a tighter range, The Calico pairs range from .63 to .93, compared to whiteboard pairs, which range from .41 to .98. As with the previous table of total time spent, whiteboard pairs 2 and 5 also have low correlations with the other whiteboard pairs, and a high correlation with each other, suggesting a distinctive difference in work style. Also, unlike the previous table, Calico pair 4 correlates slightly less, on average, than other Calico pairs, and much less with whiteboard pairs, suggesting they used a slightly different process as well.
+
+\begin{table}
+\centering
+\caption{Correlations between sessions for transitions (dark cells pertain only to calico sessions, white cells pertain only to whiteboard sessions, and lightly shaded cells are the intersection of both)}
+\begin{tabular}{ p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}p{0.5cm}}
+\toprule
+&	C.1 &	C.2 &	C.3 &	C.4 &	C.5 &	C.6 &	W.1 &	W.2 &	W.3 &	W.4 &	W.5 \\
+\midrule
+C.1 	 & & & & & & & & & & & 								 \\
+C.2 & 	0.82 & & & & & & & & & &								\\		
+C.3 & 	0.86 &	0.88 & & & & & & & & & 							 \\		
+C.4 & 	0.70 &	0.75 &	0.76 & & & & & & & &							\\	
+C.5 & 	0.90 &	0.88 &	0.89 &	0.63 &	 & & & & & &						\\
+C.6 & 	0.90 &	0.86 &	0.95 &	0.76 &	0.93 & & & & & &					\\	
+W.1 &	0.83 &	0.83 &	0.83 &	0.45 &	0.94 &	0.84 & & & & &				\\	
+W.2 &	0.45 &	0.45 &	0.66 &	0.45 &	0.46 &	0.64 &	0.44 & & & &				\\
+W.3 &	0.85 &	0.84 &	0.80 &	0.46 &	0.93 &	0.83 &	0.98 &	0.41 & & &			\\
+W.4 &	0.88 &	0.88 &	0.82 &	0.59 &	0.90 &	0.87 &	0.91 &	0.47 &	0.93 & &		\\
+W.5 &	0.58 &	0.66 &	0.81 &	0.49 &	0.65 &	0.76 &	0.62 &	0.88 &	0.57 &	0.62 &		\\
+W.6 &	0.88 &	0.88 &	0.80 &	0.54 &	0.91 &	0.86 &	0.94 &	0.42 &	0.95 &	0.97 &	0.60	\\
+\bottomrule
+\end{tabular}
+\label{table:4}
+\end{table}
+
+Additionally, we looked for patterns of transitions. In order to discover patterns, we use the same method described in Olson et al. \citep{Olsona}. In this method, we observe for transitions that occur more often, or less often, than they are statistically expected to. In order to determine the expected value, we first calculate the number of times that a particular category occurs, and divide that number by the total number of instances of all categories, which gives us the expected percentage of occurrence. We then compare this expected percentage with the actual percentage for a particular transition. If no structure exists in the design session, then the probability of moving from one activity to the next will be the same as the expected percentage. However, if a pattern exists, then we will observe a deviation between those two numbers.
+
+\begin{figure}
+  \centering
+  \resizebox{.8\hsize}{!}{ \includegraphics{./figures/CalicoVersionOne/figure14.pdf}}
+\caption{Emergent pattern of transitions across both the Calico and whiteboard pairs}
+\label{fig:14}       % Give a unique label
+\end{figure}
+
+Using the above method, we observed sequences of up to four transitions, and a pattern began to emerge that was present in both the Calico and whiteboard pairs. The pattern that emerged is shown in Figure \ref{fig:14}. The solid lines in Figure \ref{fig:14} represent strong trends, while the dashed lines represent transitions that are weaker, but still occur well above probabilistic levels. M stands for any management category, I for \emph{issue}, A for \emph{alternative}, and C for \emph{criteria}, in accordance with the categories in Figure \ref{fig:13}. There was a strong tendency to make frequent transitions between alternative-criteria, or between management-alternative. Additionally pairs commonly engaged in serial evaluation, where one participant would challenge the evaluation of the other, leading to new criteria with which to judge the alternative. Within the pure design categories, sequences of alternative-criteria transitions were typically punctuated by either the discussion of an issue, or a category from management. Olson et al. called these combinations IAC or MAC, based on their category names. These specific combinations are examples of ``design episodes'', which were found by them to be common in design meetings. We found these design episodes to be present in both the Calico and whiteboard pairs. The episodes of IAC, which has an expected value of .04\%, appeared to happen more commonly in Calico pairs, occurring an average of 3.25\% of all transitions, compared to 2.33\% of all transitions for whiteboard. Episodes of MAC, also with an expected value of .04\%, appeared to happen more commonly in whiteboard pairs at 2.64\% of all transitions, versus 1.61\% of all Calico transitions. 
+
+\subsection {Satisfaction and Perceptions of Participants}
+\label{results:3}
+
+At the end of each session we verbally interviewed the participants and asked them to reflect on their own design process and satisfaction with the tool. Despite some technical difficulties, six out of eight pairs reported that they greatly enjoyed using Calico. The grid was unanimously praised as a tool to organize the design space. One participant praised that ``it was the first time [they] felt like they were using a whiteboard [in a digital medium]'', and expressed that other pen-based software tools that paginated their drawing space, such as Microsoft OneNote, made navigating designs frustrating. Five of the eight pairs explicitly praised scraps as tools for quickly copying content and moving it across canvases, however many expressed frustration that they were not able to rotate or resize them. Two pairs reported mixed feelings about the overall tool, stating that Calico merely felt like a digital whiteboard and did not compensate for the bulky hardware. All pairs reported dissatisfaction with the hardware in general, stating that it made their writing very sloppy, and that single user input was a ``deal-breaker.'' When asked if they would use Calico in their own design sessions, seven pairs expressed a great deal of interest, but only if it allowed more than one user to draw at a time. All participants reported frustration over this issue, with one participant stating that it caused them to ``spin their wheels'' while they waited for their partner to finish writing. 
+
+Seven out of eight pairs reported that Calico did not alter or interfere with how they would normally approach a design problem, and that the ability to easily copy canvases encouraged them to explore more solutions than they normally would have. Also, pairs reported that the presence of scraps changed the way they approached creating lists, stating that they kept in mind the ability to easily copy list items and transform them into software architecture components. One pair of the eight felt that the benefits of Calico did not outweigh the hardware drawbacks, saying that they could have achieved the same design using a stack of papers. In general, nearly all participants were content with the final design that they had created, with most participants calling their final design ``a good start'' given the limited amount of time they had to create their design. 
+
+\section{Discussion}
+\label{discussion}
+
+Building upon the results from Section 6, we now turn our intention to interpreting what they mean with respect to Calico use in support of software design at the whiteboard.
+
+\subsection {Calico Features}
+\label{discussion:1}
+
+Bringing the results described in Sections 6 together, it is clear that Calico does provide support for the behaviors that we identified in Section 3 and that designers are able to use the features in support of these behaviors when they so desire. However, it is also clear that features were not always used when they could have supported a certain behavior and that not every pair utilized every feature.
+
+We interpret the differences in use between the different pairs as stemming from two factors. First, some pairs had early success in using scraps, and discovered ways in which they made their life easier. They subsequently stayed with scraps more persistently. Other pairs simply drew on the canvas and ventured rarely into attempting to use scraps. With some early troublesome interactions (e.g., an accidental deletion by a slash-through, using the wrong stylus button to create a scrap), they became discouraged and used traditional methods instead. 
+
+Second, the benefits of using scraps are not always apparent until later. One has to anticipate needing to alter a drawing by creating it using scraps in the first place, otherwise one ends up drawing it twice: once as background sketches and once to create reusable elements from parts of those sketches. This second step represents additional work, and may be skipped in favor of simply redrawing a sketch, especially if it is small or not-too-involved. 
+
+In both cases, we believe more training and the build-up of experience over time has the potential to overcome the issue. Simply sketching on a whiteboard is so ingrained, it takes time to internalize and adjust to a new form of interaction with sketched content. 
+
+Post-experiment conversations with the participants confirmed some of these observations. While we generally received very positive feedback, several issues were identified. First was that the nature of scraps was not as intuitive to learn as we had hoped. The participants did not think this was an outright failure, but did note the need for more training and more examples of scrap use. The participants also noted that tabs did not inform the user as to whether a neighboring canvas is occupied. Spatial navigation directly from canvas to canvas without first moving to the grid, therefore, is hampered. A simple mark to indicate a neighboring canvas has content, together with a popup on hover, may overcome this problem. 
+
+The participants also wished for extra functionality on scraps. Some of the requested functionality is generic in nature and straightforward to add, such as rotation, resize, and different types of arrows. Some, however, is more specific and pertains to the fact that designers mentally assign meaning to scraps and expect functionality commensurate to that meaning. Such expectations arose later in the sessions, when the design had been largely worked out and the designers now wished to provide additional detail to complete the design. For instance, they asked for functionality to refine scraps into UML classes with a name, variables, and functions, or to turn scraps into lists for easy reorganization and requirement tracking. We believe such refinement can be integrated without disturbing scraps' present sketchy, informal nature, which is so crucial in the early stages of design. Particularly, we envision typing of scraps, with the assignment of type (e.g., UML class, UI element, architectural component, ER element) signaling additional functionality becoming available. 
+
+\subsection {Design Behaviors}
+\label{discussion:2}
+
+With respect to how pairs approached the design task, the Calico pairs exhibited some very similar behaviors, while the whiteboard pairs noticeably differed at times. For example, not all whiteboard pairs used transient diagrams, some maintained all of their diagrams for the entire session and refined these over a period of time. In contrast, other whiteboard pairs continuously erased what they drew and often worked from memory. Some pairs chose to work together the entire time, while other pairs worked on their design siliently in parallel at extreme ends of the board. One of the pairs that did this eventually did review each others' design and reconciled their different approaches, while another pair largely operated independently the entire session with few design decisions being contested or brought together. The Calico pairs, however, seemed to be implicitly guided into certain behaviors by the tool, and these behaviors were consistent across the majority of Calico pairs. The abundance of space led pairs to save and evolve their diagrams over time to a much greater extent. Scraps made it possible to reuse, as well as refine, diagrams, which nearly all pairs did. Additionally, the grid caused the pairs to create clear divisions between different aspects of their design. Overall, it appears that Calico's features led pairs towards the specific behaviors of design that we planned for, while the whiteboard pairs, who did not have these features, varied much more greatly in their approaches. Whether or not these behaviors lead to a positive impact on the overall design is yet to be determined, but, regardless, our observations point to the conclusion that these behaviors are supported by Calico.
+
+\subsection {Interference}
+\label{discussion:3}
+
+Another important result of the study is that Calico did not interfere with the design activity. If anything, it led to more issues, alternatives, or criterias that were discussed. In the exit interviews, all designers agreed that Calico did not much effect the nature of their design conversations, and the results from the analysis of the design structure tend to support that. They dedicated relatively the same amount of time of each session discussing design activities at 62.6\% and 67.5\% for whiteboard and Calico conditions, respectively. Further, the use of Calico had little effect on the amount of time spent managing the activity, at 6.4\% and 7.3\% for the whiteboard and Calico pairs, respectively. The pairs intuitively understood how to manage their design using the grid, and so they did not need to exert additional effort in managing it. This behavior falls in line with previous research that supports the notion that designers make heavy use of spatial properties to orient themselves and organize their design \citep{Nickerson,Brooksa}. In the normal whiteboard sessions, it was not uncommon for participants to look back and forth between two diagrams on opposite ends of the board, and sometimes place a hand on one diagram while they looked at another. Participants used Calico in much the same way by rapidly moving back and forth between two canvases when considering two diagrams. In one exit interview, one pair requested the ability to view two canvases simultaneously in a juxtaposed view to allow a similar activity. 
+
+Calico did, however, seem to cause some changes. The Calico tool seemed to force a greater degree of homogeneity between the pairs. The pairs that used Calico had a higher amount of conformity between them with respect to the total time spent in each category than the whiteboard pairs. The correlations between pairs for transitions between categories demonstrated the same tendency. This discrepancy in design conversations between the Calico and whiteboard pairs seems to, by and large, be related to the amount of time spent working independently. Two whiteboard pairs, 2 and 5, spent a significant portion of the session working quietly in parallel, which is reflected in their low correlation with other pairs for time spent in Table \ref{table:3}. Interestingly, the transition frequency correlation matrix in Table \ref{table:4} for these two pairs shows the same pattern of discrepancy. This suggests two things: (1) the pairs that chose to spend a significant amount of time working silently in parallel had a different design conversation structure than those whiteboard pairs that did not spend much time working silently, and, conversely, (2) the pairs that did not spend significant time working independently had a sequential process that correlated relatively highly with the Calico pairs. This second point is interesting because it shows that, while many of the Calico pairs considered themselves handicapped by the inability to work independently, the structure of their design process was similar to the highly collaborative whiteboard pairs. 
+
+\subsection {Focus}
+\label{discussion:4}
+
+Finally, after comparing the videos with the coded transcripts, it seemed that the pairs that used Calico had a greater amount of focus on their partner's ideas and a slightly better shared understanding of recorded ideas than the whiteboard pairs. While both the Calico and whiteboard pairs spent a relatively similar amount of total time per session discussing \emph{issues}, \emph{alternatives}, and \emph{criteria}, the Calico pairs had a larger average of \emph{consecutive time per alternative and criteria} discussed. The average length of continuous time that an \emph{alternative} was 50\% longer in Calico pairs than whiteboard pairs (13 seconds versus 8.7 seconds) and the average length of continuous time a criteria was expressed was also nearly 50\% longer in Calico pairs than whiteboard pairs (11 seconds versus 7.5 seconds). While this was, in part, due to the single input interface of the electronic whiteboard, other factors in Calico forced the focus of participants well. Within Calico, the pairs would partition their design into different canvases in the grid, and so the drawing spaces in Calico tended to have a tighter focus than the whiteboard, which shows all of the content at once. As a result, the participants in the Calico pairs were not distracted by drawings within other parts of the design, whereas the whiteboard pairs could gaze at any part of their design at any time. When a participant in a Calico pair did refer back to other parts of the design, they had to switch to an entirely different canvas via the grid, effectively forcing their partner's attention to move with them to that part of the design. While Calico pairs were not able to move between topics as quickly as whiteboard pairs, it led to more elaborate explanations and longer individual responses when presenting a \emph{criteria}. Within the whiteboard pairs, it would sometimes be the case that while one partner would be explaining their solution, the other would ignore them while they considered another part of the design. The split attention was reflected in the longer time spent clarifying ideas for the whiteboard pairs, which was 53\% longer than Calico pairs (4.3\% of the total session for whiteboard pairs, on average, versus 2.8\% of the total session for Calico pairs, on average). 
+
+\subsection {In Sum}
+\label{discussion:6}
+
+Overall, our detailed analysis of how Calico was used and influenced the design behaviors and conversations, as well as the positive responses to Calico from the participants, show that Calico has promise in enhancing design at the whiteboard. More elaborate training is likely needed for users to properly take advantage of scraps, but we still saw that Calico's features are helpful, while avoiding impeding the design process. 
+
+Calico's strength lies in its support for the informal process of design, during which the emphasis is placed more on unstructured exploration and less on a precise analysis of the design. Some pairs benefited more than others from Calico's features, but overall, Calico assisted them in using an effective design process in which their natural behaviors were supported with explicit features. Most importantly, they were able to use the grid to partition their design effort, scraps to create diagrams with easily manipulable elements, and, occasionally, the palette to reuse impromptu design languages.  Most used the grid only for working with content across multiple spaces, but some benefited from the palette as well, such as when they reused scraps on multiple canvases. Calico's strengths also include supporting the individuals in focusing on each other during the design session, as shown by our conversation analysis. 
+
+The tradeoff to Calico's support for informal design is that the resulting designs remain sketches, and cannot be analyzed or used in ways that more formal design tools support. This kind of tradeoff is a recognized problem with informal tools, and overcoming it is becoming an active area of research \citep{Ossher2}. Another observed weakness is that Calico's interface is so different, that it takes users significant time to become familiar. Many of its benefits require the user to think ahead, otherwise they may not be using Calico optimally. Scraps in particular have a delayed pay-off, which led some pairs to not use them since they were not needed in the moment. Finally, Calico's single user input limits how a group of people may use the tool. While it improves focus, it can effectively become a bottleneck to expressing ideas if the participants want to temporarily work in parallel, a behavior which we saw put to both good and bad use in the whiteboard pairs.
+
+\section{Theats to Validity}
+\label{threatstovalidity}
+
+Several threats to validity exist that we must keep in mind when considering our results. First, with respect to construct  validity, the participants were limited to a single two-hour time span and had no access to others. Real design typically  happen over longer periods of time and involve many different stakeholders. Despite this difference, during these longer periods of time, design at the whiteboard certainly happens \citep{Cherubini}. While our work will not support all of a design, it usefully support that slice of design that happens then and there.
+
+Second, we must consider threats to internal validity, i.e., the factors that affect our ability to claim cause-effect relationships from the results. The single user input limitation and therefore the prevention of parallel work, is the primary concern. Exit interviews confirm this as participants in the Calico pairs felt handicapped by this limitation, and given the opportunity they would have preferred parallel work. On the other hand, results from our analysis also show that Calico pairs spent a greater amount of uninterrupted time explaining alternatives and criteria to each other, building greater cohesion. Moreover, Calico sessions still exhibits significant similarities with the non-Calico sessions in the ways the designers worked.  
+Third, the conditions of the experiment may pose a risk to its external validity, i.e., its ability to generalize to what people do. In order to use Calico to its maximum potential, it would require a longer period of time than what was available in the experiment in order for people to become familiar with its features and power. Another factor was that the participants in the study were all graduate students, and so there is a chance that they may not represent the behaviors of experienced professional software designers. Novice designers have a greater tendency to become fixated on a design decision prematurely \citep{Ball}, and novices tend to mismanage their time by focusing on a single issue for an extended period whereas professional designers know when to move on \citep{Baker}. Given that the comparative nature of our experiment focused on Calico versus non-Calico design, and not on expertise, we did not further examine this factor.
+
+Despite the fact that the experiment has its differences with real-world design, it is interesting to note that there is a relationship with how real designers work. The study conducted by Olson et al. \citep{Olsonb} demonstrated that a design session conducted in a controlled laboratory experiment is representative of a design session as it happens in the field with professional designers. Since our study uses the same measurement as those from \citep{Olsonb} and also has a high correlation with their results (\emph{r = .85}), by transitive logic, we can say that the study performed here is representative of a design session as it occurs in the field.
+
+\section{Related Work}
+\label{relatedwork}
+
+Existing sketch tools can be classified into two categories: (1) those that interpret sketches with the purpose of turning them into formal objects, and (2) those that support sketching activities in general. The survey on sketch-based systems by Johnson et. al. \citep{Johnson} provides a more extensive look of all tools created to date than what we necessarily can provide in the blow.
+
+\subsection {Tools that Interpret}
+\label{relatedwork:1}
+
+The  tools within this category interpreting a digital freeform sketch and then generate a formal representation. While we purposefully chose not to interpret sketches in Calico, these tools remain relevant as background work.
+Many tools that interpret sketches focus on generating prototypes for user interfaces. One of the earliest  such tools is SILK \citep{Landay}, which allowed users to generate a usable GUI from a sketch, and then generate the corresponding Java code to implement that GUI. Another tool, DENIM \citep{Newman}, allows users to create low fidelity mockups of websites and then run simulations of that website.  InkKit and Freeform, two other systems that created usable GUI's from sketches \citep{Chung,Plimmer}, allowed interpreted content to visually retain its sketch appearance, based on the insight that visually beautifying content too early can be harmful to the designer \citep{Shipman}. 
+
+Another group of interpretive sketch systems includes those that recognize UML elements. The earliest such tool was Knight \citep{Damma}, which allowed  designers to create partial UML diagrams by selecting a portion or all of their sketch to be interpreted as UML elements. A later tool, SUMLOW \citep{Chen} allowed interpreted sketches to retain their sketchy appearance (citing InkKit as inspiration), and allowed the mixing of different UML notations. Hosking and Grundy later adopted this approach in Marama-Sketch \citep{Grundy}, which designers can use to sketch diagrams in a broad variety of notations. Numerous other UML-oriented sketch tools have been created, generally following similar strategies (for a survey, see \citep{Johnson} ). 
+
+Other tools allow mixed elements to coexist in the same area as well, though interpretation is left to explicit manual choice by the user rather than automated recognition. In Kramer's system, the user can create sets of irregular shapes called ``patches'' \citep{Kramer}. These can be moved around, be made translucent, and, most importantly, the patch can be assigned an interpretation where it can become a list, outline, table, or other element. Kramer's work later inspired the overall functionality of the sketch framework SATIN \citep{Hong}, which was later used to create the tools DENIM, SketchySPICE, and Designer's Outpost.  Patches is probably closest to Calico of all these tools, with the primary difference being that user-defined shapes in Calico, scraps, stay away from interpretation, and these scraps make pieces of the design reusable across the grid canvases by using both the palette and by copying.
+
+\subsection {Systems that Support Sketching Activities}
+\label{relatedwork:2}
+
+The second type of sketch system is aimed at supporting the general design activity. These systems help organize sketched artifacts during meetings, make them retrievable, and help manage and maintain the plethora of sketched design content that gets generated during design sessions. 
+
+The very first of these systems were created for the Liveboard system at PARC. Colab was the first system to work with this hardware, and acted as a meeting tool \citep{Stefik}. It had a simple, uncluttered interface with a mode selector and a visible set of saved sessions in the fashion of a filmstrip. The next system developed for the Liveboard was Tivoli \citep{Pederson}, which used the filmstrip metaphor to manage sketches in a side panel. Tivoli also organized sketches into chunked items for easy moving, and had additional functionality for creating empty space. After Tivoli, Dolphin \citep{Streitz} introduced a client-server architecture for group collaboration and allowed users to create links between canvases. A significant difference between these systems and Calico lies in the grid, which provides a constant spatial orientation of sketches as compared to the paginated style, which leads to older sketches moving around. 
+
+Many other tools provide methods for managing the presence of multiple sketches within a fixed space. Post-BrainStorm \citep{Guimbretiere} uses the border areas as areas where sketches auto-shrink, thereby minimizing space use by elements that are temporarily set aside. Flatland \citep{Mynatt} implemented a variant of this last idea by automatically grouping sketches into clusters, and shrinking and moving them out of the way when more space is needed. Range \citep{Ju} extended this approach by using a person's physical proximity to the board as a trigger to create space. Compared to these systems, Calico's grid organizes the sketches into separate, but spatially fixed, spaces and allows the designers to easily move back and forth without explicitly worrying about space management.
+
+Two final systems provide functionality somewhat different from Calico. Designer's Outpost \citep{Klemmer} bridged the gap between physical Post-It notes and digital content, transitioning content of Post-It notes into digital artifacts that then could be organized in various ways. Finally, TEAM STORM \citep{Hailpern} addressed the issue of collaboration by providing mechanisms for integrating tablet PC based input on a large display in front of a group of designers. 
+
+\section{Conclusions}
+\label{conclusions}
+
+In this paper, we have presented a sketch-based software design tool that provides explicit support for the creative and exploratory behaviors of software designers when they work at the whiteboard. Using Calico, software designers can fluidly create, manipulate, and explore a esign problem and its possible solutions. 
+
+Our contributions include: 
+\begin{enumerate}
+
+\item A unique software design sketching environment that leverages a carefully-tuned combination of scraps, a grid, a palette, and gesture-based input to enhance the experience of whiteboard software design; 
+\item A multi-pronged, detailed evaluation that demonstrates that Calico is of value, with participants in the experiment using Calico's advanced features and exhibiting the kinds of design behaviors toward which Calico was designed; and 
+\item A rigorous analysis of the design conversations that demonstrates that Calico not only does not interfere with the design activity, but also may lead to more shared focus between participants and longer discussions of various aspects of the designs.
+
+\end{enumerate}
+Overall, then, we believe Calico has beneficial impact on the design process as it unfolds at the whiteboard. 
+
+We view our work to date as a starting point, and have three directions of future work. First, we want to streamline the current functionality of Calico to address some of the observed problems in using Calico. This includes not only basic operations, such as allowing rotation and resizing of scraps, but also addressing the single user issue. We have already made progress in this direction with a revised interaction interface that we designed based on the feedback that we received \citep{Mangano2}.  Second, we wish to pursue the ability to refine scraps to support notation-specific features.  This would further enable designers to move from very rough initial sketches to more polished diagrams (in the spirit of \citep{Plimmer2}, although in a more gradual way that does not rely on automatic recognition). With converstion, additional, notation-specific features would become available, such as automatic layout, cardinality annotations, different kinds of arrows, and greater visual fidelity. Finally, we wish to automatically bring outside artifacts, particularly source code, but perhaps also lists of requirements or even simply domain-specific images, into Calico as scraps. Many software design discussions happen in the context of an existing project, and we envision being able to populate a canvas with sketchy representations of relevant artifacts that can then be manipulated in all of the ways that Calico offers.
+
+
 \section{Background}
 
 Lorem ipsum
