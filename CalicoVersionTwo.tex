@@ -1,10 +1,129 @@
 \chapter{Calico Version Two}
 \label{chapter:calico-version-two}
 
-\section{Background}
+Over the past six years, we have gone through an iterative process of designing, implementing, and evaluating various incarnations of Calico. Through various experiments and trials with the technology over several years, including using the tool ourselves, deploying it in the classroom, and formal experimentation [27], we have slowly, but surely developed an understanding of how we can mesh more advanced functionality with the fluidity that the whiteboard experience demands. We have specifically refined what first was a broad range of exploratory features into a small, cohesive set of just five features that we propose here in this topic proposal. We believe these five features, some of which we have already built, some of which we are currently designing, to be effective in supporting the fourteen behaviors that we identified in Section 2. In the below we briefly introduce the features and how they relate to each other, with subsequent discussions in Sections 5 and 6, providing a more detail discussion of how the features work and are implemented. What is important here is how the set of features collectively address the set of behaviors, which is summarized in Table 1. 
 
-Lorem ipsum 
+The basis for all of the features in Calico is scraps and connectors. Scraps are the mechanism by which users interact with the sketches they create and, along with connectors, provide the building blocks for users to create representations for different kinds of diagrams. Taking inspiration from the Patches [24], Calico uses the common user action of circumscribing drawn content with the pen [20] to create a scrap, and promotes the circumscribed content as belonging to the newly created scrap (see Figure 1a). Scraps, in being manipulatable objects, can be moved, copied, resized, deleted, etc. Furthermore, scraps exhibit three key properties that make them so essential to our work. First, they retain their shape from the pen-stroke that created them. This gives the user flexibility to represent the different kinds of diagrams that designers create, since shape is a fundamental quality of notations [29]. Second, they are automatically grouped by stacking them on top of one another. Much of what software designers draw is hierarchical, which is often visually represented by containment [28]. Scrap interactions, and similarly all other features that build on scraps, implicitly recognize the grouping by behaving as though a scrap and all other scraps stacked on top of it are a single object; operations such as move, copy, etc. operate on them as though they were a single unit. Lastly, users can create connectors that relate scraps to one another. Connectors provide a fundamental complement to scraps, allowing users to create diagrams that are not only visually similar to the box-and-arrow diagrams that are present in a great many of software design notations [39], but also behave like box-and-arrow diagrams too: the connectors visually follow a scrap as it moves. The connector itself further provides a fundamental component that other features can build on by adding different arrowheads, cardinality, and labels. 
 
+Intentional interfaces are a mechanism we propose to relate multiple sketches together. A designer working on a design problem will need to organize their sketches across multiple canvases. The intentional interfaces feature helps the designer in this activity by using lightweight rational capture for organizing and navigating their sketches. The feature does this in three ways. First, it maintains a history of the designer’s exploration of the design space by generating canvas links. Second, canvases are tagged with their purpose in the design exploration. Upon entering a canvas for the first time, the designer is asked to select a tag that summarizes their intention for creating that canvas, such as “alternative”, “perspective”, or “level of abstraction”. This tag later serves the designer by allowing them to explicitly move between alternatives or abstractions. Third, Calico uses the links and tags to build the intention view, visible in Figure 1c, which displays the emerging network of sketches. In this perspective, the designer can review their design and design progress as a whole, select any canvas to work in, arrange canvases, and change their links. 
+
+The palette complements the previous features by making scraps reusable. The palette serves as a global source to save scraps, which can immediately be reused anywhere by dragging it back to the canvas from the palette. While not an innovative feature in itself, since palettes are an integral part of any drawing program, the palette serves an important role in the practicality of the previous features. First, the palette is user driven. The palette initializes as an empty set that the designers may fill with their own vocabulary of icons. The palette allows the user to toggle between sets if they wish to create multiple vocabularies. Second, assembling a custom vocabulary would not be helpful if it were limited to a single canvas, and thus the palette allows its contents to be reused across canvases. The global property of the palette allows this vocabulary to be reused everywhere. Third, the palette not only stores the visual structure of scraps, but also the behaviors assigned to them. This is a key supporting feature for compositional notations, as recreating a particular kind of scrap with certain visual expressiveness and behavior should not be necessary. The palette allows the designer to create a UML, ER, or impromptu notation, and reuse it indefinitely.
+
+Lastly, the highlighter separates the act of highlighting from drawing. This functionality allows the designer to point, circle, and draw sequences over diagrams, but the strokes made by the designer fade a few seconds after they are made. While a small piece of functionality, the highlighter serves an important role. It allows a group of designers, and even the individual designer, to perform mental simulations over a sketch to explain them to each other, both while at the same whiteboard and over the network in distributed cases.
+
+\begin{figure}%
+  \centering
+  \subfigure[Scraps] {
+      \label{fig:calico-version-two:overviewa}
+	  \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwo/overview-scraps}
+   }
+  \subfigure[Intentional Interfaces - Intention View] {
+      \label{fig:calico-version-two:overviewb}
+      \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwoCluster}
+   }
+  \subfigure[Palette] {
+      \label{fig:calico-version-two:overviewc}
+      \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwo/overview-palette}
+   }
+  \subfigure[Highlighter] {
+      \label{fig:calico-version-two:overviewd}
+      \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwo/highlighter}
+   }
+   \caption {Calico features}
+   \label{fig:calico-version-two:overview}
+\end{figure}%
+
+\section{Calico Canvas}
+
+To date, we have built four iterations of Calico. The most recent iteration of Calico provides the foundation to build and experiment with the planned features. Figure \ref{figure:calico-version-two:canvas} presents Calico as it first appears when a designer enters a canvas. Users can immediately draw or write by dragging their pen across the whiteboard. Just as on a standard whiteboard, they can make any marks they wish, anywhere, in any shape. The drawing canvas is largely clear of any obstructions, with features available on the periphery to maintain the appearance of a standard whiteboard. The side panels are mirrored on both the left and right sides, and a panel at the bottom displays status messages and has a minimal set of buttons. 
+
+The side panels have an assortment of features to help the user while sketching. The green icons belong to the features that affect the entire set of sketches. The first five icons pertain to the grid feature, a precursor to intentional interfaces described below, and help the user in navigating the canvas. The next group of three icons allows the user to erase the canvas or alert others not to erase it. The user can undo and redo their actions. The other icons pertain to the contents drawn on the canvas. The buttons enable functionality such as pen color, stroke widths, pen modes, and special types of scraps. The pen mode toggles the input mode between regular sketching, the eraser that removes regular strokes, and the highlighter.  
+
+\begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=16cm,keepaspectratio]{./figures/CalicoVersionTwoCanvas}
+  \caption{The Calico canvas interface, including the side panels and the drawing space.}
+  \label{figure:calico-version-two:canvas}
+\end{figure*}
+
+\section{Scraps}
+
+Scraps and connectors are the first major features we built. As mentioned in Section 4, scraps enable users to both manipulate content and create informal diagrams as in Figure \ref{fig:calico-version-two:scrapse}. In order to support users in these activities, scraps have developed a complex set of functionality. Scraps can be created while sketching using the scrapping gestures in Figure \ref{fig:calico-version-two:scrapsa} and \ref{fig:calico-version-two:scrapsb}, which transform drawn content into the selection scraps in Figure \ref{fig:calico-version-two:scrapsc} for quick manipulation of sketches, or into the regular scraps in Figure \ref{fig:calico-version-two:scrapsd} for representing diagrams. Once made into a regular scrap, it becomes an implicit group that is universally manipulatable, stackable, and relatable, as in Figure \ref{fig:calico-version-two:scrapse}. We review these functionalities one by one.
+
+\emph{Scrapping gestures.} Calico has two basic gestures that it uses for creating scraps directly while drawing. The first gesture creates a scrap by circumscribing an area and releasing the pen in a landing zone, as seen in Figure \ref{fig:calico-version-two:scrapsa}. In order to not interfere with the sketching activity itself, the landing zone will only appear if the stroke is sufficiently long enough. The second gesture for creating a scrap is done by pressing-and-holding the pen inside a stroke that is already circumscribing an area, which animates a dotted red circle and creates a scrap from the enclosing stroke, as in Figure \ref{fig:calico-version-two:scrapsb}. The second gesture allows the user to create a scrap after the stroke has already been created, either as a recovery mechanism if the user missed the landing zone of the first strategy, or if they choose to convert an already existing sketch into a scrap. 
+
+\begin{figure}%
+  \centering
+  \subfigure[Landing zone scrapping gesture] {
+      \label{fig:calico-version-two:scrapsa}
+	  \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwo/scrapgestures-a}
+   }
+  \subfigure[Press-and-hold scrapping gesture] {
+      \label{fig:calico-version-two:scrapsb}
+      \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwo/scrapgestures-b}
+   }
+  \subfigure[Selection scrap] {
+      \label{fig:calico-version-two:scrapsc}
+      \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwo/scrapgestures-c}
+   }
+  \subfigure[Scrap] {
+      \label{fig:calico-version-two:scrapsd}
+      \includegraphics[width=7cm,keepaspectratio]{./figures/CalicoVersionTwo/scrapgestures-d}
+   }
+   \subfigure[Stacked scraps with connectors] {
+      \label{fig:calico-version-two:scrapse}
+      \includegraphics[width=14cm,keepaspectratio]{./figures/CalicoVersionTwo/scrapgestures-e}
+   }
+   \caption {Scrap functionality}
+   \label{fig:calico-version-two:scraps}
+\end{figure}%
+
+\emph{Selection and regular scraps.} Scraps created from the pen gestures are first made into selection scraps (Figure \ref{fig:calico-version-two:scrapsc}), which disappear after the scrap loses focus. In past experiments of Calico, we saw that users often created scraps for the sole intention of manipulating some set of sketched content and immediately dismissed the scrap after using them for one or two actions [27]. The selection scrap streamlines this behavior. Upon creation, the selection scrap highlights any content inside of it, and allows the user to manipulate the selected contents using the bubble menu surrounding the scrap, as seen in Figure \ref{fig:calico-version-two:scrapsc}. When the selection scrap loses focus, it immediately disappears and returns its contents to the canvas. If the user wishes to permanently retain the scrap, they can tap any of the two scrap icons in the upper left of the bubble menu, which transforms it into a regular scrap, as in Figure \ref{fig:calico-version-two:scrapsd}. Selection scraps allow users to benefit from the manipulation capabilities of scraps without forcing the contents of their sketch to be scraps.
+
+\emph{Implicit grouping.} Scraps build upon the approach taken in Translucent Patches [24], which allows users to explicitly declare an area as a group. Anything that is either entirely circumscribed in the first place or otherwise written or drawn in this area afterwards is automatically part of the group. Consider the sketch of ATM in Figure \ref{fig:calico-version-two:scrapse}. It was first drawn on the canvas, then circumscribed by the stylus to become a scrap. The scrap is now a persistent object with a blue background. Any further additions to the ATM scrap, or any other scrap in Figure \ref{fig:calico-version-two:scrapse}, automatically become part of that scrap.
+
+\emph{Manipulation.} Scraps are movable, copy-able, rotatable, and resizable. Tapping or writing on a scrap immediately highlights it and presents the bubble menu on its periphery, as in Figure \ref{fig:calico-version-two:scrapsc} and 3d. These seemingly innocuous actions in reality represent a significant improvement over the standard whiteboard: content drawn can be rapidly reorganized. It particularly is important that such reorganization takes place in the language of the user: elements that they have deemed of sufficient importance to promote to being a scrap are the elements that are manipulated.
+
+\emph{Stacking.} Moving a scrap to a position where it is entirely overlapped by another scrap attaches it to the scrap behind it, allowing users to quickly create a stack of scraps (thereby creating hierarchically composed groups), as one would a pile of papers. For instance, the scraps labeled “Deposit'', ``Withdrawal'', and ``CheckBalance'' in Figure \ref{fig:calico-version-two:scrapse} are part of the scrap labeled ``Transactions''. If ``Transactions'' is moved, ``Deposit'', ``Withdrawal'', and ``CheckBalance'' are moved as well. Dragging a scrap off of another scrap un-groups it. Moving the scrap labeled ``Deposit'' from its current location will ungroup it from ``Transactions'' and, in one fluid motion, group it with ``User Interface'' when the user drops it there. Note that dragging a scrap implicitly moves it to the top of the order of scraps; scraps do not slide under other scraps.
+
+\emph{Connectors.} By dragging the digital stylus from one scrap to another, the pen stroke becomes highlighted and presents the user with an icon to transform that stroke into a connector. The connector preserves the shape of the stroke, but is decorated with an arrowhead. The connector is persistent and anchored to the places where it originated and ended. When scraps are moved, the connectors move accordingly and keep the two scraps related. In Figure \ref{fig:calico-version-two:scrapsa}, the scrap ``ATM'' relates to the ``Transactions'' and ``User Interface'' scraps, and the scrap ``Transaction'' relates to ``BankDB''.
+
+\section{Intentional interfaces}
+
+The grid is the second novel feature in the current iteration of Calico. The grid is a precursor to the intentional interfaces feature, and similarly serves to organize the set of canvases. Shown in Figure 4, the grid provides the designer with a bird’s eye perspective of the design process as it has unfolded thus far by showing multiple canvases at once. By tapping on a canvas on the grid, the developer enters that particular canvas, where they can create new sketches or modify any sketches already in existence. By tapping the grid icon (see top right or top left of Figure \ref{figure:calico-version-two:canvas}), the designer returns to the grid. Further, the canvases are moveable on the grid, allowing a user to rearrange the various canvases according to whichever concern they wish to address. That is, they may move ``old'' ideas aside, cluster canvases by phases of design, group topics, or even juxtapose different perspectives.
+
+While we will be replacing the grid with the intentional interfaces feature, it was an important step forward. The grid improved on past approaches of supporting multiple canvases, such as the often-used filmstrip [40]. With frequent updating of the content of different canvases, canvases managed using a filmstrip tool can lead to a volatile representation in terms of the order of the canvases in the filmstrip, making it difficult to navigate and easily shift focus. The grid advances on the filmstrip by transitioning from a time-based metaphor to a spatial metaphor. The grid keeps all of the canvases in a constant location, which means that a user can not only easily locate individual sketches based on where they exist in the grid relative to each other, but also navigate to adjacent canvases without first having to switch to the grid. They can move left, right, up, or down one canvas at a time by using the green direction icons at the top of the side panel (see Figure \ref{figure:calico-version-two:canvas}). 
+
+The grid also serves as a convenient metaphor to partition collaborative work. Just as users can work synchronously by occupying the same canvas or asynchronously by using different canvases in the intentional interfaces, so can people using the grid. The name of the users occupying a canvas is visible in the upper left of certain cells in Figure 4, allowing users to track where other users are currently working. 
+  
+\section{Palette}
+
+The palette is the final feature that is currently implemented, which saves a template of a scrap that can be reused (See Figure \ref{fig:calico-version-two:palettea}). Each scrap contains a palette button on the top right of its bubble menu (Figure \ref{fig:calico-version-two:paletteb}), which adds that scrap to the palette bar. Once added, the user can reuse the scrap by pressing the pen on the image of the icon that they wish to use, and dragging it back onto the canvas. The items on the palette bar are globally available both across all canvases in the grid, and all users connected to the same server. Further, the palette has multiple sets that the user can switch between using the up and down arrows on the palette bar in Figure \ref{fig:calico-version-two:palettea}, or can also create a new set by pressing the plus icon. The palette bar contains several other features for managing the palette, such as saving a palette to disk, opening a saved palette, deleting a palette, and importing images into a palette. When the user is finished using the palette, they can toggle it to be invisible from the bottom menu bar, as seen in Figure \ref{figure:calico-version-two:canvas}.
+
+\begin{figure}
+  \centering
+  \subfigure[Palette bar with scraps] {
+      \label{fig:calico-version-two:palettea}
+      \includegraphics[width=8.5cm,keepaspectratio]{./figures/CalicoVersionTwo/palette-a}
+   }
+  \subfigure[Palette icon on a scrap’s bubble menu] {
+      \label{fig:calico-version-two:paletteb}
+      \includegraphics[width=6.5cm,keepaspectratio]{./figures/CalicoVersionTwo/palette-b}
+   }
+   \caption {Scraps can be added to palette for rapid reuse}
+   \label{fig:calico-version-two:palette}
+\end{figure}
+
+\section{Highlighter}
+
+The highlighter separates the act of highlighting from drawing. This functionality allows the designer to point, circle, and draw sequences over diagrams, but the strokes made by the designer fade a few seconds after they are made. While a small piece of functionality, the highlighter serves an important role. It allows a group of designers, and even the individual designer, to perform mental simulations over a sketch to explain them to each other, both while at the same whiteboard and over the network in distributed cases
+
+\begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=9cm,keepaspectratio]{./figures/CalicoVersionTwo/highlighter}
+  \caption{Highlighter}
+  \label{figure:calico-version-two:highlighter}
+\end{figure*}
 
 %%% Local Variables: ***
 %%% mode: latex ***
