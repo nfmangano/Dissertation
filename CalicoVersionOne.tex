@@ -723,32 +723,6 @@ Third, the conditions of the experiment may pose a risk to its external validity
 
 Despite the fact that the experiment has its differences with real-world design, it is interesting to note that there is a relationship with how real designers work. The study conducted by Olson et al. \citep{Olsonb} demonstrated that a design session conducted in a controlled laboratory experiment is representative of a design session as it happens in the field with professional designers. Since our study uses the same measurement as those from \citep{Olsonb} and also has a high correlation with their results (\emph{r = .85}), by transitive logic, we can say that the study performed here is representative of a design session as it occurs in the field.
 
-\section{Related Work}
-\label{relatedwork}
-
-Existing sketch tools can be classified into two categories: (1) those that interpret sketches with the purpose of turning them into formal objects, and (2) those that support sketching activities in general. The survey on sketch-based systems by Johnson et. al. \citep{Johnson} provides a more extensive look of all tools created to date than what we necessarily can provide in the blow.
-
-\subsection {Tools that Interpret}
-\label{relatedwork:1}
-
-The  tools within this category interpreting a digital freeform sketch and then generate a formal representation. While we purposefully chose not to interpret sketches in Calico, these tools remain relevant as background work.
-Many tools that interpret sketches focus on generating prototypes for user interfaces. One of the earliest  such tools is SILK \citep{Landay}, which allowed users to generate a usable GUI from a sketch, and then generate the corresponding Java code to implement that GUI. Another tool, DENIM \citep{newman2003denim}, allows users to create low fidelity mockups of websites and then run simulations of that website.  InkKit and Freeform, two other systems that created usable GUI's from sketches \citep{chung2005inkkit,Plimmer}, allowed interpreted content to visually retain its sketch appearance, based on the insight that visually beautifying content too early can be harmful to the designer \citep{Shipman}. 
-
-Another group of interpretive sketch systems includes those that recognize UML elements. The earliest such tool was Knight \citep{damm2000tool}, which allowed  designers to create partial UML diagrams by selecting a portion or all of their sketch to be interpreted as UML elements. A later tool, SUMLOW \citep{chen2008sumlow} allowed interpreted sketches to retain their sketchy appearance (citing InkKit as inspiration), and allowed the mixing of different UML notations. Hosking and Grundy later adopted this approach in Marama-Sketch \citep{Grundy}, which designers can use to sketch diagrams in a broad variety of notations. Numerous other UML-oriented sketch tools have been created, generally following similar strategies (for a survey, see \citep{Johnson} ). 
-
-Other tools allow mixed elements to coexist in the same area as well, though interpretation is left to explicit manual choice by the user rather than automated recognition. In Kramer's system, the user can create sets of irregular shapes called ``patches'' \citep{Kramer}. These can be moved around, be made translucent, and, most importantly, the patch can be assigned an interpretation where it can become a list, outline, table, or other element. Kramer's work later inspired the overall functionality of the sketch framework SATIN \citep{Hong}, which was later used to create the tools DENIM, SketchySPICE, and Designer's Outpost.  Patches is probably closest to Calico of all these tools, with the primary difference being that user-defined shapes in Calico, scraps, stay away from interpretation, and these scraps make pieces of the design reusable across the grid canvases by using both the palette and by copying.
-
-\subsection {Systems that Support Sketching Activities}
-\label{relatedwork:2}
-
-The second type of sketch system is aimed at supporting the general design activity. These systems help organize sketched artifacts during meetings, make them retrievable, and help manage and maintain the plethora of sketched design content that gets generated during design sessions. 
-
-The very first of these systems were created for the Liveboard system at PARC. Colab was the first system to work with this hardware, and acted as a meeting tool \citep{Stefik}. It had a simple, uncluttered interface with a mode selector and a visible set of saved sessions in the fashion of a filmstrip. The next system developed for the Liveboard was Tivoli \citep{Pederson}, which used the filmstrip metaphor to manage sketches in a side panel. Tivoli also organized sketches into chunked items for easy moving, and had additional functionality for creating empty space. After Tivoli, Dolphin \citep{Streitz:1994:DIM:192844.193044} introduced a client-server architecture for group collaboration and allowed users to create links between canvases. A significant difference between these systems and Calico lies in the grid, which provides a constant spatial orientation of sketches as compared to the paginated style, which leads to older sketches moving around. 
-
-Many other tools provide methods for managing the presence of multiple sketches within a fixed space. Post-BrainStorm \citep{guimbretiere2001fluid} uses the border areas as areas where sketches auto-shrink, thereby minimizing space use by elements that are temporarily set aside. Flatland \citep{mynatt1999flatland} implemented a variant of this last idea by automatically grouping sketches into clusters, and shrinking and moving them out of the way when more space is needed. Range \citep{Ju} extended this approach by using a person's physical proximity to the board as a trigger to create space. Compared to these systems, Calico's grid organizes the sketches into separate, but spatially fixed, spaces and allows the designers to easily move back and forth without explicitly worrying about space management.
-
-Two final systems provide functionality somewhat different from Calico. Designer's Outpost \citep{klemmer2001designers} bridged the gap between physical Post-It notes and digital content, transitioning content of Post-It notes into digital artifacts that then could be organized in various ways. Finally, TEAM STORM \citep{Hailpern} addressed the issue of collaboration by providing mechanisms for integrating tablet PC based input on a large display in front of a group of designers. 
-
 \section{Conclusions}
 \label{conclusions}
 
