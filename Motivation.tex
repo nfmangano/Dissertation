@@ -109,7 +109,16 @@ The second category pertains to how designers use sketches to navigate the desig
 
  \item \emph{They move from one level of abstraction to another.} Software designers move between different levels of abstraction, either by ``diving into'' parts of their design to explore them in more detail or by shifting ``back up'' to the higher-level representation. For example, the designer in Figure \ref{figure:motivation-designbehavior-perspectives} has navigated to the sketch of a map, which presents a zoomed-out view of the two intersections to his left. This shift in abstraction happens often in software design, as many of its notations are hierarchical in nature. A software architect may shift their focus from working out how software components interact with each other to choosing a component and working out how it functions, perhaps by drawing its internal architecture and diving in even further. This behavior typically leads to a multitude of sketches that together consider different abstractions simultaneously \cite{petre2009insights}. Many scenarios requiring shifts of abstraction have been documented, including the design of user interfaces \cite{da2001user}, web pages \cite{van2003design}, and so on.
 
- \item \emph{They perform mental simulations.} Software designers use mental walkthroughs to gain insight into the consequences of their design \cite{zannier2007model}. They may need to understand how information flows among components, or inspect their design by mimicking how an end user would interact with it. The software designers `interrogate' their design by testing it against hypothetical inputs and scenarios, often marking over their existing sketch while simulating. Through these mental exercises, the designers can bring to light their implicit assumptions and expose flaws in the design \cite{petre2009insights}. 
+ \item \emph{They perform mental simulations.} Software designers use mental walkthroughs to gain insight into the consequences of their design \cite{zannier2007model}. They may need to understand how information flows among components, or inspect their design by mimicking how an end user would interact with it. The software designers `interrogate' their design by testing it against hypothetical inputs and scenarios, often marking over their existing sketch while simulating. For example, while discussing the logic cars use in moving through intersections, the designer in Figure \ref{figure: motivation-designbehaviors-mentalsimulation} runs his finger along the path of the map (shown by the white arrow) to mentally simulate the path that a hypothetical car may take, and verbally walks through the logic the car uses while doing so. Through these mental exercises, the designers can bring to light their implicit assumptions and expose flaws in the design \cite{petre2009insights}. 
+ 
+
+ 
+ \begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=12cm,keepaspectratio]{./figures/motivation-designbehaviors-mentalsimulation}
+  \caption{Designers mentally simulate their designs in use.}
+  \label{figure: motivation-designbehaviors-mentalsimulation}
+\end{figure*} 
 
  \item \emph{They juxtapose sketches.} In order to compare and contrast ideas, software designers will often juxtapose sketches across perspectives, alternatives, and abstractions \cite{petre2009insights}. A class diagram may be examined in parallel with a sequence diagram to aid the designer in determining how a message is passed between components. As another example, the designer in Figure \ref{figure:motivation-designbehavior-juxtapose} points to both a data model and a map to understand how a car object is passed between components as it travels through an intersection. The juxtaposed diagrams help the designer in reasoning how the design might work, using the knowledge gained from one diagram to help identify the omissions or mistakes in another, as well as any inconsistencies between them \cite{petre2009insights}. 
  
@@ -140,18 +149,25 @@ Software design is a highly collaborative activity, especially at the whiteboard
 
 \begin{enumerate}
   \setcounter{enumi}{11}
-  \item \emph{They switch between synchronous and asynchronous work.} While much of the work that takes place at the whiteboard is typically synchronous, with all participants focusing on a single aspect of the design they are discussing, it is known that designers occasionally break away to explore an idea independently while the others continue with the main discussion \cite{dekel2005supporting}. This typically occurs when a sudden inspiration strikes, or when a designer wishes to develop a counterexample or alternative to what is being discussed now.
+  \item \emph{They switch between synchronous and asynchronous work.} While much of the work that takes place at the whiteboard is typically synchronous, with all participants focusing on a single aspect of the design they are discussing, it is known that designers occasionally break away to explore an idea independently while the others continue with the main discussion \cite{dekel2005supporting}. This typically occurs when a sudden inspiration strikes, or when a designer wishes to develop a counterexample or alternative to what is being discussed now. The designers in Figure \ref{figure:motivation-designbehaviors-asynch}, for example, independently approach their design from two different perspectives, where the design on the left is exploring the timing of an intersection using a line graph, and the other designer addresses the problem from the perspective of the UML model on the right.
+  
+ \begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=12cm,keepaspectratio]{./figures/motivation-designbehaviors-asynch}
+  \caption{Designers sometimes break into independent groups to work out solutions, before later synchronizing their insights.}
+  \label{figure:motivation-designbehaviors-asynch}
+\end{figure*} 
 
  \item \emph{They explain their sketches to each other.} After any independent work takes place, and even in cases where one designer is drawing on behalf of the group and ``has the floor'', the designers must synchronize their mental models of the state of the design \cite{dekel2007notation}. This behavior relates to Behavior 9, but represents its collaborative version. They will need to verbalize their mental simulations to explain the consequences of a particular choice, clarify the meaning of a sketch, or even simply explain their assumptions or inspiration. While explaining, they may sketch on top of the existing diagram, using their marks to guide attention or add detail, or simply gesture over the diagram if they do not want to edit the sketches.
 
- \item \emph{They bring their work together.}  Sometimes, as a result of asynchronous work, the designers need to integrate their ideas from separate sketches into a unified design. This may involve bringing parts of a sketch over, creating a new sketch that integrates both, or sometimes working on a third alternative that combines the best aspects of each but requires a different underlying approach to make that work \cite{dekel2007notation}.
+ \item \emph{They bring their work together.}  Sometimes, as a result of asynchronous work, the designers need to integrate their ideas from separate sketches into a unified design. This may involve bringing parts of a sketch over, creating a new sketch that integrates both, or sometimes working on a third alternative that combines the best aspects of each, but requires a different underlying approach to make that work \cite{dekel2007notation}.
 \end{enumerate}
 
 \section{Summary}
 
 Taken together, these are the fourteen design behaviors that I have identified which software designers use to support them during early-phase software design. Designers consciously perform these behaviors as part of their design process because they perceive them to be beneficial. They make conscious choices as to how much or how little they sketch out a design, and employ specific strategies in how they navigate their focus from one sketch to the next. Impeding these actions directly impedes their ability to design effectively.
 
-The design behaviors introduced here further build on top of one another and are interleaved by software designers that use them. In explaining a design, they may navigate between different perspectives, alternatives or abstractions, and create and refine diagrams of different detail in the process. For example, the designer in Figure \ref{figure:motivation-designbehaviors-interleaving} has navigated her focus to the outline of the software architecture perspective on her left (Behavior 5) after having performed a mental simulation (Behavior 8) of a car traveling on the user interface to her right. At that moment, she is designing how cars enter an intersection, and she points to the related components in the software (Behavior 9) while she explains the functionality to another designer outside of the image (Behavior 12). Interleaving such design behaviors gives her the flexibility to approach the design as she sees fit in that moment.
+The design behaviors introduced here further build on top of one another and are interleaved by software designers that use them. In explaining a design, they may navigate between different perspectives, alternatives or abstractions, and create and refine diagrams of different detail in the process. For example, the designer in Figure \ref{figure:motivation-designbehaviors-interleaving} has navigated her focus to the outline of the software architecture perspective on her left (Behavior 5) after having performed a mental simulation (Behavior 8) of a car traveling on the user interface to her right. At that moment, she is designing how cars enter an intersection, and she points between the juxtaposed software and map perspectives (Behavior 9) while explaining the functionality to another designer outside of the image (Behavior 12). Interleaving such design behaviors gives her the flexibility to approach the design as she sees fit in that moment.
  
  \begin{figure*}[tbh]
   \centering
@@ -180,9 +196,9 @@ Between the informal whiteboard and the formal tool lies a range of possible app
 \emph{What minimally invasive, coherent set of features can be designed that is sufficient to effectively support these behaviors?}
 \end{myindentpar}
 
-I am particularly interested in exploring this question in the context of an electronic whiteboard. <<< Why --> like regular, but can be expanded save which exists, but never framed in terms of behaviors>>>
+I am particularly interested in exploring this question in the context of an electronic whiteboard. Within this space of tools, software designers can continue performing the same activities as they would on a normal whiteboard, but with greater support while doing so. Some tools already exist within this domain, but not with the explicit intended goal of supporting an interleaving set of design behaviors.
 
-It is useful to examine the phrasing of this research question:
+In presenting this research question, it is useful to examine its precise phrasing:
 
 \begin{itemize}
 
