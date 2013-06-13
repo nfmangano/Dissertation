@@ -1,13 +1,662 @@
 \chapter{Evaluation}
 \label{chapter:evaluation}
 
+In the previous chapter, I presented the final version of Calico with features that address all fourteen of the design behaviors, as well as examples of how the features may support the design behaviors in practice. In this chapter, I present an evaluation of Calico Version Two's ability to support those design behaviors in an ``in the field'' qualitative evaluation. In this chapter, I simply report the experiences and feedback from those who used Calico Version Two with their own work. In Chapter \ref{chapter:discussion}, I reflect on these experiences in the context of the design behaviors.
 
-\section{Background}
+Within the evaluations of Chapters \ref{chapter:calico-version-one} and \ref{chapter:notation-paper}, I presented two studies of software designers in a controlled setting, designing a solution for a hypothetical problem. These settings provided the evidence to suggest that Scraps, the Palette, and the Grid can indeed support a subset of the total fourteen design bheaviors, and that software designers also do perform these design behaviors on their own while working at the whiteboard. However, in moving forward to evaluate the final version of Calico, it is prudent to consider the shortcomings of an evaluation conducted within a controlled environment. First, it is possible that the short duration of the laboratory studies does not give participants sufficient time to become accustomed to Calico`s features. Longer-term use will allow groups to receive more training, and learn how to use the features more effectively. Second, group behaviors such as switching between synchronous and asynchronous work and explaining their sketches are more pronounced in groups of three or more. Design behaviors based on group activities do indeed happen with only two designers, but the support Calico provides may have a more noticeable impact on collaborative work in larger groups than two. Third, Calico may have other benefits for group projects that may not appear in our analysis framework. For instance, Calico may help group meetings start more quickly because the sketches persist between one meeting and another.
+
+Rather, in this chapter, I  perform a longer-term qualitative study of Calico in use at software companies in order to not only evaluate its support for the fourteen design behaviors, but also to understand its role within the context of a real-world design environment. A real-world setting would provide a group of individuals an opportunity to use Calico together, and encourage the use of design behaviors that may not appear within the controlled setting. In order to conduct this evaluation, I performed a multi-week qualitative study at three sites, including a commercial open source software company, an interaction design company, and a distributed research group. In this chapter, I report on my findings of how Calico is used over the long term at these three settings, how users incorporated Calico into their own work, and how it affected the way they design.
+
+The rest of this chapter is organized as follows: Section \ref{chapter:evaluation:overview} describes the setup of the study, the participants, and the data collections used. Sections \ref{chapter:evaluation:deployment1} - \ref{chapter:evaluation:deployment3} presents the results of the field studies framed within the research questions proposed put forward in Section \ref{chapter:evaluation:overview} and Chapter \ref{chapter:research-question}. More specifically, Section \ref{chapter:evaluation:deployment1} describes the findings at the commercial open source software company. Section \ref{chapter:evaluation:deployment2} describes my findings at the interaction design software company. Section \ref{chapter:evaluation:deployment3} describes my findings with the distributed research group. Section \ref{chapter:evaluation:summary} summarizes the lessons from this chapter.
+
+\section{Method}
+\label{chapter:evaluation:overview}
+
+In this study, I sought to answer the research questions of Chapter \ref{chapter:research-question}. Specifically, I aim to evaluate the degree to which Calico Version Two's features:
+
+\begin{enumerate}
+	\item are minimally invasive,
+	\item are coherent, and
+	\item sufficiently support the design behaviors.
+\end{enumerate}
+
+In order to answer these questions, I conducted a qualitative analysis of three field sites, which involved setting up Calico Version Two at the target sites, training users, reviewing detailed ``play-by-play'' logs, and conducting exit interviews. Further, I aim to understand how and what design activities Calico may be used with in the real world. Previous evaluations of Calico involved asking participants to use Calico from start to finish in their designs, however, in a longer-term deployment, participants may turn to Calico to sketch out select pieces of their design. Specifically by asking users in interviews, I will be seeking to understand why the users turned to Calico, and how the designs they created were used after the users were finished using Calico.
+
+\subsection{Field sites}
+
+I evaluated Calico at three field sites, including two commercial software-based companies and a geographically-distributed software-based research group. At each site, I verified that a Calico installation was setup correctly, which included a large electronic whiteboard, a server instance of Calico, and access to pen-based tablets that could also access Calico. All participants were trained in the use of Calico.
+
+\begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=8cm,keepaspectratio]{./figures/Evaluation/setting-opensource}
+  \caption{TODO: HAVE GERALD APPROVE IMAGE The physical setup of the OSS group}
+  \label{fig:evaluation:setting-opensource}
+\end{figure*}
+
+The first group is a commercial open-source software company, located in southern California, that develops software within the healthcare industry. In this text, I collectively refer to the members of this company as the OSS group. A software team of five people within the company, including four software developers and one team lead, used Calico with their project. In this deployment, depicted in Figure \ref{fig:evaluation:setting-opensource}, a Hitachi Starboard FX was installed on site, as well as three ASUS EEE121 tablets for use with the whiteboard. Within the same space, there were two couches present in front of the board, and a regular whiteboard next to the couches. All group members were given a tutorial in how to use Calico Version Two, and shown how to launch Calico and connect to the server from their own machine.  For the duration of the study, the team was engaged in architecting and implementing the next version of their project, which was written using Java software. The board itself was physically adjacent to their desks. This group was evaluated over a four week period.
+
+\begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=16cm,keepaspectratio]{./figures/Evaluation/setting-interactiondesign}
+  \caption{TODO: HAVE JIM APPROVE IMAGE A tutorial of the usage of Calico given to the interaction design group}
+  \label{fig:evaluation:setting-interactiondesign}
+\end{figure*}
+
+The second group was an interaction design firm located in northern California. In this text, I collectively refer to the users from this company as the interaction design group. In this deployment, depicted in Figure \ref{fig:evaluation:setting-interactiondesign}, a Hitachi Starboard FXDUO88 was installed on site. Upon installation, the members of the company were invited to a tutorial and shown how to launch Calico from their own machines and connect to the boards. While no tablets were installed, as was done with the OSS group, the company did already have pen-based tablets which could launch Calico. Within the company, two interaction designers used Calico to support their work. In contrast to the OSS group, the individuals at the interaction design company were not responsible for code, but instead used Calico to perform interaction design activities, such as creating user personas using notes from interviews and creating storyboards. The individuals that used Calico were evaluated over a seven month period.
+
+\begin{figure*}[tbh]
+  \centering
+  \includegraphics[width=16cm,keepaspectratio]{./figures/Evaluation/setting-researchgroup}
+  \caption{The physical setup of the research group}
+  \label{fig:evaluation:setting-researchgroup}
+\end{figure*}
+
+The third group was a distributed software research group located at the University of California, Irvine on the west coast and Carnegie Mellon University on the east coast. In this text, I refer to this group as the research group. This deployment, depicted in Figure \ref{fig:evaluation:setting-researchgroup}, were existing users of Calico, and were asked to participate in the qualitative study based on their extensive use of Calico. Two members were located on the west coast and had access to two adjacent Hitachi Starboard FXDUO77 machines, as well as tablet based machines. One member was located on the east coast with access to an HP tablet machine with an electronic pen. This research group collaborated on a research project for a massive online development environment for developing javascript projects. This group was tasked with writing research papers, designing the frontend, and writing the software for their project. While they used Calico for a long peroid of time, only the most recent seven months (a time frame coinciding with the interaction design group) were evaluated.
+
+\subsection{Data collection}
+
+The observations presented in this chapter are primarily based on data collected from interviews and usage logs generated by Calico. The evaluation period for each site was at least four weeks, and the participants at each site were free to use the system as much, or as little, as desired. Given the long duration of the study, and that usage of Calico by users at each site was opportunistic rather than planned, we did not use video.
+
+In order to review the design activity performed using Calico, I examined the usage logs produced by Calico. Each action taken by users was recorded into a history file, including all drawing activity, navigation, usage of features, and accessing content from remote machines. Each user action included a timestamp, affiliated user, action performed, and an image of the canvases at the time the action was performed. 
+
+Based on examinations of logs and recent Calico content, I periodically conducted semi-structured face-to-face interviews. I conduct two semi-structured interview with the OSS group, one with the interaction design group, and one with the research group. In each interview, I began by asking ``What was your most vivid design experience with Calico?'' From this question, participants typically walked through the designs they created in Calico, physically pointing, mimicking their usage of features, and describing the contents of, as well as the activity leading to, their designs. During design walkthroughs, I asked for clarification of content within their designs, as well as activity that I observed from their usage logs.
+
+In subsequent questions, I asked questions that specifically targeted the first two research questions. First, in order to evaluate if Calico was ``minimally invasive'', I asked participants if they needed to make any compromises in using Calico, ``what obstacles or surprises did you encounter in creating your design'' or if they struggled with the features. Further I inquired how design sessions would have gone had they not used Calico. Second, in order to evaluate if Calico has a ``coherent set of features'', I asked participants to report their experience on using the features in general, ``What features did you find helpful'', and if the features clashed with one another. 
+
+Due to the sensitive nature of some of the data collected, measures were taken to ensure that data was securely collected. Of the three sites visited, those in charge of two of the sites provided consent to use the data collected for academic publication. One of the three sites, however, was under a strict NDA agreement, and all images, logs, and raw data were not permitted to be taken off-site. In this case, usage logs were processed and reviewed on-site, and only personal notes were permitted to be taken off-site. Furthermore, for the purpose of publication, relevant images containing sensitive content were redrawn such that key insights, such as usage of notations, are preserved, but the content itself is anonymized.
+
+\subsection{Data analysis}
+
+Based on the logs and interviews, collected data from each session was grouped into the categories pertaining to how they navigated between canvases, the representations they used, and how they conducted group work.  I grouped content into stories of how the design session was conducted, overall feedback on the design activity, and feedback on specific feature usage. 
+
+%Lastly, the interview notes and logs were examined for any surprises that do not fit within the research question posed.
+Additionally, the results from the three field sites is partitioned across sections \ref{chapter:evaluation:deployment1}, \ref{chapter:evaluation:deployment2}, and \ref{chapter:evaluation:deployment3} due to the variety of behaviors observed. The observations across all three sites are instead aggregated in the discussion within Chapter \ref{chapter:discussion}.
+
+\section{Results: Deployment at a commercial open source software company}
+\label{chapter:evaluation:deployment1}
+
+Of the entire duration that Calico was installed at the OSS group, the developers reported using Calico in three extensive design sessions, as well a handful other personal sketches. Across all three sessions, the developers were engaged in developing the next version of a healthcare ``message processing'' tool. 
+
+\subsection{Overview of design sessions}
+
+In the first design session, depicted in Figure \ref{fig:ossgroup:session1}, the developers turned to the whiteboard to sketch out a user interface for creating custom handlers for different types of messages. In the second design session, depicted in Figure \ref{fig:ossgroup:session2}, the developers turned to the whiteboard to design a set of slides that will be used to explain the software architecture of their system. In this case, all members already understood the architecture, but wanted to create a representation ``that was easy to understand''. In a third design session, depicted in Figure \ref{fig:ossgroup:session3}, while coding, a developer turned to Calico in order to refactor a set of code that needed to be updated for their upcoming software release.
+
+In the following, I group my observations of the developers' usage of Calico based on how they navigated between canvases, the representations they created, and how they used Calico to manage group work.
+
+\begin{figure}%
+  \centering
+  \subfigure[Exploration of entities using box-and-arrow diagrams] {
+      \label{fig:ossgroup:session1:a}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session1/canvas1}
+   }
+  \subfigure[Hierarchical perspective of component structures] {
+      \label{fig:ossgroup:session1:b}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session1/canvas2}
+   }
+  \subfigure[User interface mockup] {
+      \label{fig:ossgroup:session1:c}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session1/canvas3}
+   }
+  \subfigure[User interface mockup] {
+      \label{fig:ossgroup:session1:d}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session1/canvas4}
+   }         
+  \subfigure[Mockup of use cases] {
+      \label{fig:ossgroup:session1:e}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session1/canvas5}
+   }   
+   \caption {Representations used by the OSS group in their first design session to design a user interface.}
+   \label{fig:ossgroup:session1}
+\end{figure}%
+
+\begin{figure}%
+  \centering
+  \subfigure[Software architecture] {
+      \label{fig:ossgroup:session2:a}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas1}
+   }
+  \subfigure[Software architecture] {
+      \label{fig:ossgroup:session2:b}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas2}
+   }
+  \subfigure[Software architecture] {
+      \label{fig:ossgroup:session2:c}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas3}
+   }
+  \subfigure[Software architecture] {
+      \label{fig:ossgroup:session2:d}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas4}
+   }
+\subfigure[Software architecture of the ``Alert'' event listener] {
+      \label{fig:ossgroup:session2:e}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas5}
+   }
+  \subfigure[Software architecture of ``Action Group''] {
+      \label{fig:ossgroup:session2:f}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas6}
+   }
+  \subfigure[Summary of components grouped into list] {
+      \label{fig:ossgroup:session2:g}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas7}
+   }   
+  \subfigure[Use case diagram] {
+      \label{fig:ossgroup:session2:h}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session2/canvas8}
+   }   
+   \caption {Diagrams used by the OSS group in their second design session in which they designed the software architecture for handling different types of messages.}
+   \label{fig:ossgroup:session2}
+\end{figure}%
+
+\begin{figure}%
+  \centering
+  \subfigure[First iteration of source code] {
+      \label{fig:ossgroup:session3:a}     
+      \includegraphics[width=14cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session3/canvas1}
+   }
+  \subfigure[Second iteration of source code] {
+      \label{fig:ossgroup:session3:b}     
+      \includegraphics[width=14cm,keepaspectratio]{./figures/Evaluation/ossgroup/Session3/canvas2}
+   }
+   \caption {Source code diagram used by the OSS group developer to refactor their code in the third reported design session.}
+   \label{fig:ossgroup:session3}   
+\end{figure}%
+
+\subsection{Feature usage}
+\label{chapter:evaluation:deployment1:part1}
+
+\subsubsection{General feedback}
+
+On the whole, the individuals that did use Calico reported that they did not find the features to be invasive to the basic sketching activity. At a bare minimum, all individuals said were able to use the large electronic whiteboard as they would a regular whiteboard. Individuals reported some drawbacks with the hardware itself, in which the electronic whiteboard hardware experienced lag and needed to write slowly to create accurate representations. However, the pen-based tablets were accurate. They also reported some surprises in the usability of the tool, but they were always able to fall back to sketching.
+
+When asked if they made any compromises in order to perform their activities using Calico, users responded that they did not need to make many compromises. If they did not use Calico, they reported that they would have moved to a meeting room with several whiteboards rather than the space immediately adjacent to their desks. One participant reported that in one activity they would have written on the window using erasable markers, but instead chose to use Calico. They also reported that they normally would have taken pictures of their work, but instead used the email feature of Calico.
+
+\subsubsection{Feature specific}
+
+When asked about the features as a whole, the developers reported that they did not feel that the features conflicted with one another. Additionally, both interviews and usage logs confirmed that all features were indeed used at least to some extent. The following captures the general feedback from the developers concerning each feature.
+
+\textbf{Basic sketching and features.} Aside from the issues with the responsiveness of the large electronic whiteboard mentioned above, OSS group developers reported that the basic sketching features were helpful. Sketching on regular tablets was responsive, and developers stated that synchronous sketching was helpful in meetings, allowing members to work together, or hand tablets back and forth between each other while designing with the large electronic whiteboard. They reported frequent usage of multiple colors and the undo/redo functionality.  They did, however, mistake the ``clear canvas'' button for the ``eraser mode'' button several times, leading to the canvas being accidentally cleared, but this action could be undone with the ``undo'' functionality. Two of the developers reported some difficulty adapting because upon using the device they default to gestures they use on other devices such as pinch-and-zoom, which are not available in Calico.
+Another developer requested additional colors be made available as well.
+
+\textbf{Scraps.} The participants found the use of scraps helpful on occasion. One developer wanted to create text-scraps with different colored text, but instead turned to sketching when this was not possible. Further, when using text scraps at the large electronic whiteboard, the developers found it cumbersome to switch between the bluetooth keyboard and the large display, and stated that they would have preferred an on-screen keyboard. Writing content was sloppy, so where possible, they created text-scraps to make content more legible. Otherwise, developers reported that scraps were sufficiently helpful to move content and represent objects. Among the five design sessions observed, scraps were used to represent objects in three of those sessions, and in the other two sessions, were used simply to manipulate plain sketched content.  In another design session, one of the developers encountered difficulty in using the ``shrink-to-contents'' functionality for scraps, which creates a rectangular scrap around sketches if present, or simply a rectangle if no content was present. Lastly, a developer requested that scraps be resized with a corner anchor, without locking their aspect ratio.
+
+\textbf{Palette.} The palette received light usage from the developers. The palette was used in one of the five design sessions, of which a representation was used across several canvases. When asked how often they reused images, the developers replied rarely. They reported that sketches were created to design a component, after-which they archived the image by emailing it to themselves. With respect to reusing images with the palette, they stated that it was faster to simply redraw the image.
+
+\textbf{Intentional interfaces.} Developers responded that they found the ``chaining'' created by intentional interfaces to be helpful in capturing individual design sessions. They used the ``new canvas'' and ``copy canvas'' buttons several times with tagging to create chains, and all design activities were done in a single cluster. When drawing within a canvas, one developer reported that they exclusively used the breadcrumb bar to navigate between canvases. Another developer preferred to use the cluster view, but reported being annoyed that the cluster view did changed their zoom-perspective in an unexpected ways. In their words, the view ``kept jumping around''. As a result, the users reported a lot of unnecessary panning in the cluster view. Two other developers also reported that they found the forward and back navigation buttons confusing. They expected these buttons to navigate to the next canvas in the chain within the intentional interface, not the most recently visited canvas. Wanted back and forth step in navigation history, and back and forth in the chain. One developer asked for a minimap of the clusterview from the canvas. One developer called the organization ``wizardry'', since they could not see how it changes.
+
+\textbf{Fading highlighter.} Developers reported that the fading highlighter was useful within group sessions. They used the fading highlighter in two of the five sessions, and reported that they used this feature to explain designs.
+
+\subsection{Canvas navigation}
+
+\textbf{Using intentional interface chains to capture design sessions.} The developers reported that they organized each design session by ``chaining'' canvases within the cluster view. Each design session was linked together using tags, using either the ``perspective'' tag or the ``alternative'' tag. Each new design session began as a new canvas within the center of the radial circle, and extended outward using canvases linked with connectors. A developer reported that panning through their chains of canvases was helpful in reviewing the sketches that they created.
+
+\textbf{Using canvases to explore perspectives.} The developers reported that they used several canvases to explore their designs across multiple perspectives. They explored different perspectives both by using different types of representations, such as user interface mockups and software architecture diagrams, and also by creating sketches that depict different pieces of the system. 
+
+In their first design session, depicted in Figure \ref{fig:ossgroup:session1}, they created sketches using different types of representations to explore the components of the user interface and its behavior at runtime. In Figure \ref{fig:ossgroup:session1:a}, they used box-and-arrow diagrams alongside low-detailed user interface sketches to brainstorm major components of the user interface and their relationships to one another. In Figure \ref{fig:ossgroup:session1:b}, they shifted to a hierarchical list to record the structure. In Figures \ref{fig:ossgroup:session1:c} and \ref{fig:ossgroup:session1:d} they depicted the contents of Figure \ref{fig:ossgroup:session1:b} as it would appear to the end user. In Figure \ref{fig:ossgroup:session1:e}, they sketched out three different use cases, where ``CH'', ``CH2'', and ``CH3'' represent three different results for input entered by the user in the scrap ``All Channels''.
+
+In their second design session, depicted in Figure \ref{fig:ossgroup:session2}, they depict different pieces of the same design across the different canvases in order document the flow of information through the system. For example, Figure \ref{fig:ossgroup:session2:a} shows ``message processing'' sending information to the ``Event Bus''. Figure \ref{fig:ossgroup:session2:c} shows how information is passed from the ``Event Bus'' scrap onto the ``Event Listener'' scraps. Figure \ref{fig:ossgroup:session2:d} further shows how information is passed from the ``Alert'' scrap, which itself is an instantiation of an ``Event Listener'', onto the ``Email'' and ``Channel'' scraps. The developers sketched out each step in order to thoroughly explain the rules and logic used for passing information between components. 
+
+\textbf{Stepping through a design using levels of abstraction. } The developers used multiple levels of abstraction to aid them in explaining their architecture. They used it both to progressively step into the detail of their design, and also to back away to once again see the bigger picture.
+
+When stepping progressively stepping into their design, they made use of the ``copy canvas'' feature to repeat a canvas, but replace pieces of their sketches with more detailed versions. The second design session in Figure \ref{fig:ossgroup:session2} shows such a case. Between Figures \ref{fig:ossgroup:session2:a} and \ref{fig:ossgroup:session2:b}, ``message processing'' is replaced by ``Channel'' scraps, which represent the components that process the messages. The generic black connectors are also replaced with colored connectors to depict that messages of specific types are passed to ``Event Bus''. Within Figure \ref{fig:ossgroup:session2:c}, the ``Event Listener'' scrap expanded upon using the ``Alert'' scrap, which instantiates ``Event Listener'', in both Figures \ref{fig:ossgroup:session2:d} and \ref{fig:ossgroup:session2:e}. The developers further progressing define ``Action Group'', where the respective component is defined as ``AG1'' and ``AG2'' within Figure \ref{fig:ossgroup:session2:d}, defined further with three elements in Figure \ref{fig:ossgroup:session2:e}, and expanded upon further in \ref{fig:ossgroup:session2:f}. While creating these scraps, the developers used the palette to copy elements between canvases, such as with ``Event Bus'' and ``Action Group''.
+
+After their stepwise exploration leading to Figure \ref{fig:ossgroup:session2:f}, the developers sketched a high level picture of messages passing through the system in Figure \ref{fig:ossgroup:session2:h}. Not depicted, the developers created several copies of the contents in Figure \ref{fig:ossgroup:session2:h} in order to explain how different types of messages may pass through the system. In their session, they returned to previous canvases when they had questions about particular components.
+
+\textbf{Copying canvases to generate alteratives. } The developers sometimes used multiple canvases to create alternative solutions to existing designs. For example, a developer reported that while working with their team members on the user interface in Figure \ref{fig:ossgroup:session1:c}, they ``did not quite agree with the design'' deviated from the group to create their own version. To do so, they used the ``copy canvas'' button, selected the ``alternative'' tag in the intentional interface tag panel, and create a new user interface, the result of which is shown in  \ref{fig:ossgroup:session1:d}. 
+
+In a third design session, one of the developers used multiple canvases to help them in iterating on past designs. After finishing the design in Figure \ref{fig:ossgroup:session3:a}, the developer implemented the designed changes, and later returned to the large electronic whiteboard to continue a second iteration. In their second iteration, they created a copy of their original canvas and pasted a screenshot of the source code that resulted from the previous design session, where they continued to iterate on their design.
+
+\subsection{Representations}
+
+The developers created several types of representations in their design sessions.
+
+\textbf{Box and arrow diagrams. } Across the design sessions, they created two types of box-and-arrow diagrams. The first was used for brainstorming, and the second for explaining an architecture.
+
+In the first design session depicted in \ref{fig:ossgroup:session1:a}, they created a set of box-and-arrow diagrams to first brainstorm the components of a user interface. The design session began by first listing out the relevant entities in the software, which were the text-scraps, ``Source'' and ``Destinations''. In this session, the developer experimented with different combinations of actions, which were reflected with further text-scraps associated with connectors at the bottom. They used connectors to represent the data sources that the `Source'' and ``Destinations'' scraps could pull from and send to.
+
+In the second design session, the developers used a combination of scraps, connectors, and plain sketches to represent software components and the passing of data. When asked why they sometimes represented components as plain sketches or using scraps, they reported that they used scraps to represent components that they were actively designing and using. The developers reported that elements in sketches, such as ``In'' and ``Out'' in Figure \ref{fig:ossgroup:session2:a} and LLP in \ref{fig:ossgroup:session2:h}, represented outside information. Creating items such as ``Event Listener'' in Figure \ref{fig:ossgroup:session2:c} allowed the components to be reused and moved. For passing data, they simply used colors to represent particular types of data that was passed. For example, between Figures \ref{fig:ossgroup:session2:a} and \ref{fig:ossgroup:session2:b}, the developers used four different types of colors show the types of data that was passed from a ``Channel'' to the ``Event Bus''. In Figure \ref{fig:ossgroup:session2:c}, the developers repeated the use of colors to show how the different types of data were handled.
+
+\textbf{User Interface Mockups. } Across the sketches in Figure \ref{fig:ossgroup:session1}, the developer used a mix of plain sketching with scraps to design a component and its interface across several canvases. Within both Figure \ref{fig:ossgroup:session1:a} and \ref{fig:ossgroup:session1:b}, the developer sketched both the the software entities alongside a user interface mockup. Within Figure \ref{fig:ossgroup:session1:a}, the developer reported that they created three low-detailed user interface mockups while ``throwing ideas out on the board'' to represent the entities in the box-and-arrow diagrams. They iterated over their user interface across multiple canvases, some of which are depicted in Figures \ref{fig:ossgroup:session1:c} and \ref{fig:ossgroup:session1:b}.
+
+%- While developing these, they sketched a low-detailed user interface within a scrap at the top of Figure \ref{fig:ossgroup:session1:a}, in which the ``plus'' symbols can be toggled by the user and the resulting configuration is displayed to its immediate right. The right side of Figure \ref{fig:ossgroup:session1:a} represents a quick draft of the user interface proposed in the top left. In Figure \ref{fig:ossgroup:db1b}, the developer created another perspective of the elements in Figure \ref{fig:ossgroup:db1a}, but instead organizing the entities using a hierarchy, and drafted another user interface. This was about throwing ideas out on the board.
+
+\textbf{Lists. } The developers used lists in two instances. First they used lists as a method to hierarchical organize the user interface in Figure \ref{fig:ossgroup:session1:b}. Second, they used lists as a mechanism to describe the functionality of a software architecture in detail in Figure \ref{fig:ossgroup:session2:g}. The developers reported that they used lists to summarize their design sessions and to reflect on designs they recently created. However, they did not create many lists because they found that the board reduced the aesthetic quality of their writing.
+
+\textbf{Use case sketches. } In order to capture the behavior of their designs at runtime, they created primitive use case scenarios. For example, in the final canvas of their first design session, Figure \ref{fig:ossgroup:session1:e}, the developers sketched the behavior of the user interface when different channels were checked. This final representation depicts the results of three different use cases for the interfaces shown in Figures \ref{fig:ossgroup:session1:c} and \ref{fig:ossgroup:session1:d}. The left scrap in Figure \ref{fig:ossgroup:session1:e} represents the input panel, and the three scraps on the right hand side each represent the results of different use cases, in which either ``Ch 1'', ``Ch 2'', or ``Ch 3'' are tapped on the left scrap. The developer created the three previews by drafting an initial scrap on the right hand side, and copying it multiple times, adjusting the values for each respective ``Channel'' selected. 
+
+Within the second design session, they created several copies of the contents in Figure \ref{fig:ossgroup:session2:h} to explore different use case scenarios. They used different use case scenarios to walk through input messages of different types and frequency, as well as using different event listeners to handle those messages.
+
+\textbf{Source code. } In the third design session, one of the developers used the large electronic whiteboard to help him in refactoring his code. Depicted in Figure \ref{fig:ossgroup:session3}, the developer needed to refactor his code in order to process an XML file that contains new fields in the next version of their software tool. In order to carry out his design session, he opened Calico on his own desktop, copy and pasted a screenshot of the XML code that he needed to process, and continued his design session at the large electronic whiteboard. In his exit interview, he needed ``a space to think freely''. While sketching, he used several custom annotations and colors to depict the process flow of different software components through the XML structure. Black vertical bars were used to represent a call stack, which he drew to help him in understanding how far the callstack goes in a recursive call. The red arrows were used to represent how the call stack moves through the data.
+
+Overall, the developer reported that using different colors helped him see things ``at-a-glance''. They stepped back their design several times, experimented with walking through the code in different orders, until settling on the design shown in Figure \ref{fig:ossgroup:session3:a}. After implementing the design, the develop copy and pasted the resulting Java source code to step through their design again to create a second iteration.
+
+\subsection{Collaborative work}
+
+\textbf{Preparing work ahead of time.} The first design session was a shared group session that spanned the greater part of a working day. In the morning, one of the developers took a tablet to their desk and worked out a design, and later presented his design in a group meeting with four other developers, where they continued to work together on the design for several hours afterwards. A subset of the sketches produced in this design session are depicted in Figure \ref{fig:ossgroup:session1}. In this design session, they were designing how to handle data as it is passed through each ``channel''.
+
+\textbf{Explaining designs to the group.} In the second design session, the team members made heavy use of multiple tablets, as well as the fading highlighter. When the group meeting began in the afternoon, the developers made heavy use of the fading highlighter to explain the behavior of the system within Figure \ref{fig:ossgroup:session2:a}. Having independently worked out much of the design independently earlier that day, a developer used the fading highlighter to explain the state of the design thus far. 
+
+\textbf{Spontaneous asynchronous work.} During the design session, some of the design members would privately move to another cell, create a design, and call other members of the group to visit their cell. For example, While the group discussed the data that was passed from ``Event Bus'' in Figure \ref{fig:ossgroup:session2:d}, one of the developers wanted to understand how the ``Alert'' component worked in the greater context, and moved to the canvas depicted in Figure \ref{fig:ossgroup:session2:h} to sketch a much more abstract representation to show how data flowed through it. After sketching it, they called the other designers over, and made frequent movements back and forth between these canvases to compare them.
+
+%The first design session, depicted in Figure \ref{fig:ossgroup:session1}, was performed over two separate days. In this design session, the developer was creating a tool in which an end-user may create several ``channels'' for processing data, and for each channel, a ``source'' is chosen and piped to any number of ``destinations''.  The developer created a set of sketches specifically to help himself plan the component that he was developing.
+%
+%Across the sketches in Figure \ref{fig:ossgroup:session1}, the developer used a mix of plain sketching with scraps to design a component and its interface across several canvases. Within both Figure \ref{fig:ossgroup:session1:a} and \ref{fig:ossgroup:session1:b}, the developer sketched both the the software entities alongside a user interface mockup. The design session began by first listing out the relevant entities in the software, which were the text-scraps, ``Source'' and ``Destinations''. In this session, the developer experimented with different combinations of actions, which were reflected with further text-scraps associated with connectors at the bottom. While developing these, they sketched a low-detailed user interface within a scrap at the top of Figure \ref{fig:ossgroup:session1:a}, in which the ``plus'' symbols can be toggled by the user and the resulting configuration is displayed to its immediate right. The right side of Figure \ref{fig:ossgroup:session1:a} represents a quick draft of the user interface proposed in the top left. In Figure \ref{fig:ossgroup:db1b}, the developer created another perspective of the elements in Figure \ref{fig:ossgroup:db1a}, but instead organizing the entities using a hierarchy, and drafted another user interface.
+%
+%The developer used both the copying of scraps and the copying of canvases to mock up iterations of the user interface. The developer created two alternative solutions for the user interface in Figures \ref{fig:ossgroup:session1:c} and \ref{fig:ossgroup:session1:d}, the second of which was created by copying a canvas, and selecting ``alternative'' in the intentional interface tag panel. In the final canvas, Figure \ref{fig:ossgroup:session1:e}, the developer sketched the behavior of the user interface when different channels were checked from the user interfaces in Figure \ref{fig:ossgroup:session1:c} and \ref{fig:ossgroup:session1:d}. The left scrap in Figure \ref{fig:ossgroup:session1:e} represents the input panel, and the three scraps on the right hand side each represent the results of different use cases, in which either ``Ch 1'', ``Ch 2'', or ``Ch 3'' are tapped on the left scrap. The developer created the three previews by drafting an initial scrap on the right hand side, and copying it multiple times, adjusting the values for each respective ``Channel'' selected. 
+
+
+%The second design session was a shared group session that spanned the greater part of a working day. In the morning, one of the developers took a tablet to their desk and worked out a design, and presented his design in a group meeting with four other developers, where they continued to work together on the design for several hours afterwards. A subset of the sketches produced in this design session are depicted in Figure \ref{fig:ossgroup:session1}. In this design session, they were designing how to handle data as it is passed through each ``channel''.
+%
+%With respect to how the designer organized the work across canvases, they reported that they used different canvases to represent different perspectives and views onto the same component. In Figures \ref{fig:ossgroup:session2:a} and \ref{fig:ossgroup:session2:b}, the developers created representations that built on the logic of passing data through ``channels'' from the the first design session using Calico, but now handle the data by sending it to an ``Event Bus'' scrap. The developers used the copy feature to create Figure \ref{fig:ossgroup:session2:b}, which represents a more detail view of Figure \ref{fig:ossgroup:session2:a} and was tagged as ``perspective'' in the intention view. The developers further extended their design of the system by adding the ``Event bus'' scrap to the palette, and reused the scrap in Figures \ref{fig:ossgroup:session2:c}, \ref{fig:ossgroup:session2:d}, and \ref{fig:ossgroup:session2:e}. From the canvas in Figure \ref{fig:ossgroup:session2:e}, the developers added the ``Action Group'' scrap to the palette, and copied it to another canvas, where they worked that component in greater detail. After having designed the interactions between the components of the system, they summarized the content in the canvas depicted in Figure \ref{fig:ossgroup:session2:g}. In Figure \ref{fig:ossgroup:session2:h}, the developers sketched an example of data passing through the components from the previous sketches, i.e., the ``Channel 1'' scrap, being processed, and sent to another channel.
+%
+%With respect to the representations used, the developers used a combination of scraps, connectors, and plain sketches to represent software components and the passing of data. When asked why they sometimes represented components as plain sketches or using scraps, they reported that they used scraps to represent components that they were actively designing and using. The developers reported that elements in sketches, such as ``In'' and ``Out'' in Figure \ref{fig:ossgroup:session2:a} and LLP in \ref{fig:ossgroup:session2:h}, represented outside information. Creating items such as ``Event Listener'' in Figure \ref{fig:ossgroup:session2:c} allowed the components to be reused and moved. For passing data, they simply used colors to represent particular types of data that was passed. For example, between Figures \ref{fig:ossgroup:session2:a} and \ref{fig:ossgroup:session2:b}, the developers used four different types of colors show the types of data that was passed from a ``Channel'' to the ``Event Bus''. In Figure \ref{fig:ossgroup:session2:c}, the developers repeated the use of colors to show how the different types of data were handled. 
+%
+%With respect to designing with the group, the team members made heavy use of multiple tablets, as well as the fading highlighter. When the group meeting began in the afternoon, the developers made heavy use of the fading highlighter to explain the behavior of the system within Figure \ref{fig:ossgroup:session2:a}. Having independently worked out much of the design independently earlier that day, a developer used the fading highlighter to explain the state of the design thus far. During the design session, some of the design members would privately move to another cell, create a design, and call other members of the group to visit their cell. For example, While the group discussed the data that was passed from ``Event Bus'' in Figure \ref{fig:ossgroup:session2:d}, one of the developers wanted to understand how the ``Alert'' component worked in the greater context, and moved to the canvas depicted in Figure \ref{fig:ossgroup:session2:h} to sketch a much more abstract representation to show how data flowed through it. After sketching it, they called the other designers over, and made frequent movements back and forth between these canvases to compare them.
 
 
 
+
+
+%For what activities did they turn to the whiteboard?
+%
+%Used a tablet while.
+%
+%Developer worked it out for himself first. Used a tablet rather than the large whiteboard. Afterwards, brought in another person to help them.
+%
+%Multiple people were using the board at the same time for different activities.
+%
+%User needed to get their thoughts written out. Was going to design the next version of their software. Was attempting to come up with a migration path from the old version to the new version. Needed to work out issues. Found color to be useful, to identify importance. Wanted to look at XML code that was relevant. Pasted code that he was working on into the board.
+%
+%Took a different strategy in direction. Made an  alternative, made another screenshot of different code. Used breadcrumb bar to navigate between canvases. 
+%
+%Wanted a text box to be able to draw.
+%
+%Another user was used to interface from apple devices, wanted pinch and zoom.
+%
+%While the main group was discussing something, one person branched off and developed a new alternative. When he was ready, he proposed it to the whole group. They could have done the same thing with two whiteboards, but then they would have to move around. Being able to work simulataneously is nice.
+%
+%One user was interested in having.
+%
+%More willing to draw anything since they know that they can create a new canvas, delete it, or return to a previous.
+%
+%icons are confusing.
+%
+%Used
+
+\section{Results: Deployment at an interaction design company}
+\label{chapter:evaluation:deployment2}
+
+Of the entire duration that Calico was in use at the interaction design group, the interaction designers reported that they used the board on occasion for notes, and used the system to conduct one major on-going design activity. Usage logs indicate that the design session took place across three days, where usage took went on throughout the work day. The interaction designers used both the large interactive whiteboard, in addition to their own pen-based tablets, which also had Calico. Two interaction designers conducted the design together.
+
+In order to preserve confidentiality in this section, the topic and content of the material have been obfuscated, and the images have been reproduced. Rather, in this text, I use generic references without mention to the target domain, and have recreated the images to align with this hypothetical task.
+
+\subsubsection{Overview of design sessions}
+
+The design session that took place involved processing a set of fifty interviews that the interaction designers conducted, and building a set of user personas based on those interviewed. The interaction designers reported that they typically would have processed the interviews by printing the faces of the fifty people interviewed onto note cards, and working with the note cards in a physical space. They reported that they could have simply written names, but found speaking to images of the people they interviewed to be more evocative and effective. In the large open space, they would organize the note cards by physically grouping them together according to emergent categories, writing notes on the back of the note cards, and taking pictures of the groupings. 
+
+With Calico, they saw an opportunity to perform the same activity, but preserve work that would have been lost every time they re-arranged the note cards. Instead, they performed this activity by importing images of the fifty individuals that they interviewed into the palette, and dropped these onto the canvas as image-scraps. In Calico, they viewed the work they did as reusable, where an organization could be copied and reorganized an indefinite amount of times. If inspiration struck them at a later moment, they were always able to return to a previous configuration of image-scraps and continue with their most recent work.
+
+\subsection{Feature usage}
+
+\subsubsection{General feedback}
+
+Overall, the participants reported that they work they performed in the system was useful, but ultimately found it difficult to adapt their work habits to the structure of the system. Representing images as scraps provided advantages such as reducing the overhead in creating physical printouts for each person they interviewed, reusing them across several canvases, and allowing them to return to past explorations. The interaction designers, however, reported that they had a culture of using OneNote, a pagenated sketch-based application, on pen-based windows machines, which lead to a clash between their expected functionality of Calico and Calico's actual functionality. For example, they expected functionality such as OneNote's lasso mode for selecting and moving content, and subsequently found Calico's scrapping functionality confusing and difficult to adopt. Also, they found Calico's Grid and Intentional Interface system of managing canvases not as fluid to use as OneNote's system of vertically scrolling between paginated sketches. Further they reported that their ability to write legibly was limited by the large electronic Starboard hardware, which resulted in slower and larger drawing. They would have preferred the ability to rest their wrist on the board to write comfortably. Ultimately, however, they worked around Calico's functionality to perform their design session.
+
+The interaction designers further reported that using Calico did indeed cause some changes in how they designed. First, they reported that, while different from OneNote's paginated system, they felt the sensation of a greater amount of free space to sketch, and as a result, created more sketches and content than they would have otherwise. Within each canvas, however, they reported desiring more free space, either through zooming and panning of content, or paginated spaces such as within OneNote. 
+
+Additionally, the interaction designers had several feature requests. They found the use of modal dialogs, such as email confirmation dialogs and text entry, to be disrupting during their design sessions. They asked for highlighting functionality that is more analogous to its real-life counter part, which they reported as using often for tagging items in their sketches. They further reported the sudden switch between sketching an object, and creating scraps to be disorienting, and requested separate modes for drawing, selecting and moving scraps, and creating scraps. They further found the set of graphical icons for buttons and menus to not be straightforward, and requested additional descriptions.
+
+\subsubsection{Feature specific}
+
+\textbf{Basic sketching and features.} Participants reported some difficulty in accurately sketching with the system.
+
+\textbf{Scraps.} The participants reported that the scraps that the functionality that scraps enabled, such as moving sketched contents was helpful, but reported some difficulty in using scraps. The participants reported that the interaction for moving scraps felt slow, particularly when moving scraps to categorize them in tables or quadrants. Further, the system began to slow down when using a large number of scraps, thirty or more, within the same canvas. The participants requested a specialized mode for moving and arranging scraps quickly.
+
+\textbf{Palette.} The participants found the palette helpful for loading pre-existing graphics. The participants imported all fifty images of the people they interviewed into the palette, and used the images from the palette across several canvases. However, they found it difficult to find items in the palette when they loaded all fifty images into it.
+
+\textbf{Grid / Intentional interfaces.} During the majority of their usage, the interaction designers did not have intentional interfaces, but instead had the grid. They reported that they often moved to the grid perspective in order to get a high level perspective of their work. One of the designers reported that ``it's important for me to see everything at once''. The interaction designers used intentional interfaces for a brief period, but had difficulty adjusting to using it as a method of moving between canvases. They had trouble using the breadcrumb bar to navigate between canvases, and found the preview of the canvases within the cluster view too small.
+
+\textbf{Fading highlighter.} The interaction designers reported positive feedback about this feature, however seldomly used it in practice. They reported the feature would be highlighly useful in working with larger groups, but all of their sessions took place with at most two interaction designers. Further, they found the name confusing as it did not function as they expected a regular highlighter would, in which a marker changes the color behind written text. Instead, they colloquially referred to it as the ``John Madden mode'', in reference to the sports announcer.
+
+\subsection{Canvas navigation}
+
+\textbf{Using perspectives to build personas.} The interaction designers used multiple canvases in order to organize their interviews by different perspectives. The people that they interviewed did not necessarily interact with the target software system the same way, but rather had different roles in interacting with the system, such as the customer or vendor, where each experienced different parts of the system. The interaction designers used various canvases for exploring the different groups, their dynamics with one another, and the emergent categories within each group. Within Calico, they performed this exploration by creating multiple copies of a template canvas that contained images of all fifty of the people they interviewed onto other canvases in order to explore different categorizations. For example, they organized the people they interviewed by location, finances, knowledge of technology, and similar stories. 
+
+\textbf{Backing out to review work.} The interaction designers underwent cycles of intensive activity within a particular canvas, and bursts of consecutive movements between several canvases. In their initial exploration, they organized their image-scraps along various one- or two-dimensional axis. After working in these canvases, the usage logs showed that interaction designers moved between a zoomed out view and the different perspectives across canvases in rapid succession, during which the interaction designer reported as reviewing their content. When moving on to create another perspective, they created a copy of their fifty images, which served as a template, and used the copied canvas to explore a new perspective.
+
+\begin{figure}%
+  \centering
+  \subfigure[] {
+      \label{fig:ixdgroup:session1:a}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ixd-group/rep1}
+   } 
+  \subfigure[] {
+      \label{fig:ixdgroup:session1:e}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ixd-group/rep5}
+   }
+  \subfigure[] {
+      \label{fig:ixdgroup:session1:f}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ixd-group/rep6}
+   }
+  \subfigure[] {
+      \label{fig:ixdgroup:session1:b}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ixd-group/rep2}
+   }   
+  \subfigure[] {
+      \label{fig:ixdgroup:session1:c}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ixd-group/rep3}
+   }
+  \subfigure[] {
+      \label{fig:ixdgroup:session1:d}     
+      \includegraphics[width=7.5cm,keepaspectratio]{./figures/Evaluation/ixd-group/rep4}
+   }   
+   \caption {TODO: RECREATE IMAGES Diagrams used by the OSS group to design a connector.}
+   \label{fig:ixdgroup:session1}
+\end{figure}%
+
+\subsection{Representations}
+
+The interaction designers created several representations in order to help them categorize their data. 
+
+\textbf{One-dimensional axis.} When the designers began their design session, they created a one dimensional axis, as in Figure \ref{fig:ixdgroup:session1:a}, to categorize the people they interviewed by a particular quality. They began writing names of individuals along the axis, grouping those individuals into lists, and marked the axis with qualities at intervals between the lists of names. Additional text are written at each interval, or at edges, describing additional information about the qualities.
+
+\textbf{Multi-dimensional axis.} In Figures \ref{fig:ixdgroup:session1:e} and \ref{fig:ixdgroup:session1:f}, the interaction designers used a two dimensional axis to further organize their image-scraps. Within the sessions performed in the canvases depicted in both figures, the interaction designers first began with a one-dimensional axis that plotted a range of behaviors within a particular quality. They then placed the images and names of the individuals they interviewed along this axis. Afterward, they converted the sketch into a two dimensional axis by drawing a line down the middle, and then further grouping the images along the new axis. Within the canvas depicted in Figure \ref{fig:ixdgroup:session1:f}, they juxtaposed another set of grouping, but with three categories instead of four by using a triangle.
+
+\textbf{Organization by axis, tags, and euler notation.} \ref{fig:ixdgroup:session1:b} After copying scraps onto the canvas, they used several techniques to simulataneously overlay  different layers of categorization. Within Figure \ref{fig:ixdgroup:session1:b}, the developers used three types of categorization. First, they used a table. When the designers first entered this canvas, they initially dropped image-scraps of those that they interviewed onto the canvas to view, and immediately afterwards drew a one-dimensional line and partitioned it into segments, similar to the canvas in Figure \ref{fig:ixdgroup:session1:a}. This time, however, they extended the one dimensional line into a table by drawing long vertical lines and categorized the scraps within these spaces. Second, they used euler diagram notation to depict emergent groupings by circling a set of image-scraps and writing the name of the category next to the grouping. For example, the two image-scraps in the top left have a yellow circle around them with the text ``NO CONDITION''. Third, they used color tags to denote another level of grouping. On the far left side, they created a legend with mappings between color and a category name. They then tagged the image-scraps with color. The result was a set of image-scraps that were organized using a table, euler diagrams, and color tags.
+
+\textbf{Spatially clustering objects.} In Figure \ref{fig:ixdgroup:session1:c}, the designers allowed the categories to emerge from the individuals they interviewed in a bottom up fashion. In this canvas, they first wrote the topic of the canvas, which was ``Car Shopping Behaviors'', and grouped the faces of the people interviewed into categories based on their experiences buying cars, and then wrote the name of the grouping, such as ``LOVE IT'' or ``BAD EXPERIENCE''. The interaction designers first wrote the topics using the regular pen, then later converted the topics into text-scraps. The interaction designers further copy and pasted their notes from that session, and annotated with a dash to indicate that it was an attribute of a cluster. For example, one text-scrap had the text ``- checked their smart during purchase''. The interaction designers similarly spatially clustered their image-scraps in Figure \ref{fig:ixdgroup:session1:d}, but additionally used connectors to associated an image scrap with more than one group.
+
+\textbf{Story-driven flowchart. } In one particular instance, the interaction designers walked through the customer's experience by drawing a story, as in Figure \ref{fig:ixdgroup:session1:d}. From the stories they gathered in their interviewed, they drew the different events that occured in an average customer's purchasing experience, and noted possible options that may occur at each point. In order to construct the story, they reused elements they had stored in the palette, such as the image of a stick figure to indicate actors, and various icons to represent events, such as a phone to call a customer after a pending order was fulfilled. For particularly interesting events and corner cases in the story, the interaction designers placed the image of the person they interviewed to add to the story. 
+
+\textbf{Storyboards.} The interaction designers created storyboards that demonstrated user interactions in a step-wise fashion. The interaction designers drew boxes that contained a picture of each step in a chain of actions, a set of descriptions for that image, and call-outs explaining pieces of the drawn picture.
+
+\subsection{Collaborative work}
+
+\textbf{Sharing control.} The interaction designers reported that a motivator for using Calico was to share control of content on the whiteboard. The interaction designers reported that they typically fall into the roles of either producing content at the whiteboard while the other participates from their laptop and provides design critiques of the content produced. When they did use Calico, the interaction designers, for the most part, continued their traditional roles, where the non-sketching interaction designer provided critiques while developing personas. However, while developing storyboards, the interaction designer taking on the non-sketching role was pro-active in typing out notes for each storyboard frame, entering both text and copy-pasting his pre-existing notes from an excel spreadsheet.
+
+\section{Results: Deployment at a distributed software-based research team}
+\label{chapter:evaluation:deployment3}
+
+The researchers used Calico over a period of five months in their meetings and design sessions. The high level goal of their research was to develop an online solution for crowdsourcing the writing of software programs. Prior to using Calico, the team had already developed a software prototype, and used a whiteboard to discuss their designs, which consisted of state diagrams. They reported that their design had become too complex to perform solely on the whiteboard, and believed that Calico could help them evolve the design while still maintaining the informality of the whiteboard. The researchers turned to Calico to ``work out the details of the state machine once and for all''. At the beginning of the five month period, the remote member of the team flew in locally for a five day intensive session in which they created a grand design of the entirety of the system. They later continued their collaboration remotely the remaining four months. 
+
+\subsubsection{Overview of design sessions}
+
+The researchers created several dozen canvases in their months of usage, using it to record meeting notes, create designs of architecture, and user interface mockups. Of those, the researchers reported creating two major design diagrams, which consisted of a process-flow chart of the entire system, depicted in Figure \ref{fig:researchgroup:a}, and a second flow-chart for testing user-generated code in Figure \ref{fig:researchgroup:b}. Both were created during the initial five day session, and were continuously updated afterward. In creating the process flow in Figure \ref{fig:researchgroup:a}, the researchers first sketched out the system as it existed at the date of the meeting. They then continued designing the parts of the system that did not exist yet. After four months of usage, they chose to perform a major refactoring of their system and the generated diagrams were no longer current. However, the researchers reported that they continued to reference the old figures.
+
+
+%Original design predated calico. Originally had it as a sketch in his office. ``What kind of state machine was this?''. Ben towne came to town... they had the design machine, but it wasn't really worked out or designed in any sense. The motivation was that they wanted to sit down and work out the details of the state machine once and for all. The design was their effort to sit through all the different sort of states that could be there. All the transitions. They spent a few days doing edits on their diagrams. Canvas1 was a state machine for functions. They have another state machien for tests. The code already existed... so all through the week they would look back at the diagram, and figure out what was implemented and what wasn't.
+%
+%From the interview, the researchers created two major designs using Calico. The first was a process-flow chart taken 
+%
+%They wanted a way to add a layer so they could easily annotate the diagrams without messing up what was there. They instead kept track of everything in their heads...
+%
+%The diagram was already becoming very busy, it became hard to change it. It became an archival view
+
+While two researchers were concerned with designing the system in its entirety, a third researcher joined the research project with the intention of focusing on one specific aspect of the project, specifically how debugging is performed by the end-users of the system. Having joined the project after a prototype was already created, this additional researcher needed to be onboarded in order to be brought up to speed. Throughout this process, he worked with the other researchers using Calico to become acquainted with the project by using Calico to sketch components of infrastructure relevant to his tasks, and further build his project on top of the existing pieces of the system. In his role, he created sketches pertaining to his part of the system (Figure \ref{fig:researchgroup:c}), and further sketches to help him understand the system (Figure \ref{fig:researchgroup:d}).
+
+%- Another major member of the project joined four months into the project.
+%- Extended system into his aspect.
+%- used calico for onboarding.
+
+\begin{figure}%
+  \centering
+  \subfigure[First iteration of source code] {
+      \label{fig:researchgroup:a}
+      \includegraphics[width=14cm,keepaspectratio]{./figures/Evaluation/researchgroup/canvas1}
+   }  
+  \subfigure[Second iteration of source code] {
+      \label{fig:researchgroup:b}
+      \includegraphics[width=14cm,keepaspectratio]{./figures/Evaluation/researchgroup/canvas2}
+   }
+   \caption {Source code diagram used by the OSS group developer to refactor their code in the third reported design session.}
+   \label{fig:researchgroup:1}   
+\end{figure}%
+
+\begin{figure}%
+  \centering
+  \subfigure[First iteration of source code] {
+      \label{fig:researchgroup:c}
+      \includegraphics[width=14cm,keepaspectratio]{./figures/Evaluation/researchgroup/canvas3}
+   }
+  \subfigure[Second iteration of source code] {
+      \label{fig:researchgroup:d}
+      \includegraphics[width=14cm,keepaspectratio]{./figures/Evaluation/researchgroup/canvas4}
+   }
+   \caption {Source code diagram used by the OSS group developer to refactor their code in the third reported design session.}
+   \label{fig:researchgroup:2}   
+\end{figure}%
+
+\subsection{Feature usage}
+
+\subsubsection{General feedback}
+
+Overall, the researchers found Calico to be a tool that supported them in carrying out their meetings. Prior to using Calico, the group used whiteboards to conduct their meetings, and later email pictures taken of the whiteboard among the group for those that were distributed. They found that Calico allowed them to create more complex diagrams than they would have on the whiteboard. They further reported that for much of their design process they preferred to create the diagrams in Calico rather than a formal tool because they wished to maintain the informal feel of the whiteboard, and the ability to draw around the diagrams as needed. They did, however, recreate their major diagrams in Calico in more formal tools in order to document their designs.
+
+All members reported that they felt more comfortable sketching lots of diagrams because of virtually unlimited space. All group members valued having their old designs readily accessible, and with some framing of their context due to intentional interfaces. One researcher reported that he wanted ``to keep a history of what [I]'ve done, the branches that [I]'ve pruned. If you're designing complex things with stages, [you] need to tell a story''.
+
+One of the members reported that it served as a lightweight thinking tool for them. The third researcher reported that he typically used lightweight notetaking tools such as evernote, which helped his individual thinking process, and later shared his work with the group. 
+
+%`we've already tried that, would you like to see where we've gone? It's already here''.
+
+They reported some difficulties with Calico. Group members reported that they sometimes had difficulty launching Calico, or setting it up on a new machine was sometimes an obstacle with collaborators. Also, while sketching was adequate, the drop in sketching quality was sometimes distracting. They sometimes overcame this by using text-scraps, but this was not always the case. They stated that they Calico lacked necessary formal objects, which they compensated for by created detailed sketch objects and copying them.
+
+%- sort of like evernote. He uses it like he would evernote, because he's most of the time alone, then shares it with the other group memebers
+%- ``designs get very complex''. 
+
+%In interviews, I asked users if using Calico and its features were invasive to their design activity...
+
+%When asked if they made any compromises in order to perform their activities using Calico, 
+
+%their goal was to just draw something up. They thought about it in terms of a freehand drawing space.
+
+%- 
+
+
+%- sketching is a bit off
+%- moving things is one of the largest positives
+
+
+%- one member likes to work in structures
+
+\subsubsection{Feature specific}
+
+%When asked about the features as a whole...
+
+\textbf{Basic sketching and features.} The researchers reported that basic sketching were adequate for their design sessions, although they reported that the electronic whiteboard made their handwriting messy. They further reported that some of the menu buttons were not clear in their functionality. They expected the ``navigate backwards'' and ``navigate forwards'' buttons to move back and forth in links within the intentional interface rather than navigating the history of visited canvases. They further thought the ``clear canvas'' button was the eraser mode button, causing them to accidentally clear their canvas, which they recovered by pressing ``undo''.
+
+\textbf{Scraps.} The researcher made frequent use of scraps across their design sessions. They found scraps and connectors useful because both made otherwise static elements interactive, such as when working with state diagrams. They reported feeling less afraid to create complex diagrams because the elements could be moved.  They could create space in state diagrams by moving scraps, and also categorizing objects, such as when placing them in tables, like in Figure \ref{fig:researchgroup:c}. 
+
+They encountered some difficulties using scraps. Scraps were difficult to select when many were overlapping. Scraps could not have their text changed, which required the researchers to delete scraps and their connectors when text needed to be changed. They further desired the press-and-hold selection gesture to trigger more quickly.
+%Encountered problem when they had multiple scraps in one area and tried to select it. They had layered annotations, and that made selecting things a problem.
+%- issues where they couldn't edit the text
+%- adding connectors was a pain, because editing required deleting, and recreating it.
+%
+%- wrestled with trying to draw sometimes, selecting
+%
+%Connectors very important. Referencing arrows very important. Nice that arrows could lock on, and arrows would move while scraps would drag.
+%
+%Creating and moving scraps sometimes left you with a line. It works some of the time, but it's not predictable whether it's going to work or not going to work.
+%
+%Adding text is not intuitive, stumbled upon the keyboard shortcuts by accident.
+%
+%- preferred scrap interaction over lasso 
+%
+%ngs within a canvas
+%
+%- overall he enjoyed his experience
+%- he wanted a way for press-and-hold to be faster
+
+\textbf{Palette.} The researchers did not use the palette in their sessions. Rather, when using repeated elements, they copied canvases and deleted non-relevant content. They also did not use repeated elements in their sketches, but rather always sketched new content, or reused old sketches.
+
+\textbf{Intentional interfaces.} The researchers made heavy use of the breadcrumb bar to move between canvases. They found that the breadcrumb was the easiest way to move between canvases. They reported that canvases were too small to visually identify in the cluster-view, where canvases in a circle with thirty canvases became very small. Identifying clusters by name in the breadcrumb bar were easier in comparison.
+
+Two of researchers also did not use tagging within intention interfaces because they found the system of tagging to be confusing. They found grouping canvases by clusters as helpful because it allowed them to separate content between researchers, however, within clusters, they did not link canvases. The third researcher, in contrast, used tagging to link canvases into topics. He reported that many canvases by themselves were difficult to return back to and read without context, but if viewed one after the other, could understand the concepts extended the previous canvas. On the other hand, he found the act of tagging canvases as ``alternatives'' or ``abstractions'' awkward because he was not sure what those meant in the context of his sketches.
+
+%- he did not use tagging because he didn't really understand it.
+%- useful if he could tag pieces of this
+%- A problem is the performance
+%- difficult to read things out of context. But if they look at canvases one after the other, it makes it easier to understand concepts that extend the previous ones.
+
+\textbf{Fading highlighter.} The members made light use of fading highlighter. They reported that, while it was useful on occasion, they prefered to talk out loud and make pointing gestures using their hands.
+
+\subsection{Canvas navigation}
+
+During sessions involving the design of the state diagram in Figure \ref{fig:researchgroup:a}, the researchers reported that they seldomly moved to another canvas. Rather, they used additional tools such as Google Docs or simply talked out loud.
+
+\textbf{Using perspectives to support onboarding.} The researcher that underwent onboarding used canvases of several perspectives in becoming acquainted with the software system. This researcher used a mix of user interface mockups, freehand sketches, tables, and other diagrams to step through their designs. Their initial exploration involved importing an image of the interface into Calico,  and stepping through the interface to inspect items pertaining to debugging user generated code. From these sketches, they switched to other canvases in which he generated the state diagram in Figure \ref{fig:researchgroup:b}, which was another perspective of Figure \ref{fig:researchgroup:a}, but distilled to only include details relevant to his project. Later, while exploring the state diagram in Figure \ref{fig:researchgroup:c}, the researcher created several copies of the canvas, preserving the state diagram at the top of the canvas, and creating different tables, lists, and mock-ups below while experimenting with different algorithms.
+
+\textbf{Exploring alternative state machines.} The same researcher that underwent onboarding further used several canvases to explore alternative designs for building his component. The researcher used the top state diagram in Figure \ref{fig:researchgroup:c} as the stable set of components to build on top of, and design the actions his component would take below, and in the case of Figure \ref{fig:researchgroup:c}, using a table. The researcher performed a sequential exploration, in which they designed the first component, then attempted a new solution in a different canvas. They returned to the previous canvas to reference their previous work.
+
+%Having recently used diagrams would have been helpful. Mostly used 1 or 2 diagrams, at most 4 to 5.
+
+%- began with mockups. in every statement that used a callee function, they logged before, and after.
+
+%- simplification of large diagram. From the large sketch, created a separate sketch that was a distillation of his own parts
+
+\subsection{Representations}
+
+The researchers primarily used Calico to work on state diagrams, however they additionally used other types of representations.
+
+\textbf{List. }  Not depicted, lists were used on occasion to record bullet points from meetings or during brainstorms. The researchers used a mix of both written lists, which were used as scratch notes, and text scraps, which were rapidly created during brainstorm sessions. On the whole, lists were not used often because the researchers took notes in word document programs such as Google Docs, and used Calico to supplement written documents.
+
+Additionally, in some complex diagrams, the researchers reported keeping track of ideas using lists. For example, in a sketch similar to Figure \ref{fig:researchgroup:c}, a researcher reported writing down questions he had about states of the diagram, which he would investigate later. Similarly, the top of Figure \ref{fig:researchgroup:d} contains additionally notes and questions while brainstorming a user interface.
+
+%- came up with some questions while creating their design, noted them on the side.
+
+\textbf{Timeline. } Not depicted, timelines were used to record target dates for important dates, such as conference deadlines.
+
+\textbf{State diagram. } The researchers used state diagrams to capture the overall design of their system. As such, a lot of detail was put into their state diagrams in order to capture the details of the system.
+
+The researchers used state diagrams as their representation of choice to design their system. During their intensive five day meeting, they attempted to model the entirety of their software onto one canvas, calling it a ``a view onto their system''. As the design grew, they encountered issues with available space within the canvas, but did not wish to break up their design across multiple canvases. The researchers reported that they ``thrashed about how much detail they should put in the diagram''. As their design grew, they shifted from using plain sketches with drawn arrows, to using scraps with connectors. They found text-scraps easier to read than their own handwriting and more space efficient. Also, they found the ability to have connectors remain attached to scraps as they were moved very useful, as it allowed them to make space for more states, or place similar states in close proximity to one another. After the five day sessions, they reported a resistance to changing the diagram because of its complexity. They ``knew where everything was because it had always been there'', and when they did make additions, those parts of the diagram ``grew organically'' by occupying vacant white space without displacing the positions of the scraps around it.
+% - it's a view onto their system, and they think about the correspondence between all of their views
+
+They encoded additional information into their diagrams by using color, as depicted in Figure \ref{fig:researchgroup:a} . One researcher stated that they ``needed some way to encode what was going on'', where some scraps represented states, some represented tests, and some as points of branching. For example, black connectors represented a state transition with no information passed, blue represented the passage of tokens, and so on. The researchers reported some difficulty in recalling the meaning of all colors for connectors. They further distinguished the scraps representing states that were not yet implemented by tagging them with color. In the upper right of Figure \ref{fig:researchgroup:a}, they wrote ``Red: not yet implemented'' in red, and tagged scraps with this quality by underlining them with red. 
+
+%Tagging.
+%- annotated stuff with categories (what was implemented, what was not)
+%- blue represents sending a whole artifacts.
+%- used pen color to declare different types of connector
+%- needed some way to encode what was going on. Some boxes were states, some are tests, some are particular branches
+
+When the researchers described the diagram, they saw it not as a large mess, but rather a set of higher level structures that represented different work-flows. Their discussions took place over these particular regions of the diagram, which the designers understood among themselves and verbally referred to by name, but did not record within the state diagram because they were not sure how to represent it. When talking about features they requested a way to declare ``these are the typical paths'' or ``these two paths are similar''. When their discussions took place, they discussed specific workflows within the diagram, and discussed what happens in those work flows. The researchers struggled with how to abstract away these workflows, and created additional diagrams, such as diagram depicted in Figure \ref{fig:researchgroup:b}.
+
+%Paths
+%- 
+%- ``layering'' was an important concept.  They wanted to declare ``these are the typical paths'' or ``these two paths are similar'',
+%-  ``annotate that particular paths have a particular meaning''.
+%- were trying to encode different workflows, what happens in different situations
+%- became difficult to keep track of all the paths
+%- thought about ways to abstract what was going on
+
+%Figure \ref{fig:researchgroup:1}
+%- didn't know how to use connector feature
+
+%- simplification of large diagram. From the large sketch, created a separate sketch that was a distillation of his own parts
+
+\textbf{Table. } One of the researchers used tables to help him process sketches while onboarding. Said researcher created tables such as the one depicted in Figure \ref{fig:researchgroup:c}, and juxtaposed them against simplified sketches of state diagrams in order in support of a detailed examination. The state diagram in Figure \ref{fig:researchgroup:c} contained several paths that could be taken, and the researcher created tables to capture a particular workflow. They did so by listing each transition along the column headers, and placing scraps depicting the data being passed within the states pertaining to the row headers. The researcher created several such tables to capture different work flows.
+
+A researcher reported that they created the table in Figure \ref{fig:researchgroup:c} to examine a set of corner cases. The table served as an aid to help them think through the state diagram. The researcher reported that they used the table to simulate algorithm, thinking through ``how this would be executed''. They reported that scraps were helpful in being able to move things. They reported that they normally would have created this diagram on a whiteboard, but in comparison, Calico provided ``lots of space'', made their table ``very clean'' because they did not have to redraw things. 
+
+%``Dynamic execution of [his] diagram''. Would have enjoyed being able to play states.
+
+The third researcher, in contrast to the others, often used Calico more frequently than the others to help him design while working alone. This researcher would prepare several canvases of sketches prior to a meeting, sketches including lists, tablets, state diagrams, etc., to explain his designs. This researcher expressed that they normally would have presented his designs within Calico both because the other members were already using Calico, and he reported that sharing sketches in Calico was faster because it was already a shared space.
+
+%- Examined corner cases. Came up with different solution. Created mockups. Looked at dependencies at subcalls.
+%
+%- worked alone, and used canvas to help himself think through. Used table to help him think through the points of failure in the process flow.
+%
+%- Looked for corner cases
+%
+%- u
+
+\textbf{User interface mockups. } The researchers created prototypes of the user interface late in the design cycle, after creating several usable iterations. Rather, they turned to Calico to mockup user interfaces in order to support them during discussions. During these sessions, they imported screenshots of their current interface into Calico as a visual reference, and sketched interfaces without the use of scraps.
+
+The final researcher created user interface mockups within Calico in order to help him in thinking through his design. In his task, he used a combination of screenshots and sketched mock-ups to first walk through how existing end-users write software code and submit into the system. From these sketches, he created a state diagram to capture the interaction of the user and the flow of information.
+
+%- began with mockups. in every statement that used a callee function, they logged before, and after.
+%
+%- difficult to think through the problem
+%- created mockups of what they wanted the user to create
+%- ``similar to building blocks''.
+%- they wanted to create a visual frontend for building a user interface
+%- problem with people programming things as event listeners... harder to build his tool around that
+
+%- broken up into different structures. Some with arrows.
+
+\textbf{Spatially clustered text scraps. } In two meetings, the researchers generated a set of text-scraps as part of a brainstorm, and later grouped them into similar topics. They did not use formal arrows, but rather used grouping symbols, such as euler diagrams, and drew arrows between the groups to indicate different types of relationships. 
+
+\textbf{Dendrogram. } One researcher created a horizontal dendrogram to explore a set of questions generated from other sketches. The researcher began with a set of four questions, and from those questions, expanded into a tree of questions to explore a problem. They drew arrows to link items between the questions, as well as several freehand annotations.
+
+\textbf{Source code. }
+
+\subsection{Collaborative work}
+
+Researchers conducted meetings using the two electronic whiteboards as well as their own laptops. During co-located meetings, they sometimes loaded both boards with Calico, but loaded on different canvases, or used the second board to display Google Docs. They reported that only one person usually sketched, while another took notes on a word document, and any remember participants simply talked. 
+
+%During meetings, one person mostly sketched.
+%- They used both boards. Second board had either second diagram (canvas 2), google doc, or skype face. Almost always the case where they edited just one of the canvases.
+%- They mostly talked through particular scenarios. One person was in charge of drawing everything.
+
+\textbf{Helping remote members ``feeling connected''.} In distributed meetings, remote members reported feeling ``more connected'' when using both Calico and video chat software. In these meetings, the researchers often used another display loaded with either Skype or Google Hangout. The remote participate reported that the ideal setup included a camera that pointed at the boards with Calico because it allowed him to observe the body language of the speakers. They reported that this setup was particularly helpful during the early phases of their collaboration because people often pointed to objects on the boards, gestured to content at the board from their seat, or gestured in free space while explaining an idea. The combination of both being able to see the body language of remote members and being able to manipulate that same content in real-time culminated into the sense ``connectedness''.
+
+%Remote member felt connected.
+%- When person left, they could reference things pretty easily.
+%- particularly useful use case was when the camera was in the back, and pointed at both the calico board and the skype board, and it showed where people were pointing at. They had body langauge, what they were pointing at, etc. 
+%- Body langauge is important in the early phases, because people are pointing, gesturing, using hands in their explanation of meaning.
+
+\textbf{Continuity between design sessions.} The researchers also reported that Calico made it easier to stop and resume design sessions. One member reported that the ``biggest benefit was crossing space and time'', in which Calico provided a consistent virtual space to conduct meetings prior to the five day visit, during, and long after. The researchers conducted their designs in a shared space, but were able to launch their design spaces upon beginning their meetings for continuity.
+
+%Starting and stopping.
+%- ``Biggest benefit was crossing space and time''. Being able to ``put things on pause and resume''. Content was mobile across rooms, and able to stop and start activities again next time because content was where they left it.
+
+\textbf{Providing an archival reference.} After the diagrams became out of date, the researchers reported that they used Calico as an ``archival reference''. The researcher originally thought that they would continuously interact with their sketches, but instead used their sketches as visual references. The team eventually referenced the sketches less and less as they had internalized the contents of the sketches and could reference freely with the need to have it in front of them. However, they reported that they valued having the sketches in Calico rather simple images. They reported that it gave the sketches ``a sense of permanence'' because they could return and make adjustments to the sketches at any time, which they did. After undergoing a major refactoring, the content of the sketches in Calico became outdated, however, they did reference it again while moving forward. They reported that it was ``good have a reference of what the architecture was like in the previous version''. They went back to past designs to see what they did before. When looking back at previous designs, they noted that ``it would have been nice to have annotations as to why this [previous design] wasn't going to work''. They remarked that while their sketched designs were most useful during implementation, they ``would turn back to the diagram because they forgot how they implemented something while writing''.
+
+%Used Calico as an archival reference.
+%- The team internalized their sketches from Calico, and pulled up sketches occasionally as an archival reference.
+%- Thought it would be more interactive, but it wound up being visual reference.
+%- It was more about having this shared representation that was visible, and stuck around longer.
+%- Did have advantage over picture because they could tweak it.
+%- It wasn't finalized until it was in the paper
+%- It was more helpful during implementation, but would turn back to the diagram because they forgot how they implemented something while writing.
+%- refactoring did not get reflect in Calico. However, they did reference it again while moving forward. It was good have a reference of what the architecture was like in the previous version. They went back to past designs. 
+%- ``It would have been nice to have annotations as to why this wasn't going to work''.
+%- It would be more useful to be able to add notes within the context of sketches, to declare rationale of a specific spot.
+
+%- they created one whole design, that was later thrown away. The design persisted, but they said that it was thrown out. Interesting that the designs still remained
+
+\section{Summary}
+\label{chapter:evaluation:summary}
+
+In this chapter, I presented the evaluation of Calico Version Two at three locations. The commercial open source software company provided insight in how a software team may use Calico to support ongoing with work among developers while coding. The interaction design group provided insight into how interaction designers may use Calico to help them create personas and storyboards. Lastly, the research group provided insight into how a set of distributed researchers collaborated over the development of a software system for a period of several months. In the next section, we discuss these insights in the context of their support for design behaviors.
 
 %%% Local Variables: ***
 %%% mode: latex ***
 %%% TeX-master: "thesis.tex" ***
 %%% End: ***
+%
+%\subsubsection{Design Behavior 1: They draw different kinds of diagrams}
+%
+%\subsubsection{Design Behavior 2: They produce sketches that draw what they need, and no more}
+%
+%\subsubsection{Design Behavior 3: They refine and evolve their sketches over time}
+%
+%\subsubsection{Design Behavior 4: They use impromptu notations}
+%
+%\subsubsection{Design Behavior 5: They move from one perspective to another}
+%
+%\subsubsection{Design Behavior 6: They move from one alternative to another}
+%
+%\subsubsection{Design Behavior 7: They move from one level of abstraction to another}
+%
+%\subsubsection{Design Behavior 8: They perform mental simulations}
+%
+%\subsubsection{Design Behavior 9: They juxtapose sketches}
+%
+%\subsubsection{Design Behavior 10: They review their progress}
+%
+%\subsubsection{Design Behavior 11: They retreat to previous ideas}
+%
+%\subsubsection{Design Behavior 12: They switch between synchronous and asynchronous work}
+%
+%\subsubsection{Design Behavior 13: They explain their sketches to each other}
+%
+%\subsubsection{Design Behavior 14: They bring their work together}

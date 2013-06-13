@@ -1,7 +1,7 @@
 \textsf{•}\chapter{Calico Version One}
 \label{chapter:calico-version-one}
 
-Calico Version One is the first complete prototype that was built and evaluated to directly support the design behaviors. The prototype was built toward testing the feasibility of my approach. That is, 1) can I successfully build on top of the existing whiteboard experience with features that support the design behaviors, and 2) can I do so without obstructing the design activity itself.
+Calico Version One is the first complete prototype that was built and evaluated to directly support the design behaviors of Chapter \ref{chapter:motivation}. The prototype was built toward testing the feasibility of my approach. That is, 1) can I successfully build on top of the existing whiteboard experience with features that support the design behaviors, and 2) can I do so without obstructing the design activity itself.
 
 I target only a subset of the design behaviors with the first version of Calico.  In particular, this first versions supports design behaviors 1, 2, 3, and 5, as summarized here:
 
@@ -14,7 +14,7 @@ I target only a subset of the design behaviors with the first version of Calico.
 
 Our express purpose with this first version is to evaluate the viability of the overall idea of supporting design behaviors with tool functionality at the whiteboard.  The features are therefore limited, as compared to the full version of Calico described in Chapter \ref{chapter:calico-version-two}, and the evaluation focuses on building a basic understanding of the effect the features.  Specifically, the evaluation presented in Section \ref{results} looks at how often Calico's advanced features were used, whether use of the features coincided with design behaviors, and whether the resulting design process -- as judged by the nature of the design conversations -- resembles that of design at the regular whiteboard.
 
-In designing the first features of Calico, I avoided those which would inhibit the flexibility and fluidity of the whiteboard. Features such as different modes, extensive menus, or a selection lasso were not included because such functionality is likely to disrupt the fluidity of the whiteboard experience. Further, rather than including support by providing sketching support for an existing software design tool (such as with Marama Sketch \cite{Grundy}), I took the approach of building a basic sketching tool first, and adding features incrementally to this foundation.
+In designing the first features of Calico, I avoided those which would inhibit the flexibility and fluidity of the whiteboard. Features from traditional point-and-click interfaces such as different modes, extensive menus, or a selection lasso were not included because such functionality is likely to be frustrating on a pen-based interface \ref{apitz2004crossy} and may disrupt the fluidity of the whiteboard experience. Further, rather than including support by providing sketching support for an existing software design tool (such as with Marama Sketch \cite{Grundy}), I took the approach of building a basic sketching tool first, and adding features incrementally to this foundation.
 
 Through an iterative process of design, experimentation, and careful assessment, I arrived at four features. The features are: (1) a grid to manage multiple canvases in the workspace, (2) scraps that enable advanced manipulation of sketched content, (3) a palette to save and reuse scraps, and (4) a gesture-based interaction scheme to tie all features to stylus-based input.
 
@@ -22,7 +22,7 @@ The remainder of this Chapter is organized as follows. Section \ref{calico} pres
 
 \section{Features}
 \label{calico}
-In this section, I present the four novel features of Calico Version One, describe them in detail through various examples, and carefully relate them back to the subset of supported design behaviors in Chapter \ref{chapter:motivation}. As a guide, Table \ref{table:1} shows a mapping between the subset of four behaviors from Chapter \ref{chapter:motivation} and the main features of Calico.
+In this section, I present the four novel features of Calico Version One, describe them in detail through various examples, and carefully relate them back to the subset of supported design behaviors I target in Chapter \ref{chapter:motivation}. As a guide, Table \ref{table:1} shows a mapping between the subset of four behaviors targeted design behaviors and the main features of Calico.
 
 Before I discuss the features, it should be noted that Calico is intended to be used on an electronic whiteboard (or Tablet PC, in the case of sole person use), and is optimized to take its input from a digital stylus, not a mouse. The designer stands in front of the electronic whiteboard and uses the digital stylus to draw, write, and control Calico (see Figure \ref{fig:2}). The nature of this interaction shaped the design of Calico, particularly the mechanisms with which it enables designers to manipulate a design.
 
@@ -48,10 +48,10 @@ Note that all of the examples I use in this section draw from the evaluation des
 
 \begin{table}
 \centering
-\caption{Calico features as they address the the subset of four design behaviors from Chapter \ref{chapter:motivation}}
+\caption{Calico features as they address the targeted subset of four design behaviors from Chapter \ref{chapter:motivation}}
 \begin{tabular}{ p{4cm}p{2cm}p{9cm} }
 \toprule
-Behavior & Feature & Effect \\
+Design behavior & Feature & Effect \\
 \midrule
 
 \multirow{2}{4cm} {Design behavior 1: Use different kinds of diagrams}  &	Scraps	& Scraps maintain the shape of the objects that are drawn, and thus, together with rapid manipulation and creation of arrows, can emulate different notations and diagrams\\ 
@@ -143,7 +143,7 @@ Scraps are also fundamental to addressing the behavior of using a mix of notatio
 \subsection {Palette}
 \label{calico:4}
 
-The palette is the third feature that I incorporated in response to the subset of supported design behaviors of Chapter \ref{chapter:motivation}. It specifically addresses the issue of using different types of sketches (design behavior 1).
+The palette is the third feature that I incorporated in response to the subset of design behaviors I target from Chapter \ref{chapter:motivation}. It specifically addresses the issue of using different types of sketches (design behavior 1).
 
 Palettes are not new, but their typical incarnation in drawing programs is to include a prepopulated set of figures that are not configurable beyond changing the entire set. In design, however, it is not uncommon that a spontaneous notational convention emerges that does not necessarily adhere to any pre-existing or fixed set of figures. Calico's palette, thus, starts empty, and is filled with content by the designer, enabling the reuse of sketched elements. This allows a temporary vocabulary to be created and leveraged within a design session (as exemplified by the impromptu notations in Figure \ref{fig:11}, as further described in Section \ref{results:2}). 
 
@@ -193,7 +193,7 @@ The User Interface is built using Piccolo \citep{Bederson}, a zoomable interface
 \subsubsection {Gesture-Based Input}
 \label{calico:5}
 
-Permeating across the target subset of four design behaviors from Chapter \ref{chapter:motivation} is the need for gesture-based input. Many of the creative, exploratory activities that Calico supports rely on the fluidity and quickness of sketching. Interactions supplemental to the primary sketching activity should be equally quick. The design flow must be maintained, shapes should be created the way designers want them, and the effort of making changes should be low. Essentially, ``viscosity'' \citep{petre2009insights}, the cost of making changes, has to be low or designers will be discouraged from exploring opportunities in design. 
+Permeating across the subset of four targeted design behaviors from Chapter \ref{chapter:motivation} is the need for gesture-based input. Many of the creative, exploratory activities that Calico supports rely on the fluidity and quickness of sketching. Interactions supplemental to the primary sketching activity should be equally quick. The design flow must be maintained, shapes should be created the way designers want them, and the effort of making changes should be low. Essentially, ``viscosity'' \citep{petre2009insights}, the cost of making changes, has to be low or designers will be discouraged from exploring opportunities in design. 
 
 In order to maintain the natural feel of sketching in the interaction, I have chosen to use a mixed mode approach: many features are ready-at-hand through simple gestures, but some more esoteric functionality that would otherwise require integration of complicated gestures is available in a pie menu off of scraps (visible in Figure \ref{fig:gesturespie}).
 
@@ -272,7 +272,7 @@ Our goal was to: (1) measure how often Calico's advanced features were used, (2)
 
     \emph{Use of features}. In order to objectively verify that participants move beyond just sketching like they would on a regular whiteboard and actually use the advanced features of Calico, I measured the amount of usage that each feature received. To perform this, I reviewed the videos and made a note of each time a particular feature was used. 
 
-    \emph{Design behaviors}. After I had recorded all instances of the features being used, I performed a qualitative analysis of how the features were used. I was interested in seeing how well those features supported the target subset of four design behaviors from Chapter \ref{chapter:motivation}. For the first design behavior, using different types of diagrams, I watched out for situations where participants mixed several notations together in a single canvas, and highlighted occurrences of impromptu notations that were unique to a particular pair and did not appear in others. For the second design behavior, drawing only what they need, I noted the general diagrams that participants sketched, and paid particular attention to what models participants created, and if and how they used scraps to do so. For the fourth design behavior of moving from abstract to concrete, I compared photos of diagrams at various stages, and noted how pairs restructured their diagrams and added additional detail. When considering the fifth design behavior, navigating between perspectives, I was particularly attentive to the reason that participants moved out of one canvas and into another within the grid, and I classified the general activities that occurred in each of the canvases as well.
+    \emph{Design behaviors}. After I had recorded all instances of the features being used, I performed a qualitative analysis of how the features were used. I was interested in seeing how well those features supported the targeted subset of four design behaviors from Chapter \ref{chapter:motivation}. For the first design behavior, using different types of diagrams, I watched out for situations where participants mixed several notations together in a single canvas, and highlighted occurrences of impromptu notations that were unique to a particular pair and did not appear in others. For the second design behavior, drawing only what they need, I noted the general diagrams that participants sketched, and paid particular attention to what models participants created, and if and how they used scraps to do so. For the fourth design behavior of moving from abstract to concrete, I compared photos of diagrams at various stages, and noted how pairs restructured their diagrams and added additional detail. When considering the fifth design behavior, navigating between perspectives, I was particularly attentive to the reason that participants moved out of one canvas and into another within the grid, and I classified the general activities that occurred in each of the canvases as well.
 
     \emph{Structure of Design Conversations}. After qualitatively assessing the videos for evidence of the design behaviors, I assessed the impact that Calico had on the structure of the design conversation by coding audio transcripts of the design sessions for what kinds of activity took place at each moment. The categories and guidelines for the coding scheme were adopted, with minor changes, from a previous study on design meetings \citep{Olson}. As the authors of that study explain, the categories were derived from the Design Rationale literature \citep{Moran} as well as studies of group activity \citep{PUTNAM}, and reflect key aspects of the design activity. With respect to the activities from design rationale, statements were separated into \emph{Issues} at hand, the \emph{Alternatives} or solutions raised, and the \emph{Criteria} used to evaluate an idea. Within the same coding scheme, statements could also be organized into organizational activities, i.e., conversations the group had to organize itself (specifically called \emph{Meeting Management}, \emph{Summary}, \emph{Walkthrough}, and \emph{Goal}), to \emph{Clarify} their ideas, or to engage in \emph{Digressions}. Two additional categories not part of the original coding scheme, \emph{Technology Management} and \emph{Technology Confusion}, were inspired by a previous study based on the same coding method that analyzed a tool's effect on the design process \citep{Olsonb}. \emph{Technology Management} refers to the times when the participants' focus was devoted to the tool itself rather than the activity at hand, and \emph{Technology Confusion} refers to time lost due to system failure. Lastly, any category that did not fit into any of the above was categorized as \emph{Other}. 
 
@@ -382,7 +382,7 @@ Many of the other diagrams produced in Calico shared similar qualities with the 
 
 
 
-\subsubsection {Design behavior 4: Refinement of representations}
+\subsubsection {Design behavior 3: Refinement of representations}
 \label{results:24}
 
 Both the grid and scraps were used in the refinement of representations over time. At the most general level, the grid partitioned the design space so that participants could separate high level and low level representations. Many pairs used spatial orientation to navigate from higher level representations to lower level representations, where higher level representations would exist at the typically left-most canvases, and the details of components in adjacent canvases to the right or below the originating canvas. Next, when members made the transition to more concrete representations, they would transform sketches into scraps, and create copies on other canvases where they would expand them in more detail and create relationships between them. 
@@ -603,7 +603,7 @@ Building upon the results from Section \ref{results}, I now shift to interpretin
 \subsection {Calico Features}
 \label{discussion:1}
 
-Bringing the results described in Section \ref{results} together, it is clear that Calico does provide support for subset of four design behaviors that I targeted from the set of design behaviors in Chapter \ref{chapter:motivation} and that designers are able to use the features in support of these design behaviors when they so desire. However, it is also clear that features were not always used when they could have supported a certain design behavior and that not every pair utilized every feature.
+Bringing the results described in Section \ref{results} together, it is clear that Calico does provide support for subset of four design behaviors that I targeted from the total set of design behaviors of Chapter \ref{chapter:motivation} and that designers are able to use the features in support of these design behaviors when they so desire. However, it is also clear that features were not always used when they could have supported a certain design behavior and that not every pair utilized every feature.
 
 I interpret the differences in use between the different pairs as stemming from two factors. First, some pairs had early success in using scraps, and discovered ways in which they made their life easier. They subsequently stayed with scraps more persistently. Other pairs simply drew on the canvas and ventured rarely into attempting to use scraps. With some early troublesome interactions (e.g., an accidental deletion by a slash-through, using the wrong stylus button to create a scrap), they became discouraged and used traditional methods instead. 
 
@@ -655,7 +655,7 @@ Despite the fact that the experiment has its differences with real-world design,
 \section{Summary}
 \label{conclusions}
 
-In this chapter, I have presented Calico Version One, a sketch-based software design tool that provides support for the design behaviors of software designers when they work at the whiteboard. Using Calico, software designers were able to fluidly create, manipulate, and explore a design problem and its possible solutions. They did so with four features, including scraps, a grid, a palette, and gesture-based input to enhance the experience of whiteboard software design. The usefulness of these features was demonstrated in a multi-pronged, detailed evaluation, with participants in the experiment using Calico's advanced features and exhibiting the kinds of design behaviors toward which Calico was designed. Lastly, a rigorous analysis of the design conversations demonstrated that Calico not only does not interfere with the design activity, but also may lead to more shared focus between participants and longer discussions of various aspects of the designs.
+In this chapter, I have presented Calico Version One, a sketch-based software design tool that provides support for the targeted subset of four design behaviors of software designers from Chapter \ref{chapter:motivation} when they work at the whiteboard. Using Calico, software designers were able to fluidly create, manipulate, and explore a design problem and its possible solutions. They did so with four features, including scraps, a grid, a palette, and gesture-based input to enhance the experience of whiteboard software design. The usefulness of these features was demonstrated in a multi-pronged, detailed evaluation, with participants in the experiment using Calico's advanced features and exhibiting the kinds of design behaviors toward which Calico was designed. Lastly, a rigorous analysis of the design conversations demonstrated that Calico not only does not interfere with the design activity, but also may lead to more shared focus between participants and longer discussions of various aspects of the designs.
 
 %%% Local Variables: ***
 %%% mode: latex ***
