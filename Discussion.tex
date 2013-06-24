@@ -1,26 +1,47 @@
 \chapter{Discussion}
 \label{chapter:discussion}
 
+In the previous chapter, I reported on the experiences of three different groups using Calico. In this chapter, I bring together these observations to collectively answer the research questions posed in Chapter \ref{chapter:research-question}. 
+
+It is important to note that the observations made in Chapter \ref{chapter:evaluation} represent a small sample of the activity that goes on in organizations studied. Chapters \ref{chapter:calico-version-one} and \ref{chapter:notation-paper} provided the benefit of capturing the entirety of a design session for a two hour session. The controlled setting provided the benefit of isolating outside factors. In contrast, the groups studied in-the-field were engaged in designing and building systems for several months or years before using Calico, much of which I could not track. It is possible that they would have created many more representations than what I observed had Calico been used for the entirety of the project. Further, the whiteboard, and by extension Calico, serves as a thinking aid to those that find it useful. It is possible that different levels of expertise may require different types of representations. It is important to keep this in mind when considering these observations within the context of the general software design process.
+
+Also, due to differences in the setting between observations, I do not perform a comparative evaluation between the sites. Each site contains individuals that differ in their domain, level of expertise, and point-in-time of their project lifecycle. Instead, I discuss the commonalities and unique scenarios within each group.
+
+The rest of the chapter is organized as follows: In Section \ref{chapter:discussion:minimally-invasive}, I first answer if Calico Version Two and its features are minimally invasive by reviewing responses from interviews and performing a cognitive dimensionals analysis. In Section \ref{chapter:discussion:cohesive-features}-features}, I discuss the features in terms of how well they support one another. In Section \ref{chapter:discussion:design-behaviors}, I review the design sessions in the context of each design behavior, both reviewing for evidence that the design behaviors occurred and how Calico's features supported the design behaviors.
+
 \section{Minimally invasive}
+\label{chapter:discussion:minimally-invasive}
 
-Did it prevent you from doing what you normally would have done?
-- quality of sketching on whiteboards was largest compromise. Tablets helped, but was not the same (1,2,3)
-- performed sketches as they normally would have, but was able to make more complex versions (3)
-- all reported that they created more content than they would have on the whiteboard (1,2,3)
+In order to a determine if Calico's features were minimally intrusive, I both report on responses from interviews, and perform a cognitive dimensional analysis of Calico in use. In the interviews, I asked all groups if Calico interfered with their existing design habits, if they found the features intrusive, and if using Calico led to any positive changes in the way they design.
 
-- going against the grain... people are accustomed to their existing tools.
-- too slow to bring up
-- turned to word documents to supplement activity
+First, the OSS group and the research group reported that Calico and it's features did not prevent them from carrying out their design as they normally would have, while the interaction design group reported that Calico somewhat got in the way of their design. The OSS group reported that they did not feel any loss of expressive control in using Calico in comparison to the whiteboard, and reported that they normally would have performed many of the same activities on the whiteboards available in the immediate area. The research group reported that they formerly carried out their designs on the whiteboard, and transitioned to using Calico for the same activities. The interaction design group reported that it closely approximated the whiteboard, but they found that the quality of sketch input forced them to write large and the system lagged at times, which was distracting during their sessions.
 
-Did it encourage you to do anything that you wouldn't have done?
-- return to sketches...
+%Did it prevent you from doing what you normally would have done?
+%- quality of sketching on whiteboards was largest compromise. Tablets helped, but was not the same (1,2,3)
 
-\subsection{Cognitive dimensions analysis}
+Second, there were some issues that were commonly intrusive among the three groups. Nearly all groups reported that the large electronic whiteboards diminished the quality their own handwriting, forcing them to either write slower, or write larger. The OSS group connected to their Calico server using either tablets or their own computer, which they reported was able to produce clear handwriting. All groups used text-scraps to produce legible text as well. All groups also reported that launching Calico on their own machines was sometimes a hurdle. The OSS group reported that it was less of an obstacle for them because of the availability of tablets preloaded with Calico. The research group reported trouble setting up Calico on the laptops of new members of their group. Lastly, the members of the interaction design group were accustomed to a different set of gestures and interaction design patterns from their own set of digital sketching tools, such as OneNote, which led to confusion with Calico's features, such as using scrap gestures.
 
-The framework focuses on the artifact-user relationship, in order to consider the implications and trade-offs of representational features in the context of user activities.
+%Features that detracted
+%- going against the grain... people are accustomed to their existing tools.
+%- too slow to bring up
+%- turned to word documents to supplement activity
 
-\subsubsection{Abstraction}
-Abstraction refers to Calico's ability to support represent different levels of abstractions. Since plain sketching inherently allows maximum flexibility in what can be represented, the tool supports representing many levels of abstraction well. Additionally, scraps further support encapsulating objects, given that scraps become inherently grouped when stacked. In practice, the OSS group made the greatest use of abstractions across their designs, where they represented the same sketches from several perspectives, and copied scraps across canvases, both adding a greater or fewer number of sketched items. The interaction design group seldom used levels of abstraction, but rather they used several perspectives across canvases. The research group also used multiple levels of abstraction, however, they reported struggling with precisely what level of abstraction to use. The lowest common denominator in level of abstraction that their conversations took place were at the level of state transitions, however they verbally spoke about the state diagram at a higher level of abstraction, speaking in terms of groups. They did not have an adequate way to refer to these groups.
+Third, all groups reported some positive changes to their existing design habits. All groups reported that they had a sensation of having more free space, and reported that they created more sketches than they normally would have as a result. The research group reported that they created more complex sketches as a result of scraps and connectors, which helped them manage complexity in their sketches. Both the OSS group and the research group reported that, since they did not feel a need to delete unused sketches, they returned to old sketches more often.
+
+%Did it encourage you to do anything that you wouldn't have done?
+%- return to sketches...
+%- performed sketches as they normally would have, but was able to make more complex versions (3)
+%- all reported that they created more content than they would have on the whiteboard (1,2,3)
+
+
+Overall, with exceptions because of hardware limitations and performance issues, all groups reported that the features did not intrude on their normal design activity, and that it brought positive benefits. 
+
+The interview questions provide a high-level perspective of the overall usability of Calico and it's features. In order to examine its usability in more detail, I perform a \textit{cognitive dimensions analysis} [cite] of Calico. The cognitive dimensions framework focuses on the artifact-user relationship, in order to consider the implications and trade-offs of representational features in the context of user activities. The following subsections review all fourteen dimensions.
+
+% Refere to marian's book chapter
+
+\subsection{Abstraction}
+Abstraction refers to Calico's ability to support representations at different levels of abstractions. Since plain sketching inherently allows maximum flexibility in what can be represented, the tool enables users to generate their own representations for different levels of abstraction. Additionally, scraps further support encapsulating objects, given that scraps become inherently grouped when stacked. In practice, the OSS group made the greatest use of abstractions across their designs, where they represented the same sketches from several perspectives, and copied scraps across canvases, both adding a greater or fewer number of sketched items. The interaction design group seldom used levels of abstraction, but rather they used several perspectives across canvases. The research group also used multiple levels of abstraction for state diagrams, however, they reported struggling with precisely what level of abstraction to use. When sketching, they felt more comfortable visually depicting their system using state diagrams, however, during conversations, they assigned sections of the state diagrams with formal name. They only used these names verbally, and never wrote the names on the state diagram to avoid adding complexity to the diagram.
 
 %calico's ability to support abstraction?
 %
@@ -30,8 +51,8 @@ Abstraction refers to Calico's ability to support represent different levels of 
 %- the research group struggled with the right level of abstraction
 %- the interaction designers moved between levels of abstraction
 
-\subsubsection{Closeness of Mapping}
-Closeness of mapping refers to how closely do representations map to the referred concepts. Given that designers can sketch any representation, the designers have total freedom in creating representations that represent their topics. OSS group members used square scraps to represent objects and long rectangular scraps to represent connectors. Further, in practice, the ability to import images and screenshots was an important feature to maintain closeness of mapping. Individuals from both the OSS group and researchers groups important screenshots of code both to initiate new work, and to review the mapping between a sketched design and that code. In the case of reviewing code, a research group member drew ``call-outs'' from pieces of code to explain the logic used. In the case of the interaction designers, importing images of people evoked their memories much better than simply writing names.
+\subsection{Closeness of Mapping}
+Closeness of mapping refers to how closely do representations map to the referred concepts. Given that designers can sketch any representation, the designers have total freedom in creating representations that represent their topics. OSS group members used square scraps to represent objects and long rectangular scraps to represent event handlers. Further, in practice, the ability to import images and screenshots was an important feature to maintain closeness of mapping. Individuals from both the OSS group and researchers groups imported screenshots of code both to initiate new work, and to review the mapping between a sketched design and that code. In the case of reviewing code, a research group member drew ``call-outs'' from pieces of code to explain the logic used. In the case of the interaction designers, they reported that they could have represented the people interviewed using written names, but found that importing images of the faces of those they interviewed evoked their memories much better.
 
 %How closely do calico's representations map to a domain?
 %
@@ -40,17 +61,16 @@ Closeness of mapping refers to how closely do representations map to the referre
 %- software people could import snippets of code
 %- researchers imported screenshots of user interfaces, source code, etc.
 
-\subsubsection{Consistency}
-Calico did not provide an automated method to provide consistency. As with sketching, maintaining consistency between elements is mostly up to the users to socially enforce between sketches [cite Marian's book chapter]. Calico did, however, provide a set of features to propagate consistent forward. Features such as copying scraps, the palette, and copying entire canvases allowed users to repeat elements with little effort. The OSS group used repeated elements by copying scraps, using the palette, and copying canvases when creating alternatives. The interaction design group created template canvases, which they copied to explore new perspectives. The research group used the canvas copy feature to juxtapose the same sketch against different sketches. However, if entities did change within the sketches, the sketches became outdated. The research group reported that they copied the contents of sketches into more formal diagramming tools and into word documents, and that the effort to maintain sketches in Calico outweighed their benefit.
+\subsection{Consistency}
+Calico did not provide an automated method to provide consistency. As with sketching, maintaining consistency between elements is up to the users to socially enforce between sketches [cite Marian's book chapter]. Calico did, however, provide a set of features to propagate consistency forward. Features such as copying scraps, the palette, and copying entire canvases allowed users to repeat elements with little effort. The OSS group used repeated elements by copying scraps, using the palette, and copying canvases when creating alternatives. The interaction design group created template canvases, which they copied to explore new perspectives. The research group used the canvas copy feature to juxtapose the same sketch against different sketches. However, if entities did change within the sketches, the sketches became outdated. The research group reported that they copied the contents of sketches into more formal diagramming tools and into word documents, and that the effort to maintain sketches in Calico outweighed their benefit.
 
 %- consistency brought by calico comes from copying, none beyond other, unless enforced by personal discipline.
 %- palette supported this, but seldom used this way
 %- multiple perspectives enforced consistency,
 %- researchers used multiple documents, hard to maintain consistency across those
 
-\subsubsection{Diffuseness}
-Diffuseness refers to how much the meaning of sketches was spread out across many sketches. The potential for an unlimited number of canvases with intentional interfaces may encourage diffuseness of diagrams. Further, copying canvases and transferring content using the palette further encourage diagrams to be diffuse. However, this only proved to be the case in some situations. The OSS group created very diffuse diagrams by creating several copies of box-and-arrow diagrams with subtle changes, or different levels of abstraction. The OSS group reportedly created use case diagrams in order to ``wrap their minds around what's going on'', referring to the diagrams in Figure \ref{fig:ossgroup:session2}. One of the researchers further reported that without linking canvases with tags, he would have a difficult time recalling the meaning of contents in his past sketches. In contrast, the interaction designers attempted to reduce diffuseness by keeping content contained within canvases. The researchers themselves also maintained all details of a state diagram within one sketch, wanting to also maintain a global view of their entire design at all times.
-
+\subsection{Diffuseness}
+Diffuseness refers to how much the meaning of sketches was spread out across many sketches. The potential for an unlimited number of canvases with intentional interfaces may encourage diffuseness of diagrams. Further, copying canvases and transferring content using the palette further encourage diagrams to be diffuse. However, this only proved to be the case in some situations. The OSS group created very diffuse diagrams by creating several copies of box-and-arrow diagrams with subtle changes, or different levels of abstraction. The OSS group reportedly created use case diagrams in order to ``wrap their minds around what's going on'', referring to the diagrams in Figure \ref{fig:ossgroup:session2}. One of the researchers further reported that without linking canvases with tags, he would have a difficult time recalling the meaning of contents in his past sketches. In contrast, the interaction designers attempted to reduce diffuseness by keeping related content contained within its originating canvas. The researchers themselves also maintained all details of a state diagram within one sketch, wanting to also maintain a global view of their entire design at all times.
 
 %How diffuse were the representations created in calico? (i.e., were multiple diagrams required to show one concept?)
 %
@@ -59,17 +79,17 @@ Diffuseness refers to how much the meaning of sketches was spread out across man
 %- work by interaction designers was not diffuse because each canvas was an evolving set of ideas
 %- researchers was much less diffused because they concentrated on one diagram, but had to mentally remember things
 
-\subsubsection{Error-proneness}
+\subsection{Error-proneness}
 
-As with plain sketching, Calico did not provide any safe guards against errors.
+As with plain sketching, Calico did not provide any safe guards against errors. Given that details in sketches are often sparse, there is a chance that sketches may be misinterpreted, and cause errors in the future.
 
 %No safeguards against errors, other than what was socially enforced by the designers.
 %
 %- repeated elements helped avoid using the wrong elements, and reviewing content in meetings helped catch errors
 
 
-\subsubsection{Hard Mental Operations}
-Hard operations refer to information that needs to be referenced or is nested. Similar to regular whiteboards, representations in Calico may be diffused across several canvases. In the case of the OSS group, the developers needed to reference information that was referenced across several canvases. In the case of the interaction designers, they pasted pictures of people they interviewed, however they needed to reference their notes for their interviews. The researchers, however, had a greater need to perform hard mental operations because of the scale of their state diagrams. The researchers who originally developed the system eventually internalized the diagram to a degree that they no longer needed to reference it, however the researcher that needed to be onboarded created additional diagrams, such as tables, in order to help him mentally step through the state diagram.
+\subsection{Hard Mental Operations}
+Hard operations refer to information that needs to be referenced or is nested. Similar to regular whiteboards, representations in Calico may be diffused across several canvases requiring the user to reference other canvases. In the case of the OSS group, the developers needed to reference information that was spread across several canvases. In the case of the interaction designers, they pasted pictures of people they interviewed, however they needed to reference their notes from their interviews. The researchers, however, had a greater need to perform hard mental operations because of the scale of their state diagrams. The researchers who originally developed the system eventually internalized the diagram to a degree that they no longer needed to reference it, however the researcher that needed to be onboarded created additional diagrams, such as tables, in order to help him mentally step through the state diagram.
 
 
 %How often did designers need to reference elsewhere and nest?
@@ -80,53 +100,69 @@ Hard operations refer to information that needs to be referenced or is nested. S
 %- the interaction design group had to do lots of hard mental operations because interviews not represented. Also placing along axies, and mult. perspectives
 %- researchers experienced a lot of hard mental operations because of the terseness of the diagrams (paths, etc.)
 
-\subsubsection{Hidden Dependencies}
-As observed in past studies [Dekel 2007], sketches that cross several spaces have several dependencies on other spaces that are not explicitly stated. Sketches that begin in one canvas in Calico may extend onto another canvas, or across mediums if the users are using Calico as a complement to other mediums. Intentional interfaces support support hidden dependencies to some extent allowing designers, grouping canvases first into clusters, and further connecting canvases using tags. In the OSS group, the participants spread their diagrams across multiple canvases, which included multiple perspectives, such as the same diagram with different details revealed, the same concept represented using different notations, and different pieces of larger diagrams. For example, a diagram included arrows at the edge of the canvas, representing data incoming from a different part of their system. In this case, all developers had pre-existing knowledge of the system, but still created lists that included details of diagrams on a separate canvas, and needed to return to this canvas. When asked to describe their diagrams, they found the linking of canvases by tagging helpful to return to diagrams created within the same session. The researcher group further had hidden dependencies because of similar issues with spreading their diagrams across multiple canvases. One of the researchers reported that chaining also helped him recover hidden dependencies. The research group further had issues with both information spread across documents, outside sketches
+\subsection{Hidden Dependencies}
+As observed in past studies [Dekel 2007], sketches that cross several spaces have several dependencies on other spaces that are not explicitly stated. Sketches that begin in one canvas in Calico may extend onto another canvas, or across mediums, such as their own computer or paper, if the users are using Calico as a complementary tool. Finding these other sketches is made easier to some extent by the intentional interfaces feature by allowing designers to group canvases into radial clusters, and further connecting canvases using tags. 
 
-Drawing across multiple canvases 
+In the OSS group, the participants spread their diagrams across multiple canvases with different perspectives. Across these different canvases, they depicted several types of perspectives, such as copies of the same sketch with different annotations, the same entities using different notations, and different pieces of larger diagrams. In a canvas depicting a piece of a larger whole, an arrow pointed at the end of the canvas, depicting the flow of data onto another component off-canvas. When walking through their sketches during interviews, they reported that they found the linking of canvases by tagging helpful to remembering the chronology of their sketches. The researcher group further had hidden dependencies because of similar issues with spreading their diagrams across multiple canvases. One of the researchers reported that chaining also helped him recover hidden dependencies by linking the information between a set of canvases. The research group further had issues with both information spread across outside word documents, whiteboard sketches made prior to using Calico, and diagrams created in other tools.
 
-- intentional interfaces helped the researchers with hidden dependencies, the OSS group too
-- few inherent dependencies with interaction designers
-- oss group used colors to indicate meaning, and dependencies were not shown
-- everything must be understood
+%Drawing across multiple canvases 
+%
+%- intentional interfaces helped the researchers with hidden dependencies, the OSS group too
+%- few inherent dependencies with interaction designers
+%- oss group used colors to indicate meaning, and dependencies were not shown
+%- everything must be understood
 
 
-\subsubsection{Premature Commitment}
+\subsection{Premature Commitment}
+Much of the content that was created in Calico was considered to be in support of conversations or thinking process, and thus there was less of a concern to prematurely commit to content on the whiteboard. One of the researchers remarked that nothing was permanent until ``it was written in [their] paper''. Calico provided a sketching look and feel to elements. Users consciously commited to decisiosn by converting handwritten text into rectangular scraps and sometimes formal connectors.
 
-- there is not a sense of commitment to what is on the board.
-- research group turned to calico/whiteboard because it gave the sense of freedom from commitment
+%- there is not a sense of commitment to what is on the board.
+%- research group turned to calico/whiteboard because it gave the sense of freedom from commitment
 
-\subsubsection{Progressive Evaluation}
-Calico does not support evaluations, rightness is decided through review and dialog
+\subsection{Progressive Evaluation}
+Calico does not support progressive evaluations, but instead the ``rightness of a sketch'' is decided through review and verbal dialog. However, Calico indirectly supported progressive evaluations by supporting both reviewing and verbal dialog, during which progressive evaluations occurred. The intentional interface feature supported the OSS group  in reviewing their contents by allowing them to zooming out and switch between canvases quickly. The OSS group reported that they would switch to the cluster-view, zoom in to the canvases they had been working on, and pan while discussing them. During group meetings, they further used the fading highlighter while they talked to draw the path taken by data between components. The researchers, similarly, engaged in verbal dialog to review their sessions. The researchers engaged in review of their designs when writing their papers, and considered content written into the research paper the finalized decisions. They referred to the designs in Calico, but did not update out-of-date designs.
 
-- all groups used intentional interfaces to review, summarized, and proceed. different perspectives
+%- all groups used intentional interfaces to review, summarized, and proceed. different perspectives
 
-\subsubsection{Provisionality}
+\subsection{Provisionality}
+Given that sketching is the primary mode of operation in Calico, the ``messy'' and flexible nature content of the whiteboard. Members from all groups considered content in Calico to be at least as provisional to content on the whiteboard provides a sense of provisionality to content generated. Members from the research group reported that they were more likely to edit existing content in Calico because the effort to change content was easier using scraps. Scraps allowed users to quickly reposition content, and drawing state diagrams using scraps and connectors made it easy to move content. The researchers reported that they would not have edited the same content on the whiteboard because of the effort involved. Interestingly, the researchers reported that the longer content existed in Calico, the more hesitant they were to change it. Instead, they experimented by copying canvases, but doing so lead to consistency issues between canvases.
 
-Everything in Calico was considered provisional and outside the formal specfications. Provisionality was reduced by copying content onto another medium. Teams walked away from designs, and return to them in order to be reminded.
+%Everything in Calico was considered provisional and outside the formal specfications. Provisionality was reduced by copying content onto another medium. Teams walked away from designs, and return to them in order to be reminded.
 
-\subsubsection{Role Expressiveness}
+\subsection{Role Expressiveness}
 
-??
+TODO: Still under evaluation
 
-\subsubsection{Secondary Notation}
+\subsection{Secondary Notation}
 
-- secondary notations present in interaction designer sessions (tagging)
-- secondary notations present in OSS group sessions (colors)
-- researchers used it as euler diagrams
+Secondary notation refers to the use of formalisms that deviate from primary established notations. Because of the freeform nature of sketching within Calico, users have as much flexibility to create their own formalisms if it suits them in the particular moment. Further, scraps provide alternative means to express the same information, but with advantages in the ease of their manipulation, including moving and copying them.
 
-\subsubsection{Viscosity}
+Across the sessions, the designers used secondary notations to overlay information onto existing diagrams. The OSS group members wrote freehand annotations next to diagrams for descriptions. The developer who used Calico to help him refactor code used several custom annotations and formalisms that were reported to be natural in the moment, but the developer could not recall the meaning of his own annotations after the fact. The interaction designers mixed and matched their annotations to allow for several layers of categorization, such as tagging, circling, organizing into tables, etc. The researchers used similar strategies of circling and tagging. For example, they tagged elements in their state diagrams that had not been implemented yet by underlying them in red. 
 
-- moving scraps gives it lower viscosity
-- copying canvases reduces viscosity
-- content is more viscous as whiteboard fills up
-- scraps become viscous because adding becomes an issue
+Both the OSS group and the researchers used secondary annotations with scraps and connectors. Both groups used plain sketches to annotate connectors with labels and, in rare cases, cardinality. In cases where they pasted source code as images, they used ``call-outs'' to describe portions of the code. A consequence of using plain sketches was that the freehand annotations were left behind when scraps and connectors were moved.
 
-\subsubsection{Visibility}
+%- secondary notations present in interaction designer sessions (tagging)
+%- secondary notations present in OSS group sessions (colors)
+%- researchers used it as euler diagrams
 
+\subsection{Viscosity}
+
+Viscosity refers to a medium's resistance to change. Similar to a regular whiteboard, the contents in Calico exhibit a low viscosity because content can always be erased. Calico becomes even less viscous because content can be erased more cleanly (no whiteboard smudges), and all sketched content is moveable, as opposed to the whiteboard where they must be redrawn. The capacity to move content enables designers to organize content, such as the interaction designers did with the pictures of those that they interviewed. Further, the functionality to move sketched content is more ready-at-hand than comparable paint tools because user do not need to enable modes, but rather use scrapping gestures in-place. The facitlity to easily copy content using both scraps and ``copy canvas'' enable rapid experimentation with content, making it more malleable for experimentation.
+
+For both the interaction designers and the researchers, they encountered some resistance to change when their boards became filled with content. In both situations, members of the respective groups reported that it was important to maintain all content in the same canvas, and as a result, did not have space available to create new content.
+
+%- moving scraps gives it lower viscosity
+%- copying canvases reduces viscosity
+%- content is more viscous as whiteboard fills up
+%- scraps become viscous because adding becomes an issue
+
+\subsection{Visibility}
+
+TODO: Still under evaluation
 - visibility is improved by creating multiple canvases
 
 \section{Cohesive set of features}
+\label{chapter:discussion:cohesive-features}
 
 \subsection{Synergy of features}
 
@@ -150,47 +186,296 @@ Fading Highlighter. This feature builds on top of other feature, but does not re
 %
 %- intentional interfaces was reported to be disruptive because of losing zooming
 
-
-
 \section{Sufficient to support all design behaviors}
+\label{chapter:discussion:design-behaviors}
+
+In this section, I review the field studies collectively and discuss the observations in terms of each design behavior. For each design behavior, I am seeking the answer to two questions:
+
+\begin{enumerate}
+	\item Did they do it?
+	\item Did the features help them while doing it?
+\end{enumerate}
+
+I further discuss the context in which each design behavior is performed in the real world.
 
 \subsection{Design Behavior 1: They draw different kinds of diagrams}
 
+Across all three field deployments, the developers and designers created several representations in several different types of notations or approximations of notations. Most of the canvases across all site used only one type of notation, but a few of the canvases within each group also contained a mixed set of representations using different notations. This different from the experiments in Chapter \ref{chapter:calico-version-one} and \ref{chapter:notation-paper} came about because, unlike the controlled experiments in which the entire design session occurred at the whiteboard with no other materials, the designers in-the-field turned to Calico for specific tasks, such as when the OSS group created sketches to plan the explanation of an architecture, which may lead to canvases with more targeted content. Longer term use of Calico may lead to using it for more in-depth tasks, designers may supplement it with other tools such as word documents, their own computers, and so on. Designers may also need to create fewer sketches since they may have internalized many of the representations they sketched in previous meetings, which the researchers reported to be the case for them.
+
+When the developers did mix diagrams within the same space, the features helped them do so. The OSS group used scraps create box-and-arrow diagrams and user interface mockups while brainstorming the elements and look of a GUI, as depicted in Chapter \ref{chapter:evaluation}, Figures \ref{fig:ossgroup:session1:a}, and mixed lists with user interface mockups in \ref{fig:ossgroup:session1:b}. In both cases, creating both representations in the same space allowed them to evolve both concurrently, where the box-and-arrow and list representations allowed the developers to consider the components from a structural perspective, and the mockups allowed them to consider it from the end-user's perspective. They reported that by depicting these elements as scraps, it made the elements easier to move around the canvas, resize, and felt more like entities in their eyes. The interaction designers placed graphs of different types next to one another, such as the one dimensional and two dimensional axies in Figures \ref{fig:ixdgroup:session1:a}, and the triangle graph and two dimensional axies in \ref{fig:ixdgroup:session1:c}. They used text-scraps because they were easier to read, and used scrap to move content and represent images. For the research group, one of the researchers mixed different types of representations in one of his canvases in order to help him think. In Figure \ref{fig:researchgroup:c}, the researcher used a table in order help him step through a state diagram, and used scraps to move items around the table.
+
+%- Same canvas? Not often... Figure in OSS group. Figure in Interaction design group. Figure in research group (christian's!)
+
 \subsection{Design Behavior 2: They produce sketches that draw what they need, and no more}
+
+Across all sketches, the amount of detail included in the sketches was low. Most of the sketches created across the groups were used to support activity while ``in the moment'', where sketches were used to accomplish an immediate goal. The designers and developers reported that such goals included brainstorming by themselves, brainstorming with a group of individuals, and explaining their existing designs to other group members. In interviews, participants across all groups frequently could not recall the meaning of minute details within sketches, however they recalled the overall objective of sketches, which they deemed more important than the individual details. 
+
+Despite the overall tendency for a low amount of detail, there was a noticeable difference in the detail of sketches between activities. Sketches used to support individual thinking typically included the least amount of detail. In these sketches, the designers include just enough detail that allows them to externally reflect and examine a sketch, but the sketching performed in the reflection and examination includes the least amount of detail. For example, a single developer in the OSS group created a sketch to explore use cases of a user interface, Figure \ref{fig:ossgroup:session1:e}, but only used the bare minimum detail to do so. The sketch itself is a distillation of the previous sketches, Figures \ref{fig:ossgroup:session1:c} and \ref{fig:ossgroup:session1:d}, and does not use notations to suggest that it is a use case diagram. The sketches of source code in Figure \ref{fig:ossgroup:session3} is also a sketch used in an individual session with minimal detail. The developer invested the time to write pseudo-code, but used arrows with minimal explanation of their meaning. Sketches that were used to explain concepts often included the least amount of detail. Figure \ref{fig:ossgroup:session2:a} was the center of much discussion within the OSS group, but includes the least amount of detail because all relevant information was delivered verballing, and the sketch only provided framing for the discussion.
+
+They included additional detail to record design decisions. In group decisions, members across the groups recorded additional detail to signify a decision was made, or if they saw the detail as important to their design. By only including important details, the designers did not need to spend more time than was necessary to retrieve details from sketches. 
+
+Sketches that helped frame thinking sometimes included more detail. For example, the set of one- and two-dimensional axies used by the interaction designers gained labels and categories within their axies in order to describe the content they categorized. A researcher within the research group used structured representations such as tables and dendrograms to help him in parsing other diagrams.
+
+In all of the above cases, the individuals used scraps to support themselves in performing this design behavior in numerous cases. The developers reported that they used scraps to represent ``important entities'', which they arranged around the canvas and related with connectors. The interaction designers used image-scraps of people, which they saw as the lowest level of detail in their sketches. The researcher further used scraps to represent states in process diagrams, which they also manipulated quite heavily. Across all groups, content that wasn't the subject of manipulation often did not become scraps.
+
+% externalize an entity so that they can externally examine it, but sketching done in the examination includes a scarce amount of detail. 
+%
+%The sketches used to support individual thinking had few details and little use of formal notations.
+%
+%Of the sketches used to support personal thinking
+%
+%Sketches to support personal thinking. In gui, created something because it didn't look right. Didn't include much detail of rationale. In code, got important part on board, but didn't write beyond that, used arrows to help him think.
+%
+%Sketches to support group brainstorming. In group brainstorm, had more details.
+%
+%Sketches to support explanation to group. Explanation, had much fewer details.
+%
+%With respect to notational convention, we saw very little of that present.
+%
+%- minimal drawings in oss group. ``they only draw what they need'', very true for much of the OSS group. Diagrams support discussions, no need to declare details since they won't be executed! The things that get written down are the major entities. Objects for OSS group. pictures for interaction design group. state transition names for researchers
+%
+%- notational convention is almost non-existant. These are not deliveries, but rather, representations provide framing for conversations (thinking of OSS group).
 
 \subsection{Design Behavior 3: They refine and evolve their sketches over time}
 
+While not the common case, all groups did refine and evolve their sketches to some extent. In the case of the OSS group and researchers, they first sketched the names of entities, and these sketched names eventually became text scraps with connectors. The result of these sketches is depicted in Figures \ref{fig:ossgroup:session1:a} and \ref{fig:researchgroup:a}. In both of these sketches, the developers and researchers began with simple sketches, and increased in their usage of notations and amount of detail over time. The interaction designers instead began with pictures of faces, and across several canvases, categorized these pictures using visual structures such as axis, tables, and plots. Within Figure \ref{fig:ixdgroup:session1:b} in particular, the interaction designers evolved their representation by begining with a single dimensional line, adding categories on that line, and transforming it into a table. The interaction designers did not set out to create the table, but rather created the table after categorizing the faces. Other representations also began as a one-dimensional axis, such as Figure \ref{fig:ixdgroup:session1:e}, which instead diverged into a two-dimensional axis graph.
+
+In the case of the box-and-arrow diagarms created by the OSS group and research group, scraps served a supporting role. Scraps allowed sketches to transform from plain sketches, to formal boxes that could be connected with formal arrows. The OSS group, in general, preferred to create several diagrams and use informal arrows. The research group, however, found scraps useful in evolving their diagrams because it allowed their diagrams to become larger, but still manageable. The interaction designers used scraps as labels to emergent groups, in which they grouped a set of faces in close proximity, and wrote the unifying attribute using a scrap.
+
 \subsection{Design Behavior 4: They use impromptu notations}
+
+While the individuals across all three groups did not strictly adhere to the formal syntactical rules for each notation, they did meaningfully create their own set of visual grammar rules. In most cases, groups created freeform lists and peppered their sketches with freeform annotations. However, in the cases there was a structured use of notations, all groups meaningfully adapted connectors to signify meaning, and also used special colored annotations to layer meaning on structured diagrams.
+
+Connectors and arrows were among the most used notational element for improvising meaning. All three groups used connectors as informal ``call-outs'' to annotate representations such as user interface mockups, software diagrams, and others. Both the OSS group and the research group used colored arrows to represent different data types, which were informally known by the people who sketched them but did not write the meaning of the arrows in the sketch. The OSS group further improvised a notation in Figure \ref{fig:ossgroup:session2:c}, where they used colored boxes to represent events that were broadcoasted to multiple components, but originated from the same source. Further, the developer that created the psuedo code in Figure \ref{fig:ossgroup:session3} improvised several types of arrows that he could not identify afterwards, but reported that the improvisations served as placeholders for concepts during his walkthrough.
+
+Both the interaction design group and the research group improvised several notations using color to layer information within their diagrams. Both groups used Euler diagrams to group scraps by drawing circles around sketches (used within Figures \ref{fig:ixdgroup:session1:b} and \ref{fig:researchgroup:b}, among other diagrams not shown). Both groups tagged scraps, where the interaction design group used color patches in Figure \ref{fig:ixdgroup:session1:b}, and the research group used colored underlines in Figure \ref{fig:researchgroup:a}.
+
+In most cases for all groups, sketches used only plain sketching with colors to create improvised notations, but in some cases were supported by scraps. Annotations on scraps remained with the scraps as they were moved around the canvas. The same was true of connectors, where connectors whose color maintained meaningful semantics, particularly in the case of the state diagram for the researchers in Figure \ref{fig:researchgroup:a}. The OSS group did not use formal connectors, but also did not manipulate their representations afterwards. They reported that if they did intend on manipulating their sketches, they would have used formal connectors.
+
+%(examples include Figures \ref{fig:ossgroup:session1:a}, \ref{fig:ossgroup:session2:d}, \ref{fig:ixdgroup:session1:a}, \ref{fig:researchgroup:session2:b})
+
+%- definitely, show the pictures from the source code thing. Show further notations from calico
+%
+%- yes, reappropriated, but only from plain sketches into boxes...
 
 \subsection{Design Behavior 5: They move from one perspective to another}
 
+In the majority of design sessions reported, all groups shifted their focus between multiple canvases with different perspectives in all sessions. Both the OSS group and the Research groups, in working with software code, moved between perspectives such as the user interface, software architecture, lists of requirements, source code, etc. In the majority of sessions of the OSS group, the users had pre-existing knowledge of the system and used the different perspectives to design the parts of the system that required changes in the next version. The reseracher group, in the cases where they did use multiple perspectives, used perspecties first to learn the system and worked backwards from large diagrams or screenshots to understand how the different pieces worked together. Other members in the research group did not use different perspectives at all within Calico, instead preferring to maintain a single diagram, complemented with their own computer. The interaction designers, not working with code, but instead parsing interviews, used multiple perspectives to create different user personas from the same data. 
+
+For both the OSS group and the researchers, intentional interfaces played a supporting role in managing perspectives. Both groups linked canvases that provided different perspectives on the same set of items. In general, the chains reflected a chornological exploration of perspectives, where the earliest canvas in a session lied on the circular ring within intentional interfaces, and perspectives were linked outward. Having the canvases linked into groups helped members from both groups remember ``how the session played-out'', as well as the significance of unlabeled contents within the canvases. Members of the OSS group further used the palette to copy elements across canvases to explore the different perspectives.
+
+Members of all three groups found copying canvases also helpful for exploring different perspectives. The interaction design group in particular used a template canvas to begin explorations of new perspectives. For each canvas, they set a generic topic, such as ``Shopping habits'', from which sub-categories emerged from their grouping of content. Both the OSS group and the research group used copied content to examine elements juxtaposed against other representations, such as tables and mockups.
+
+%- all sw groups used it in the classical sense
+%- interacitn designers explored emergent dimensions of data
+%- researchers used it for exploring the system.
+
 \subsection{Design Behavior 6: They move from one alternative to another}
+
+Two of the groups did use multiple canvases to explore multiple alternatives, but the interaction design group did not. Within the OSS group, the alternatives were often generated as a result of conflicting opinions during discussion. Multiple members had conflicting opinions, which inspired some members to copy a canvas and generate their own interpretation. In another case, a member of the OSS group returned to the same diagram at a later point after having implemented it, and sketched out a new alternative based on his experiences. In the case of the OSS group, one member generated multiple alternatives of a state machine, where previous alternatives were discarded solutions. Across both the OSS group and research group, the members used intentional interfaces to label their cases as alternatives. Also common in both groups, the members requested better tagging functionality to declare which alternative they ultimately chose, but also did not want to discard unused alternatives because they valued them as records of past design explorations.
+
+In the case of the interaction design group, they did not explore alternatives. Given that they were processing interviews in preperation for a product, and not designing the product itself, they did not have a need to generate multiple alternative sketches. They instead negociated alternatives verbally.
 
 \subsection{Design Behavior 7: They move from one level of abstraction to another}
 
+Similar to the role of perspectives, users across groups moved between levels of abstraction to help focus their attention within the design. The OSS group moved between levels of abstraction in their sessions to step through the flow of data within their software architecture. In stepping through components, they copied canvases, expanded scraps to dive into more detail, and created new canvases with scraps that represent a high level view of their architecture. In the case of the research group, one member shifted a level of abstraction to break down diagrams and focus on relevant parts. He reported creating a copy of a state diagram that depicted the entire system, erasing all components not relevant to his task, and designed a subpart of the system. In the case of the interaction designers, they instead performed a bottom-up approach, working from dozens of image-scraps, and creating high level abstractions that described the people in the photos. All observed groups created canvases with text, either handwritten or using text-scraps with list-scraps, that summarized the contents of other canvases, which they referred back to while designing components. 
+
+Both intentional interfaces and scraps served a supporting role in moving between levels of abstraction. The OSS group used it the most fluidly, where they used intentional interfaces to continue their sketch onto another canvas without interruption. When ``jumping into'' a component, they copied a canvas, set a link, and reused scraps. When ``jumping out of'' a component, they created a blank canvas and sketched the component. The research group did not use it intentional interfaces as often, but reported it as useful for moving abstractions, and the interaction design group did not use it at all for this purpose.
+
+
+%- yes, true for oss group and researchers
+%- requires a certain amount of complexity
+
 \subsection{Design Behavior 8: They perform mental simulations}
+
+All groups reported that they mentally stepped through their sketches, both verbally in groups and on their own. Both the OSS group and the research group mentally simulated the flow of data within their system. The OSS group displayed sketches of their architecture on the large projector in meetings, and discussed the same sketch for long periods of time, both point at components and using the fading highlighter. The research group performed similar activities, but rather than drawing entities and software components, used state diagrams, and walked through the states of data as it traveled through their system. The interactin designers, instead, walked through user scenarios, and sketched flow diagrams that described the story of the user.
+
+Both the fading highlighter and scraps supported members in mental walkthroughs. The OSS group made heavy use of the fading highlighter in meetings, sometimes preferring to stay on one sketch rather than moving between sketches. The researchers also used the fading highlighter in their meetings, but not as often. They reported that they internalized their process flow diagrams, and did not report needing to perform as many detailed walkthroughs of their data. The fading highlighter was reported as being useful when a person had a tablet in their hands, and the screen was broadcasted to everyone else. Scraps were also viewed as helpful because the sketcher could annotate a scrap in their walkthroughs, and the annotation would remain attached to the scrap as it moved. The interaction designers preferred to use plain sketching in creating their user stories, but sometimes reused sketch elements by dragging them from the palette.
 
 \subsection{Design Behavior 9: They juxtapose sketches}
 
+While not performed often, the groups did occasionally set their representations side-by-side within the same canvas, i.e., \textit{juxtapose} them. In the majority of sketches created, the users prefered to create multiple canvases, and compared content informally by moving back and forth between canvases. However, they did juxtapose content within the same canvas for specific purposes, such as early exploration, and reference.
+
+All three groups juxtaposed their diagrams during very early-phase exploration in order to portray several different perspectives at once. In creating a new user interface, the OSS group listed entities in box-and-arrow structures, low-fidelity interface mockups, and abstract lists within the same space, as seen in Figure \ref{fig:ossgroup:session1:a}. During this early phase brainstorming, the entities evoked imagery in the OSS group members, which they found helpful to sketch out. The researchers similarly used both mockups alongside software structures, but instead began from the user interface and wrote pieces of code. The interaction designers created multiple charts within the same space, finding that sometimes finding that that their data did not fall within one type of categorization, but two different types, as in Figure \ref{fig:ixdgroup:session1:f}. 
+
+The OSS group and Research group also used juxtapositions as a reference while creating creating a new sketch. One OSS group member imported source to reference while designing psuedo code. A research group member also imported screenshots of the application's user interface while designing his part of the system. He further copied pieces of the state diagram and used an adjacent table to step through the diagram, as in Figure \ref{fig:researchgroup:c}.
+
+Scraps, the palette, and to some extent, intentional interfaces served to help juxtpose sketches. Sketches were helpful in moving content around the canvas and to the side to make free space. The palette, as well as copying canvases, served to move content across canvases to create new sketches. Image-scraps further supported dropping in outside content, which was an important feature in environments with ongoing projects with many visual artifacts. Finally, the OSS group and the research group used intentional interfaces to get a zoomed out perspective of multiple canvases, but reported that it was not very effective for this purpose.
+
 \subsection{Design Behavior 10: They review their progress}
+
+Evidence that users reviewed their progress during their design sessions was more difficult to distinguish, but all groups reported performing this activity to some degree. Nearly all participants summarized or distilled the essence of an activity to a bullet point list in a canvsa, which they would occasional reference and update. The OSS group seldomly marked up canvases with annotations, but instead created canvases with lists, in which they would note details about software components and entities from their past conversations. The research group would sometimes create bullet point lists to guide their meetings, but most often tured to google docs to review their agenda within their meetings. The interaction design group used a single canvas with several notes from their interviews, which they referred back to when moving between different perspectives. 
+
+Intentional interfaces served a strong supporting role with reviewing of progress. Usage logs showed that all group members would occasionally move back and forth between several canvases at once, or move to a bird's-eye-view to review several canvases at once. Interviews confirmed that they moved to this view to ``take it all in''. All groups reported that the overall preview was not detailed enough to compare components, but instead they served to anchor discussions for those present between canvases.
 
 \subsection{Design Behavior 11: They retreat to previous ideas}
 
+Retreating to previous ideas was a behavior that was only observed in multi-week, long-term design sessions. Both the OSS group and the research group both continued to use Calico within the same project, and reported that they did not return to previous ideas until a later design session. Members from both the OSS group and the research groups reported that they created new alternative designs in later sessions, but returned to past sessions to refresh their memory on the past approaches that they took. In the case of the research group, they performed a significant resturcturing of their software, but one of the members reported returning to out-of-date sketches because it reminded him of the rationale for certain design decisions.
+
+Intentional interfaces supported the users in retreating to previous ideas. The researchers reported that they could identify the structures of their old design sessions from the cluster view, and the structure of their canvases provided context to help them remember the meaning of their sketches. The researchers similarly reported that the structure of the canvases within the clusterview, and their ordering within the list, helped them remember the content from the meetings. 
+
 \subsection{Design Behavior 12: They switch between synchronous and asynchronous work}
+
+Both the OSS group and the research group found Calico helpful to switch between synchronous and asynchronous work, but the interaction design group did not. Each group used Calico in a slightly different way, due to their physical setup and activities. The OSS group had Calico in their immediate workspace, and used it both in an opportunistic basis to support activities while coding, and also within group meetings. The research group needed to travel to a conference room adjacent to their office, and primarily used it to support meetings, and sometimes for individual work. Members from both the OSS group and the research groups prepared work by themselves in Calico before a meeting, and later brought members to join them on the large electronic whiteboard. During meetings, both groups had members that deviated from the group discussion to their own canvas to explore an alternative, and later share his alternative with the group. The OSS group performed this more often, where the research group reported using group sessions for focused group discussions.
+
+The interaction designers worked tightly together, and found it more productive to share the same canvas. They did, however, both write on the same canvas at the same time, reporting that it allowed them to unload their thoughts faster.
+
+Overall, the users reported that synchronous sketching, working asynchronously in different canvases, and being able to see who is working in what canvas was helpful. They felt a greater freedom in working together by not being locked into the same view, and could contribute to each others' work while they were performing it. 
+
+%- an enabler
+%- most important in oss group
+%- ixd didn't do it at all
+%- res less so
+%
+%- true in group design sessions
 
 \subsection{Design Behavior 13: They explain their sketches to each other}
 
+Depending on the situation, all groups had different reasons to explain their sketches to one another. The members from the interaction design group worked very tightly together, and most explanations came from one designer challenging the design decisions of the other designer. Members of the OSS worked more independently, where some used Calico on their own, and later presented their designs to receive feedback from other developers in the group. The members of the research group operated much more independently, in which several days would elapse before they coordinated their efforts and would present summaries of their latest work to one another. In nearly all cases, explanations were primarily carried out by pointing, gesturing in the air, and freely speaking to one another.
+
+The highlighter was the most helpful feature to support this design behavior, however, most teams reported often forgetting to use it ``in the heat of the moment''. The interaction design group did not use the fading highlighter, preferring to simply speak out loud. The OSS group used the fading highlighter to discuss a single design, however, the OSS group only used the fading highlighter during that period. They reported some times being slowed down during explanations when moving between canvases, requiring that they announce what canvas they move to so that every one else can move to that canvas as well. The research group also found the highlighter helpful, but reported often forgetting that the feature existed.
+
 \subsection{Design Behavior 14: They bring their work together}
 
-\section{Preserving context}
+Groups very rarely brought their work together, or merged their work from separate canvases, after performing asynchronous work. The interaction design group did not perform asynchronous work and did not have an opportunity to exhibit this behavior. The research group explain the work they performed between meetings, but their work remained separate. The OSS group, however, did bring together separate ideas, but they did so by creating new canvases. In two separate occasions in which members from the OSS group moved between synchronous and asynchronous work in the same meeting, they generated copies of the same canvas that were variations of one another, but they did not merge these canvases. Instead, they created a new canvas which presented a use case scenario that summarized the content from previous canvases. Overall, however, the users across all groups did not generate a final artifact from the generated alternatives, but instead proceeded by sketching over one of the proposed alternatives or verbally merged the designs without writing it down.
 
-\section{The role of multiple devices}
+While the behavior of bringing work together after asynchronous activities rarely occurred, intentional interfaces supported this behavior when it did occur. The canvases which summarized previous alternatives typically appeared at the very end of a link of chains, which made them easily identifiable.
 
-\section{Role of Calico within the design process}
+%- not so much in the real world... everything that is sketched are suggestions. Bringing work together is too much work. They may summarize though.
 
-\section{Education}
+\section{Other findings}
 
-\section{Limitation of study}
+\subsection{Context of Calico within the software design process}
+
+Calico played a complementary role to existing tools and practices for each team, serving as an external thinking space for individual and collaborative design. In each case of each team, the members turned to Calico to work on ``wicked problems'' in which the solution was not readily apparent, and required some exploration of the design space before arriving at the solution. Sometimes these problems involve trying to make sense of raw data before a software system is built, as the interaction designers did. Sometimes it is to make modifications to an existing system, as OSS group developers did. Other times they may be building a new system from scratch, as with the research group. Given that the studies each provided glimpses into different pieces of the lifecycle for each group's project, it is difficult to draw a direct comparison of the differences between the approaches of each group. However, several commonolities arose in Calico's role throughout its use for each team. Calico use was not restricted to any single phase of design, but was flexible enough to support groups at different points in their design process.
+
+Calico proved to be a helpful tool for mentally processing ``uncooked'' ideas and information. Individuals used Calico to investigate concepts, discover relationship between data, and also to provide structure over the data. Members from both the OSS group and the research group began some of their design sessions by listing entities, and refining those entities into box-and-arrow diagrams. They arrived at mockups of user interfaces and software structures by performing some or all of the indentified design behaviors, such as refining their sketches, navigating between multiple perspectives of sketches, and explaining their designs to one another. The interaction designers began with pictures of faces of the fifty people they interviewed, and developed categorizations over interacting with those images to produce personas. Both the OSS group and researchers also used Calico to iterate on existing solutions by importing screenshots of source code and screenshots of their user interface.
+
+%An activity that Calico supported well was to import a set of raw data into Calico to make sense of it.
+%The common case is to put raw data into Calico, and make sense of it. Draw conclusions and relationships.
+
+While Calico was considered a provisional environment, it served as an informal stepping stone to enacting change. Design decisions and plans of action were proposed while using Calico in meetings, but were not solidified until those decisions were recored into a formal document, or being implemented by a developer. By remaining provisional, developers and designers could use Calico as a ``playground'' to explore ideas without commitment, and do so more quickly without needing to worry about precision or completeness. The impromptu, lightweight, and flexible nature of freeform sketching, and by extension Calico, make it a medium which is easier to explore concepts. 
+
+%All groups ultimately considered Calico a provisional environment, but it served as an enviornment to enact change in the software project. 
+%Ideas are not solidified until they are copied onto a complementary medium, such as a  The individuals observed varried in their levels of expertise, as well as used Calico within different periods of their design process. Where one individual may have been able to resolve a problem in their head, another designer may have turned to the whiteboard. 
+
+%An advantage of Calico over the regular whiteboard was the ability to import existing documents into a whiteboard setting.
+
+%People put content on the whiteboard to externally examine it in a freeform environment. The 
+%
+%It's a place to enact change. It is not for requirements. It does create precise models, source code, etc. that is an end goal. It is a space that results in a set of goals, decisions are considered and made, then carried out after moving away from the board. It is a thinking ground that is visited when the computer is not enough.
+
+From these assertions, there are several benefits that Calico could provide within the software design process. First, in order to support the processing of ``uncooked'' ideas, Calico could improve its ability to import data. Importing images has already shown to be useful. This ability could be pushed further by pointing Calico directly at other sources of information, such as source code repositories. Second, given that design decisions are proposed within Calico and recorded elsewhere, there is an opportunity to provide a tracibility back to Calico. While the reserach presented showed that sketches will not remain consistent with the most recent decisions because they need to be manually updated, it in fact may be a desirable quality because it reveals past history. Providing traceability to old designs in Calico may reveal design history that would otherwise not be available. Lastly, retaining the history of sketches may be helpful to help designers avoid repeating the same mistakes.
+
+\subsection{The role of multiple devices}
+
+An important enabling aspect of Calico was that it allowed everyone in a group to sketch on the whiteboard at the same time. The electronic whiteboards had the limitation of only allowing one person to write at a time, which was reported as inhibiting in Chapter \ref{chapter:calico-version-one}, but other users could contribute from their own laptop. This was addition, as past research has shown that groups of individuals will contribute significantly more ideas to a discussion than if only one person can write at a time [Shih 2010].
+
+Individuals across all groups participating in a shared session with their own device reported a greater ability to participate in sessions in comparison to their previous meetings. In some cases, such as the interaction design group, team members continued to not edit content themselves. The interaction designer group previously reported that in a typical case, one member draws on the whiteboard and other provides verbal feedback. While with Calico this interaction remained largely the same, in select cases the member that provided verbal feedback participated from their laptop by copy and pasting his notes into Calico using text-scraps. The OSS group and the research group, however, reported larger benefits. The OSS group reported that having several tablets liberated people from needing to focus on the same content as the speaker, and could diverge into their own sketches, reference past sketches, and participate in sketching without reaching over the should of the person at the large electronic whiteboard.
+
+Calico enabled individuals share the same space more easily. In the case of the OSS group, team members were able to share the same space to carry on their design sessions concurrently using different devices. Members reported that they moved between using Calico on the large electronic whiteboard, their computer, and the tablets. For example, two individuals the large electronic whiteboard, while another developer concurrently used a tablet at his desk. The research group also shared the same meeting space to conduct multiple projects using Calico.
+
+Individuals also prepared content in Calico ahead of time on their own computers. Members from the OSS group and research group copy and pasted content into Calico, and later moved to the large electronic whiteboard to sketch over their imported artifacts. Artifacts ranged from source code, screenshots of user interfaces, and powerpoint slides. 
+
+\subsection{Preserving context}
+
+A general fallacy of informal tools, such as whiteboards, is that the context of the artifacts produced is not preserved. The transient nature of the whiteboard results in previous iterations becoming lost as they are manipulated in place or erased. Much of the rationale behind the final iteration is often not recorded in the sketch itself, but instead resides only in the heads of the designers present in the meeting. The sketches themselves become cryptic to anyone who did not create the sketch, and eventually become cryptic to even the original sketcher if enough time elapses to forget.
+
+Members from the OSS group, interaction design group, and research group all remarked that Calico, and to some extent, intentional interfaces, helped them recover past rationale by illuminating details from their past sessions. They deleted fewer canvases, which provided them with more sketches to reference. Rather than creating new iterations in-place and overwriting past iterations, they iterated on their design on newer canvases, establishing a history that would not have been saved on whiteboards. With more canvases, members from all groups had more sketches available to remind them of design paths explored. In the case of the OSS group and the research group, they created chains of canvases that provided further context. The chains served to group canvases into design sessions, and also provide an ordering to the canvases, which either took on the meaning of reminding the sketchers of the chronology of the canvases within the design exploration, or allowed the canvases to build on the content of the previous canvases. Members from the OSS group and research group both used these ordering, and tags, to provide cues to the meaning of content within the canvases. Most canvases were tagged as a ``continuation'', but they found the ``alternative'' tag helpful in explicitly marking a canvas as such. They also remarked that naming canvases was important in remembering their purpose.
+
+%Intentional interfaces helpful for contextual cues.
+%- a single canvas reminds them of what they did within that canvas, connecting canvases reminds them of why they moved to a canvas. ``This was the first one we tried'', ``this was the second''...
+%- preserves story as it is played back.
+%- chronology is preserved.
+
+Despite the affordances that Calico and the intentional interfaces did provide, users remarked that there were several moments in which they wanted to declare more details, but were unable to do so. When linking canvases by tagging, members of the OSS group and research group wanted to provide direct links between canvases. For example, they wanted to label three canvases as being an alternative of the same canvas. Or, they desired to use multiple tags on a canvas. Further, design was not always linear, but rather a canvas may have references that lead to several other canvases. For example, the OSS group depicted a set of components, and defined the detail of those components in later canvases. Other group members desired to insert notes and annotations within canvases, but did not do so because there was not enough space.
+
+%Cues people wanted to provide but couldn't.
+%- Alternative to what? Perspective to what?
+%- content difused across canvases
+%- design wasn't linear
+%- tagging canvases
+%- deep linking content
+%- leave notes about rationale
+
+Some of the context of design sessions could not be captured due to the limitations of the technology. Reviews confirmed that much of the design that takes place with Calico happens by talking over designs, pointing at figures, and gesturing to nothing in particular. One remote collaborator reported that being able to see participants using video conferencing tools was important because it allowed him to see the gestures of others. In the OSS group, usage logs showed that users viewed canvases without interacting with it for long periods of time, and interviews confirmed that developers were using the image to discuss the next steps. The sketch played an important role, but no evidence of this was evident from Calico without asking the developers. In a similar situation, usage logs demonstrated a intensive periods of usage for the highlighter in the OSS group, but upon playing back a slideshow of the usage, members of the OSS group could not recall the topic they used it to discuss.
+
+%Cues not captured by devices.
+%- web cam provided these
+%- Gesturing, moving around, what's not captured by the software. Multiple people sharing one device.
+%- long discussions over individual diagrams. Long periods of using fading highlighter, group members could not remember what they talked about in interviews. They only remember the final decisions. Much of the design remains verbal, very little is captured, however what is not remembered is not considered important.
+
+In addition to the information available in Calico, the usage logs contained information that may have provider deeper context about sketches in future versions of Calico. The usage log provided intermediate screenshots of sketches, which revealed unique representations that provided information about how they led up to a final design. The logs further provided summaries of sessions, reporting when sketches were created, and the amount of time spent in creating the sketch. 
+
+%Cues provided through interviews with logs.
+%- showed history back to people, provided intermediate snapshots.
+%- how much time is spent in each canvas. Transient information that happens.
+
+\subsection{Education}
+
+In addition to supporting practicing software designers, Calico also has the opportunity to support the teaching of software design in the class room. Calico can support this in two ways. First, it can provide an environment for students to conduct design exercises in class, providing support for both the design activity itself, and collaboration among students. Second, Calico can help capture the design history of sessions performed in Calico. Design histories can both capture professionals in-the-field, as was done in this dissertation, to educate students about the process that professionals take, and also capture the process of designing at home, to give professors insight into how students work outside of the classroom.
+
+\subsubsection{Supporting the classroom}
+
+In recent years, the studio approach, a hands-on teaching method emphasizing in-class discussions and activities, has been increasing used to teach software. In this approach, students use class time to perform challenging software design problems in teams, and receive continuous feedback and guidance from a professor. Traditionally, students have performed activities such as this one by using physical materials that need to be setup and put away, such as stacks of paper, posters, and Post-It Notes. Calico provides an opportunity to build on top of this process, and provide students with the benefits that were shown to help professional designers in Chapter \ref{chapter:evaluation}. 
+
+In a previous study, a software design course with 54 students used a prevoius version of Calico with their own laptop and tablet devices to support them in two in-class design sessions over a four week period \cite{Loksa2013}. They used a modified version Calico Version Two, which did not have intentional interfaces but instead used the grid. The students carried out their designs sessions in class, but were asked to deliver their designs in Calico. In this study, several benefits to the design process and collaboration were identified.
+
+%What a studio environment is, and how it is taught in the classroom.
+%
+%How Calico can help studio design.
+%
+%One important facility of Calico is to support software design education in the classroom. Several of the qualities that make using Calico 
+%- tablets
+%- 2013 paper
+%- used calico for 5 classes
+
+With respect to the design process, they performed the following activities using Calico on tablet PCs and their own laptops:
+
+%Several advantages are afforded to students with respect to supporting the design process. More specifically, Calico supports students with the following activities:
+
+\begin{enumerate}
+	\item \textit{Brainstorming} - Students created lists of requirements, drafts of software architecture, and mock-ups of user interfaces. They used scraps and connectors for many of their designs.
+	\item \textit{Organizing content} - Students used the grid to partition the components of their design and organizing their design exploration using intentional interfaces.
+	\item \textit{Refinement of solutions} - Students refined their designers, adding detail to their rough sketches and revising them into more aesthetically precise user interfaces using scraps.
+	\item \textit{Evaluating alternatives} - Designs were discussed by the students and evaluated in place by using scraps to explore different design layouts for user interface mockups. They also compared designs from different canvases using the grid and moving between the canvases.
+	\item \textit{Reflecting on designs} - Students not only evaluated alternatives, but also reflected on their designs individually and with their group. They paused to take stop of what they have done by switching between canvases and using the grid view, sometimes with all group members sharing a canvas.
+\end{enumerate}
+
+With respect to group collaboration, the study identified the following as well:
+
+\begin{enumerate}
+	\item \textit{Spontaneous sub-group compositions} - Students freely moved between working in the same canvas synchronously, or breaking off into sub groups on different canvases without coordinating ahead of time.
+	\item \textit{Working in a shared, synchronous space} - Teams working in the same canvas contributed from their own laptop without any one individual becoming an arbiter or decider of what gets written to a canvas.
+	\item \textit{Synchronizing ideas between sub-groups} - When merging between sub-groups, team members presented their designs to one another using the fading highlighter, and combined their design on a third canvas.
+	\item \textit{Taking inspiration from group members} - Individuals peered onto the activity of other group members, and took inspiration from others` content in their own designs.
+	\item \textit{Democratizing participation} - No single student had control of the pen. Everyone has equal access to write without needing to ask.
+	\item \textit{Continuity between and beyond classes} - Groups do not need to put away materials or setup in next class. Their set of canvases are always available, even from home.
+\end{enumerate}
+
+Deploying Calico Version Two with its full feature set may bring further changes as well. Intentional interfaces may further support organizing their work between canvases. Breaking off into sub groups may also be made easier by using the ``new canvas'' and ``copy canvas'' buttons in intentional interfaces, and using tagging to leave a trace to their new canvas. Additionally, the fading highlighter may be helpful in reflecting on designs as a group by allowing the professor to project a students` work and using the fading highlighter to strep through a design.
+
+\subsubsection{Capturing design histories}
+
+Capturing design histories by reviewing the usage logs would allow individuals to reflect on the overall design process taken. Previous research has shown that novice and professional designs differ in how they arrive at a solution. For example, novice designs are more likely to fixate on a single problem, while professionals will provisionally make a decision and move on [cite]. Similarly, professionals may focus on two subjects at a time, and regularly rotate between pairs of subjects \ref{Baker2010590}. 
+Calico can take advantage of this in two ways: 1) recording the process taken by professional designs in the field so that it can be studied, 2) recording the process of students so that the professor can provide feedback to the students.
+
+With respect to recording the design process of professionals, a professor may use the recorded process as an examplar of official design. In past design courses, professors have provided students with case studies of professionals conducting design, such as videos of them at work. Selected portions of these design histories could be given to the students by the professors as examples. Previous proposals of tools have proposed similar methods of reviewing design histories, such as the Design practice stream (DPS) tools by Nakakoji\ref{Nakakoji6035659}, which plays back a history, and CogSketch \cite{Forbus1149}, which is used to understand how glyphs are used across all several domains.
+
+With respect to recording the design process of students, Calico would enable professors to observe the design activity of students while outside of class. While professors can step in and provide guidance to students who become stuck in class, much work happens outside of class where they cannot provide guidance. The professors often can only see the final artifact or document that students submit. By having histories available, professors can review the histories to see if students are fixating on problems, adequately exploring alternatives, and so on.
+
+It should be noted that the tools to review the usage logs generated by Calico are rudimentary. They provide a usage summary, as well as a set of screenshots of all actions taken, which can become highly verbose and be time consuming to review. There is an opportunity to improve this process so that professors and students can more effectively review their logs.
+
+%\section{Limitations and threats to validity}
+%
+%In this section, I address potential issues which may lead to threats in validity.
+%
+%- Was not able to observe studies in person.
+%- People interviewed may not have remembered correctly, or incorrectly interpreted logs.
+%- All uses of Calico may have been idiosyncratic, and specific to the culture observed.
+%- Observed different phases of the lifecycle for each group.
+
+text.
 
 %%% Local Variables: ***
 %%% mode: latex ***
