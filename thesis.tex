@@ -73,6 +73,20 @@
 % part of your thesis. It conserves page numbers, references, etc.
 % even for non-included files.
 
+\makeatletter
+\def\@cline#1-#2\@nil{%
+  \omit
+  \@multicnt#1%
+  \advance\@multispan\m@ne
+  \ifnum\@multicnt=\@ne\@firstofone{&\omit}\fi
+  \@multicnt#2%
+  \advance\@multicnt-#1%
+  \advance\@multispan\@ne
+  \leaders\hrule\@height\arrayrulewidth\hfill
+  \cr
+  \noalign{\nobreak\vskip-\arrayrulewidth}}
+\makeatother
+
 \begin{document}
 
 % Preliminary pages are always loaded (TOC, CV, etc.)
