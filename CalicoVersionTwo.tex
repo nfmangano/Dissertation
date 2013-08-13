@@ -140,9 +140,9 @@ Can draw just what they want and nothing more
 \hline
 3.      They refine and evolve their sketches over time	&	&	&\\
 \hline
-3a.   They detail their sketches with increasing notational convention	&Scraps and connectors&Provide additional visual structure and behaviors to scraps and connectors 	&General scraps \& connectors can incrementally be refined to look like and behave as different notations\\
+3a.   They detail their sketches with increasing notational convention	&Scraps \& connectors&Provide additional visual structure and behaviors to scraps and connectors 	&General scraps \& connectors can incrementally be refined to look like and behave as different notations\\
 \cline{1-4}
-3b.   They appropriate a sketch in one notational convention into another notational convention	&Scraps and connectors&Visual structure \& behaviors of scraps and connectors can be changed 	&Scraps and connectors looking like and adhering to one notation can be changed into the look and behavior of another\\
+3b.   They appropriate a sketch in one notational convention into another notational convention	&Scraps \& connectors&Visual structure \& behaviors of scraps and connectors can be changed 	&Scraps and connectors looking like and adhering to one notation can be changed into the look and behavior of another\\
 \cline{1-4}
 4.      They use impromptu notations	&Scraps \& connectors	&Any visual convention can be adopted simply by drawing similarly shaped scraps	& New notational conventions can be introduced, used as any other, and reused\\
 \cline{2-3}
@@ -182,9 +182,9 @@ Can draw just what they want and nothing more
 \hline
 13.  They explain their sketches to each other	&Highlighter	&Users can use the highlighter to draw attention to certain parts of a canvas	&Draw attention of designers to highlighted area\\
 \hline
-14.  They bring their work together	&Scraps \& connectors	&Scraps can pick up sketches and drop those sketches onto other scraps, merging them	&Users can return to older versions they kept\\
+14.  They bring their work together	&Palette	&Designers can place sketches from different canvases into palette and later merge them into a single canvas		&Users can return to older versions they kept\\
 \cline{2-3}
-	&Palette	&Designers can place sketches from different canvases into palette and later merge them into a single canvas	&
+	&Intentional interfaces	&Users can navigate back and forth between canvases, and generate new ones&
 \label{table:calico-version-two:designbehaviors}
 \end{longtable}
 \end{center}
@@ -361,57 +361,39 @@ The fading highlighter enables the user to draw on the canvas without modifying 
 
 \section{Examples}
 
-They draw different kinds of diagrams.
+In this section, I propose how the features will support the design behaviors in practice by presenting hypothetical examples of their use.
 
-One of a class diagram, one of a user interface, one of a node tree.
+As an example of how these features support design behavior 1, examine Figure 1. Shown is a sketch that includes representations UML class diagrams, user interface mockup, and lists of requirements. Scraps \& connectors provide the building blocks to compose class diagrams and relate them to one another, and stacking scraps on top of one another allows one to represent containment within a class diagram. The user interface mockups are also sketched on top of scraps, where parts of the user interface element can be repositioned because they are scraps.
 
---> UML
---> UI
---> Lists of requirements
+To show design behavior 2 as performed with scraps and connectors, I remodel the example from Figure X in chapter Y (from background for instance) in Calico.  Figure 2
 
-They produce sketches that draw what they need, and no more.
+For the second design behavior, designers will likely use scraps with little content, while occasionally creating very detailed scraps, because they will only add detail when they need it. Figure X presents an example of a set of scraps representing a set of software components, but only one scrap, ``Mobile vehicle'', has additional details inside of it. Further, designers will only add notational detail when they need it, such as the cardinality of ``5'' present next to ``Mobile vehicle''.
 
---> Use the cop example from the professional design videos
+Design behavior 3, they refine and evolve their sketches over time, is supported by scraps and connectors because they enable plain sketches to be refined into scraps in a step-wise fashion. The example in Figure 3, for instance, shows how a list of components can be refined into a UML class diagram. In Figure 3b, the list of components first have a box that is hand drawn around each of them, not yet utilizing scraps. The components in Figure 3c are converted into scraps using the press-and-hold gesture. In Figure 3d, the components are arranged, related, and stack on one another to show containment. 
+     
+Design behavior 4, they use impromptu notations, is supported by scraps and the palette because they allow the designer to save and reuse visual icons to the palette. Figure 4, for instance, includes specialized tags and icons, such as the ``car'' field, which is dropped on top of other scraps in the canvas to signify that those other classes contain the car field. The palette holds common elements and fields, enabling the designer to rapidly reuse those elements without needing to recreate them each time the designer needs them.
 
---> Recreate dave frank diagram with UML, some plain text, include lists.
+For the fifth design behavior, moving between perspectives, designers use a combination of scraps and intentional interfaces in order to move between perspectives. Within a canvas, they use scraps to create representations of different types, where scraps help them to move those representations out of the way in order to create more space for additional representations. Between canvases, intentional interfaces aid designers in moving between perspectives created on different canvases by using the cluster view, the back and forth navigation buttons, and the breadcrumb bar.
 
-Over time, they refine and evolve their sketches.
+For the sixth design behavior, designers use scraps, the palette, and intentional interfaces in order to move between alternatives. Within a canvas, scraps help designers generate and move between alternatives by using scrap copy to generate alternative versions of a scrap quickly. Between canvases, designers use the palette to transfer scraps, or to copy a canvas in order to generate an alternative of an entire canvas. Using tags, designers specifically tag the new canvas as an alternative.
 
---> Show progression from sketch, use press and hold!
---> Take example from previous calico session
+For the seventh design behavior, designers use both scraps and intentional interfaces in order to help them in moving from one level of abstraction. With scraps, they move to a deeper level of abstraction deeper by creating a copy of scrap and then enlarging it make space for more details, or by creating a larger scrap around the existing scrap, as in Figure X. With intentional interfaces, they use multiple canvases to step through different levels of detail in the software architecture of a large system. Given that the total space necessary to sketch the architecture of a system spans more than one canvas, depicting pieces across multiple canvases helps in exploring the parts that the designers find interesting. Those canvases are further explicitly tagged as a level of abstraction.
 
-They use impromptu notations
+For the eight design behavior, designers use the fading highlighter in order to mentally simulate over a sketch. As depicted in Figure X, they trace their finger or pen across the sketch without leaving marks, helping them think through the problem.
 
---> Use connectors here, and maybe symbols with palette
---> use custom connectors, show palette. Give an example with activity diagrams
+For the ninth design behavior, scraps and intentional interfaces aid designers in juxtaposing sketches. Using scraps, they rearrange sketches within a canvas so that the sketches are juxtaposed against one another. Further, scraps make sketches larger to better compare them, or smaller to create empty space for juxtaposing other sketches. Using intentional interfaces, designers zoom in to canvases in the cluster view, and further move canvases next to one another in the cluster view to compare and reference them, as depicted in Figure X.
 
-They move from one perspective to another
+For the tenth design behavior, they designers use intentional interfaces to review their progress. From the cluster view, designers arrangement their canvases so that related canvases are next to one another, which helps them in reviewing work that spans multiple canvases. The tags on canvases further reminds the designers of their intent when creating canvases, for example if the canvases represented alternatives, levels of abstraction, or different perspectives. Also, the history navigation buttons in the canvas, which allow designers to navigate backwards and forwards through the set of visited canvases, help them trace their steps.
 
---> Show intentional interfaces displaying three different perspectives of lists/example
+For the eleventh design behavior, they use intentional interfaces to retreat to previous ideas. Intentional interfaces supports this design behavior by allowing the design to create as many canvases as they need, and relieve them of needing to erase past work. Intentional interfaces further provides several levels of grouping, such as grouping canvases into clusters, and by linking canvases using tags. These methods of organization help the designer in navigating back to old content.
 
-They move from one alternative to another
+For the twelfth design behavior, they use intentional interfaces to support them in switching between synchronous and asynchronous work. By working in the same canvas, designers work together synchronously on a design, in which the strokes made by one designer is immediately visible by the other design occupying the same canvas. If the second designer is stricken with inspiration for a new idea, that person copies the contents of the current canvas into another canvas, where they explore the new idea asynchronously.
 
---> Show MiSE example, intentional interfaces
+For the thirteenth design behavior, designers use the fading highlighter to explain their sketches to one another. When two or more designers are occupying the same canvas, the first designer uses the fading highlighter to trace over their sketch, which the other designer immediately sees on their own canvas. With this feature, designers explain their sketches by circling or underlining parts of their sketch for emphasis, or by tracing their finger along box-and-arrow diagrams to demonstrate the flow of data.
 
-They move from one abstraction to another
+For the fourteenth design behavior, designers use intentional interfaces and the palette to bring their work together. With intentional interfaces, they copy the contents of their canvas, and refer to the contents of their previous canvas in order to merge the content. With the palette, they merge their content by copying scraps from several canvases onto a single canvas, and generate a new design on the final canvas..
 
---> Show an example of a list, and diving into one item in that list
-
-They perform mental simulations
-
---> Highlighter
-
-They juxtapose sketches
-
---> Place 4 sketches next to one another
-
-They review their progress
-
----> Lists lists lists
-
-They retreat to previous ideas
-
---> Show an old sketch... previous previous previous
+These examples do not represent the full range of expected behavior, but they provide a high level overview of how the features in Table \ref{table:calico-version-two:designbehaviors} will support their respective behaviors.
 
 \section{Implementation Notes}
 
@@ -419,24 +401,17 @@ Calico Version Two's implementation consists of approximately 100,000 lines of c
 
 \subsection{Architecture}
 
-The architecture of Calico Version Two is based on a client-server architecture. A single server instance manages the persistent states of the canvas, and all clients connect to the server to broadcast its sketch input, and receives sketch input from the server. The server is strictly a headless application that listens for clients on a pre-determined port, and establishes a synchronous TCP connection all connected clients. In order to reduce the amount of network bandwidth used during usage, Calico Version Two mostly (but not strictly) uses smart clients.  Figure \ref{figure:calico-version-two:architecture-client-server} demonstrates the general process used by the clients. Clients first compute operations locally on its own model. The client then forwards the operation to the server, which performs the operation on its own model. Lastly, the server forwards the original operation to other clients as well. In our own usage, a single Calico server instance is capable of handling up to 20 users sketching simultaneously before performance is severely impacted. The aforementioned scenario involved usage by students in a classroom scenario.
+The architecture of Calico Version Two is based on a client-server architecture. A single server instance manages the content of all canvases, all clients connect to the server transmit inputs from their respective user, and the server broadcasts all updates from clients to all other connected clients. The server is strictly a headless application that listens for clients on a pre-determined port, and establishes a synchronous TCP connection all connected clients. In order to reduce the amount of network bandwidth used during usage, Calico Version Two mostly (but not strictly) uses smart clients, in which much of the computational work in Calico, such as geometry for resizing and rotating scraps,is done on client machines and the results are sent to the server. In our own usage, a single Calico server instance is capable of handling up to 20 users sketching simultaneously before performance is severely impacted. The aforementioned scenario involved usage by students in a classroom scenario.
 
-\begin{figure*}[tbh]
-  \centering
-  \includegraphics[width=9cm,keepaspectratio]{./figures/CalicoVersionTwo/highlighter}
-  \caption{Highlighter}
-  \label{figure:calico-version-two:architecture-client-server}
-\end{figure*}
+In order to manipulate the state of the canvas, Calico Version Two uses a command pattern. An individual command consists of a byte array, which is formally called a CalicoPacket within the architecture. The CalicoPacket is Calico's own binary format for transmitting information, and is more compact than other more verbose messaging protocols such as XML and JSON. Both the client and the server contain a matching master list of all possible commands called NetworkCommand class. In order to perform a command, such as a user drawing a pen stroke, a CalicoPacket is created that contains the pen stroke command, the command is interpreted by a singleton command interpretation class, which converts the CalicoPacket from raw byte array data to usable values, and performs the command. The CalicoPacket is used to send and receive information from the server.
 
-In order to manipulate the state of the canvas, Calico Version Two uses a command pattern. An individual command consists of a byte array, which is formally called a CalicoPacket within the architecture. Both the client and the server contain a matching NetworkCommand class which contain a set of static integers that define the set of actions a CalicoPacket can perform. In order to perform a command, such as a user drawing a pen stroke, a CalicoPacket is created that contains the pen stroke command, the command is sent CommandInterpreter, which converts the CalicoPacket from raw byte array data to usable values, and performs the command. The CalicoPacket is used to send and receive information from the server.
+The client uses an architecture that is inspired by the MVC design pattern, with some slight variations. The client interface is built on top of the Piccolo2D architecture. In this framework, we build on the construct \textit{PCanvas} to represent the container of all elements, and \textit{PNode} to represent all objects on a PCanvas. In our architecture, both the PCanvas and PNode classes serve the purpose of both the model and the view. There is a further set of controllers that manage manipulating the model, and painting the representation of the model to the view. Each model element may always be represented as a CalicoPacket. 
 
-The client uses an architecture that is inspired by the MVC design pattern, with some slight variations. The client interface is built on top of the Piccolo2D architecture. In this framework, we build on constructs \textit{PCanvas} to represent the container of all elements, and PNode to represent all objects on a PCanvas. In our architecture, both the PCanvas and PNodes serve the purpose of both the model and the view. There is a further set of controllers that manage manipulating the model, and painting the representation of the model to the view. Each model element may always be represented as a CalicoPacket. 
+The core set of classes that form the content in Calico are \textit{CCanvas}, \textit{CStroke}, \textit{CScrap}, and \textit{CConnector}. The container for all sketches is represented by CCanvas, which itself inherits from PCanvas. A CCanvas may contain any sketch element, which includes the set of elements that extend PNodes. These elements that extend PNode are CStroke, CScrap, and CConnector. A Scrap may contain both strokes and other scraps. A connector has a one-to-two relation with scraps, in which the head of a connector is associated to a scrap and the tail another.
 
-Within the Calico framework itself, the container for all sketches is represented by CCanvas, which itself inherits from PCanvas. A CCanvas may contain any sketch element, which includes the set of elements that extend PNodes. Those elements are Strokes, Scraps, and Connectors. A Scrap may contain both strokes and other scraps. A connector has a one-to-two relation with scraps, in which the head of a connector is associated to a scrap and the tail another.
+In order to manage input from the pen, a visitor design pattern is used to accommodate a flexible amount of modes (drawing, erasing, and highlighting), with a flexible number of unique objects. The interface for all objects that are traversed in the visitor pattern include: \textit{actionPressed}, \textit{actionDragged}, and \textit{actionReleased}. When receiving input from the pen, an input controller first processes the input to determine the appropriate handler that implements the traverser pattern, then forwards the event to that handler. Both the canvas and the scrap implement the visitor design pattern to uniquely handle input. When the visitor design pattern visits the canvas handler, a stroke is created on the canvas. When it visits a scrap, the stroke is drawn directly to the scrap. A benefit of using a visitor pattern for handling input is that future plugins may provide new input handlers to Calico. For example, the scrap-list was first added as a plugin and uses a custom handler for organizing elements.
 
-In order to manage input from the pen, a visitor design pattern is used to accomodate a flexible amount of modes (drawing, erasing, and highlighting), with a flexible number of unique objects. The basic visitor pattern used involves an actionPressed, actionDragged, and actionReleased. When receiving input from the pen, an input controller first processes the input to determine the appropriate handler, and forwards the event to that handler. Both the canvas and the scrap implement the visitor design pattern to uniquely handle input. When the visitor design pattern visits the canvas handler, the action draws directly onto the canvas. When it visits a scrap, the stroke is directly parented to a scrap. A scrap may have its input handler changed to a custom handler. For example, the scrap-list uses a custom handler for organizing elements.
-
-The architecture further contains a plugin design pattern supported by an event handler and event dispatcher. The purpose of the plugin architecture was to allow several individuals to simultaneously develop independent contributions to Calico without creating conflicts each others' contributions. Both the palette and intentional interfaces are developed as plugins to the system. In order for a plugin to extend the system, a plugin may register itself as a listener to specific commands. In turn, when a command is performed by the CommandInterpreter, the event handler broadcasts the event to the plugin, which may choose to operate on that action.
+The architecture further contains a plugin design pattern supported by an event handler and event dispatcher. The motivation behind the plugin architecture of Calico was to partition developer contributions to Calico's codebase. By modularizing Calico's components, several individuals could more easily contribute code to Calico without creating conflicts each others' contributions. Both the palette and intentional interfaces are developed as plugins to the system. In order for a plugin to extend the system, a plugin may register itself as a listener to specific commands. In turn, when a command is performed by the command interpreter, the event handler broadcasts the event to all plugins, which may choose to operate on that action.
 
 %%% Local Variables: ***
 %%% mode: latex ***
