@@ -1,15 +1,533 @@
 \chapter{Discussion}
 \label{chapter:discussion}
 
-In the previous chapter, I reported on the experiences of three different groups using Calico. In this chapter, I bring together these observations to collectively answer the research questions posed in Chapter \ref{chapter:research-question}. 
+In the previous chapter, I reported on the experiences of three different groups using Calico. In this chapter, I bring these observations together to answer the research questions posed in Chapter \ref{chapter:research-question}.
 
-The rest of the chapter is organized as follows. In Section \ref{discussion:designbehaviors}, I reflect on how well the set of features in Calico supported the design behaviors. In Section \ref{discussion:strengths-and-weaknesses}, I review the strengths and weakness of each feature with respect to their use across all three field evaluations. In Section \ref{discussion:corroborating-features}, I corroborate my analysis of Calico's features by first conducting a congitive dimensions analysis, and second by discussing feedback from the interviews. In Section \ref{discussion:summary}, I look back over all reported experiences of Calico, and discuss the degree to which the final version of Calico is minimally invasive to the design activity, are cohesive set, and support the full set of design behaviors.
+The rest of the chapter is organized as follows. In Section \ref{discussion:strengths-and-weaknesses}, I review the strengths and weaknesses of each feature, drawing upon how they were used across all three field evaluations. Section \ref{discussion:cog-dim}, takes a step back from the observations and examines the theoretical potential of Calico's features by performing a cognitive dimensions analysis, revealing insight into why features did and not work. Section \ref{discussion:overall-strengths-weaknesses} then examines the overall strengths and weaknesses of Calico, examining the benefits and drawbacks of using Calico in a work environment. Section \ref{discussion:interviews} discusses the feedback from the users, their personal experiences, and what they saw as important in their experiences. Section \ref{discussion:summary} then summarizes the contributions of this chapter.
 
-%It is important to note that the observations made in Chapter \ref{chapter:evaluation} represent a small sample of the overall design activity that goes on in the organizations studied. The studies presented in Chapters \ref{chapter:calico-version-one} and \ref{chapter:notation-paper} provide the benefit of capturing the entirety of a design session for a two hour session, with the controlled setting bringing the benefit of isolating outside factors. In contrast, the groups studied in-the-field were engaged in designing and building systems for several months or years before using Calico, much of which I could not track. It is possible that they would have created many more representations than what I observed had Calico been used for the entirety of the project. Further, the whiteboard, and by extension Calico, serves as a thinking aid to those that find it useful. It is possible that different levels of expertise may require different types of representations. It is important to keep this in mind when considering the observations made below within the context of the overall software design process as it plays out over longer periods in time.
+\section{Strengths and weaknesses of each feature}
+\label{discussion:strengths-and-weaknesses}
 
-%Also, due to differences in settings, I do not perform a comparative evaluation between each group. Each group contains individuals that differ in their domain, level of expertise, and point-in-time of their project lifecycle. Instead, I discuss the commonalities and unique scenarios within each group.
+In this section, I examine each feature on its own merits to discuss their strengths and weaknesses. Table \ref{chapter:discussion:strengths-weaknesses} provides an initial summary of this section, and each feature is examined in detail in the subsequent subsections.
 
-%The rest of the chapter is organized as follows, In Section \ref{chapter:discussion:minimally-invasive}, I first consider whether if Calico Version Two and its features are minimally invasive by reviewing responses from interviews and performing a cognitive dimensions analysis. In Section \ref{chapter:discussion:cohesive-features}, I discuss the features in terms of how well they complement one another to form one cohesive system. In Section \ref{chapter:discussion:design-behaviors}, I review the design sessions in the context of each design behavior, both reviewing for evidence that the design behaviors occurred and how Calico's features supported the design behaviors. In Section \ref{chapter:discussion:other-findings}, I investigate other findings in the study that are outside of the analysis framework, such Calico's role within the software design process, the role of multiple devices, preserving the context of sketches in Calico, and its potential to support software design education.
+\begin{center}
+\begin{longtable}{|p{3cm}|p{6cm}|p{6cm}|}
+\caption{The set of design behaviors and the features that supported them}\\
+\hline
+\textbf{Feature} & \textbf{Strengths} & \textbf{Weaknesses}\\
+\hline
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Feature} & \textbf{Strengths} & \textbf{Weaknesses}\\
+\hline
+\endhead
+\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+\hline
+Scraps \& 
+
+connectors &
+%strengths
+1. Flexible nature is useful in creating many representations relevant to software
+
+2. Gestures enable quick manipulation of hand drawn sketches and scraps without mode switching
+
+3. Existing hand-drawn boxes could be refined into scraps
+
+4. Bubble menu is self discoverable
+ &
+%weaknesses
+
+1. Requires training to use properly
+
+2. The press-and-hold gesture for select and moving scraps was slow for continuous arranging of a large number of scraps
+
+3. Could not change scrap color or border, text scraps were ``visually heavy''
+
+   \\
+\hline
+Palette &
+%good 
+
+1. Bootstrapped design sessions by importing existing artifacts into multiple canvases
+
+2. Used to build set of reusable icons in storyboards
+
+3. Used as a global clipboard to copy content across canvases in order to juxtapose them
+
+&
+%bad 
+
+1. Hard to find scraps in palette when it has many items (more than twenty)
+
+2. Users could not add plain sketches to the palette, must be turned into a scrap first
+
+\\
+\hline
+Intentional 
+
+interfaces &
+
+1. Clusters provided a simple metaphor to separate content of different projects
+
+2. Linking canvases allows a narrative to be constructed from a set of canvases
+
+3. Made free space to sketch immediately available because they can immediately jump to new canvas or copy a previous one
+
+&
+%bad
+1. Moving between the canvas view and the cluster view was not a smooth action, canvases were too small to visually distinguish after moving
+
+2. Users had a difficult time understanding where a new canvas appeared in the cluster view
+
+3. Difficult to juxtapose content across canvases
+
+ \\
+\hline
+Fading 
+
+highlighter &
+%good
+1. Supported explaining sketches and mental simulations
+
+2. Unlike traditional pointers, fading stroke allows for transient annotations such as arrows, underling, circling, etc.
+
+&
+%bad 
+1. Strokes made with highlighter are anonymous
+
+\label{chapter:discussion:strengths-weaknesses}
+\end{longtable}
+\end{center}
+
+\subsection{Scraps}
+Scraps, on the whole, were a relatively successful feature in Calico, and a significant improvement of their Calico Version One counterpart. Scraps replaced the lasso functionality to manipulate sketches, which enabled users to manipulate content without changing modes. Scraps also depicted software representations such as software components, process flows, and user interfaces. They sometimes were used to represent lists, though not often. While there are opportunities to provide better support, such as the ability to change its fill and border color, scraps saw a significant amount of use across all groups. 
+
+A strong quality of scraps was their flexibility in representing diagrams. While scraps were not always used in favor of regular whiteboard sketching, they were used often and yielded benefits such as helping diagrams evolve more gracefully and arranging content. Actions which become natural when using scraps, such as annotating it with a color patch, underline, are not straightforward in other mediums. The same actions could be done with drawing tools, but arranging sketches would be more complex. Alternatively, one could design using a more formal tool which would allow for easy arranging of sketches, but the tool may not be able to freely add annotations or symbols. The flexibility afforded by scraps led to the unexpected behaviors in the experiment, such as when the interaction design group tagged them using color and the research group color coded their scraps as well. In comparison to Calico Version One, which saw a relatively narrow set of representations created with scraps in experiments, Calico Version Two yielded a much greater variety of representations created with scraps. It is possible that the longer term evaluation led to more time to become accustomed to using scraps; however, it is more likely that the revised functionality of scraps led to this improvement.
+
+What scraps lacked, however, was more expressive power in their visual features. Users could not change the blue color of scraps and their outline, which many users requested the ability to do. Users in the studies commented that they wished to create text scraps without the blue boarder, as they felt that it made the sketch ``visually busy''. In another session, a user wanted to create text scraps with text of different colors in order to encode meaning, but instead used hand-written text in order to use colors. While these and other features may have been useful, their absence did not obstruct the sessions as users found ways around them, and users remarked that these sessions were provisional.
+
+Scraps gestures, such as creating, selecting, and moving, were a strong and weak point for scraps, depending on the situation. Particularly with long-term users, scrap gestures became a powerful tool to quickly move and copy content. When working with box-and-arrow diagrams for software, they allowed content to be rearranged quickly. When working with lists, they allowed individuals to adjust spacing in handwritten text or make more space. In user interfaces, they enabled rearranging of elements to simulate using the sketched interfaces. Unfortunately when used to categorize large number of scraps, as the interaction designers did, the press-and-hold gesture to select and move scraps were perceived as too slow. The interaction designers, in this case, requested a separate mode specifically targeted at moving scraps.
+
+A weakness of scrap gestures was that they required some practice to become fluid. Gestures such as the landing zone to create scraps were enabled quick manipulation, but new users required some training before they could trigger the gesture reliably. 
+
+Scrap gestures in Calico Version Two, however, was a large improvement on the scrap gestures in Calico Version One, which were not discoverable and were reported as unpredictable. In contrast, the bubble menu in Calico Version Two was reported as being straightforward and discoverable. Further, the landing zone used to create scraps was self discovered by users, while the equivalent action in Calico Version One was also difficult to discover. 
+
+Lastly, the ability to convert regular hand-drawn sketches into scraps, i.e., refine them, further benefited teams. This addressed a significant issue in Calico Version One, which was that individuals often did not use scraps because they would first hand draw a box, and later draw a scrap around the box, resulting with a hand-drawn box inside a scrap. While not used often, users at field sites did use it for both refining existing sketches into scraps and as a recovery mechanism when they failed to trigger the ``landing zone'' gesture correctly.  Users further refined their scraps by using list scraps, which organized scraps into a linear compact list. 
+
+\subsection{Palette}
+
+While the palette significantly improved on the palette of Calico Version One, it still remained one of the weaker features in Calico Version Two. This was due most in part because the palette did not noticeably support impromtu notations for software oriented groups. However, while not performing strongly in this specific design behavior, the palette succeeded in other aspects, such as supporting impromtu notations for storyboards and acting as a global clipboard to transfer content between canvases.
+
+The palette performed strongly in supporting users in three scenarios. First, the palette served to bootstrap a design session for interaction designers by importing several dozen images from outside of Calico. The imported images drove the design session which spanned several days. Second, the palette actually did serve to store a set of graphical icons that were improvised by the interaction design group in their design sessions. Members from the interaction design group found these icons useful in creating storyboards. Third, all groups used the palette to juxtapose new sketches against previously created ones. They did so by using the palette as a global clipboard to copy old sketches to the canvas with the newly created sketch.
+
+Some aspects of the palette could have used further improvement. Users had a difficult time locating items in the palette when it contain in excess of twenty scraps. The interaction designers imported dozens of images of faces, which were difficult to distinguish because of their small size in the palette. Also, users wished to add sketches to the palette without first making the sketch into a scrap. Users reported that making the sketch into a scrap made it too heavy, e.g., they simply wanted the sketch without a scrap's blue background and border.
+
+A potential weakness of the palette was that users designing software systems did not use it to perform the fourth design behavior, inventing impromptu notations. However, this was not a weakness of the palette, but instead caused by two factors: 1) users found it faster to redraw certain sketches because it was faster, and 2) other Calico features were redundant with the palette. With respect to the first point, users often only needed to sketch the name of a component, which could be created much more quickly manually using scraps than finding the component in the palette. With respect to the second, the availability of the copy functionality in numerous forms lessened the need for the palette. For example, when users sketching a software system wanted to create an alternative or move perspectives, they often used the ``copy canvas'' button in intentional interfaces, or used the ``copy scrap'' button in a scrap's bubble menu.
+
+\subsection{Intentional interfaces}
+
+Intentional interfaces was a relatively successful feature in Calico. It advanced on the concept of the grid from Calico Version One, and satisfied numerous design behaviors in doing so. It provided qualities that were not available in the grid interface, such as names for canvases, relationships, and order of work performed. Intentional interfaces, however, had some weak points as well. Navigation was sometimes clumsy in the cluster view, juxtaposing sketches across canvases was difficult, and understanding the relationships between canvases was sometimes difficult for new users.
+
+Many of the grouping mechanisms in intentional interfaces improved upon the grid interface of Calico Version One. While the grid was well received by users of Calico Version One, users increasingly desired ways to separate and categorize their content. Intentional interfaces addressed this problem in several steps. First, clusters provided a generic method to divide canvases into topics, which helped partition content between different projects in Calico.
+
+Second, linking canvases provided another level of organization of canvases, while at the same time offering an ordering to the canvases. Providing an ordering to the canvases was shown to be beneficial in practice as it allowed a set of canvases to compose a narrative. A sequence of canvases could show a walkthrough of a software architecture as well as the exploration of the design space across multiple perspectives, abstractions, and alternatives. Further, grouping canvases by linking them helps users better recall design sessions and understand the content of their sketches several months afterwards.
+
+A third benefit of intentional interfaces was the immediateness of free space. In comparison to the regular whiteboard, users felt more at ease in creating more sketches because they could always create more space and return to previous sketches. The presence of both the ``new canvas'' and ``copy canvas'' buttons made moving to a new sketch a ready-at-hand action, which they used to explore different perspectives and new alternatives.
+
+Users encountered a few issues using intentional interfaces as well. First, the movement between the canvas and the cluster view was not a smooth transition for the user. When loading the cluster view, the perspective always zoomed out, which made the individual canvases too small to distinguish. Second, users had a difficult time understanding the shape of the cluster when creating new canvases from within a canvas itself. One member of the OSS group described the shape of the cluster as ``wizardry'', in which it was a mystery to him as to where new canvases would appear. Third, users could not easily compare contents between canvases.
+
+\subsection{Fading highlighter}
+
+	
+The highlighter feature worked well for a particular set of scenarios. The fading highlighter stands on its own as users did not combine its use with other features, but it was useful in scenarios that the other features did not support. Particularly, it supported users in mentally simulating over their work, and also in explaining concepts to others. 
+
+The second strength of the fading highlighter was that it enabled transient annotations in verbal walkthroughs and explanations. Traditionally, verbal explanations of sketches include either a simple pointer, like a baton or laser pointer, or the speaker must permanently mark up a sketch. The fading highlighter provides a compromise of the two approaches, allowing the speaker to use symbols that convey more meaning, such as drawing arrows between sketches, underling them, and circling key points for emphasis.
+
+While the fading highlighter addressed these situations well, it could still be improved to provide better support the two design behaviors that it targets. First, it could provide better support for explaining sketches by providing better awareness features. For example, the strokes could somehow show who is making the stroke. Second, mental simulations could be better supported if the sequence of strokes were somehow recorded. Many of the mental simulations explain how data is moved between components. If this explanation could be captured, and later played back, particularly with audio explanations, the design rational within the design sessions could be played back.
+
+\subsection{Summary}
+
+Each feature brought forward a set of unique advantages not available in the other features. Scraps were strong in supporting the kinds of sketches designers drew. The palette acted as a global clipboard and made sketches reusable across canvases. Intentional interfaces provided many ways to organize, partition, and make free space for sketches. The fading highlighter supported verbal explanations of sketches well. While each feature had usability issues, such as navigating in intentional interfaces and scraps requiring training to use properly, the features provided a net benefit to their users.
+
+\section{Cognitive dimensions analysis}
+\label{discussion:cog-dim}
+
+Having examined the use of Calico's features \textit{in practice}, this section now examines the \textit{theoretical} support of those features by performing a cognitive dimensions analysis. The cognitive dimensions framework exposes the affordances that a notation or medium offers. Analyzing Calico's features through this framework provides a basis to determine how those features help or hinder the notation that is implied within Calico. In order to perform the cognitive dimensions analysis, I look at each dimension, and discuss factors that either increase, decrease, or, all things being equal, provide equivalent support for designers as compared to the whiteboard. These findings are summarized in Table \ref{table:discussion:cognitivedimensions}.
+
+%Cognitive dimensions is the golden standard of what Calico should be. Is it possible.. not if they did it. CD exposes to what uses a notation or tool leads.
+
+%Table \ref{table:discussion:cognitivedimensions} summarizes the findings in this section. In most cases, Calico's features provided benefits to one or more cognitive dimensions. Intentional interfaces played a large role in finding relevent canvases in designs diffused across canvases. Scraps and the palette made sketches less viscious and easier to manipulate. Overall, Calico improved on the regular whiteboard for the following dimensions: abstraction, hard mental operations, premature commitment, provisionality, secondary notation, viscosity, and visibility. Calico also had some shortcomings for some of the groups. These can be attributed to inefficient support for the cognitive dimensions of consistency and error-proneness. Support for all other dimensions, including closeness of mapping, diffuseness, hidden dependencies, progressive evaluation, and role expressiveness received moderate support.
+
+\begin{center}
+\begin{longtable}{|p{3cm}|p{4cm}|p{4cm}|p{4cm}|}
+\caption{What CDs Analysis Highlights about Calico}\\
+\hline
+\textbf{Cognitive Dimension} & \textbf{Factors that cause an increase over the whiteboard}& \textbf{Factors that are equal to the whiteboard}& \textbf{Factors that cause a decrease to the whiteboard}\\
+\hline
+\endfirsthead
+\multicolumn{4}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Cognitive Dimension} & \textbf{Factors that cause an increase over the whiteboard}& \textbf{Factors that are equal to the whiteboard}& \textbf{Factors that cause a decrease to the whiteboard}\\
+\hline
+\endhead
+\hline \multicolumn{4}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+Abstraction	
+& %increase
+Scraps help visualize abstractions and make them manipulatable
+& %equal
+You can draw anything
+& %decrease
+
+\\
+\hline
+Closeness of 
+
+mapping	
+& %increase
+Can manipulate notations at the level of scraps and connectors
+& %equal
+Can draw in any notation
+& %decrease
+Annotations, like cardinality, do not move along with connectors
+\\
+\hline
+Consistency	
+& %increase
+Can save and refer back to previous sketches, on whiteboard they may have been erased
+& %equal
+Must be socially enforced
+& %decrease
+Difficult to socially enforce when content is diffuse and requires hard mental operations, as opposed to whiteboard where content is all in one space
+\\
+\hline
+Diffuseness	
+& %increase
+Calico breaks up the whiteboard space across several canvases
+& %equal
+Small designs stay on one board
+& %decrease
+
+\\
+\hline
+Error-proneness	
+& %increase
+
+& %equal
+No error checking
+& %decrease
+Manipulating and automated copying of existing sketches may prevent errors caused by redrawing sketches
+\\
+\hline
+Hard mental operations	
+& %increase
+Design may be diffuse in Calico and details of sketches scattered across many canvases
+& %equal
+Small designs are contained within one area
+& %decrease
+Content can be imported into Calico using image scraps; content can be positioned side-by-side using scraps; palettes allow users to copy content for reference across canvases; navigation button allows user to return to previous content quickly
+\\
+\hline
+Hidden dependencies	
+& %increase
+Content may be diffuse, making hidden dependencies hard to find
+& %equal
+Small designs have all potential references in one area
+& %decrease
+Intentional interfaces helps manage diffuseness by grouping content together to make hidden dependencies easier to find
+\\
+\hline
+Premature commitment	
+& %increase
+
+& %equal
+Medium is considered provisional; rejected decisions can be preserved by crossing them out rather than erasingor deleting them
+& %decrease
+Easier to explore alternatives by copying existing ones using scraps, palette, and intentional interfaces
+\\
+\hline
+Progressive evaluation	
+& %increase
+All sketches are preserved and can be returned to; fading highlighter allows evaluting without marking the original sketch
+& %equal
+Users must manually judge the ``rightness'' of a sketch by manually reviewing it
+& %decrease
+Diffuse designs are harder to progressively evaluate; fading highlighter marks during an evaluation cannot be later referred to as regular marks could be on a whiteboard
+\\
+\hline
+Provisionality	
+& %increase
+Users can make copies and explore alternatives without losing original ideas; more sketches can be reviewed across canvases in intentional interfaces; fading highlighter allows sketching over design without permanently marking it; canvases can be tagged as alternative using intentional interfaces
+& %equal
+Medium is considered provisional by users; anything can be changed at any time
+& %decrease
+More difficult to evalute sketches diffused across canvases; marks from progressive evaluation no longer remain and cannot be referenced
+\\
+\hline
+Role expressiveness	
+& %increase
+User has unlimited space to fully express all parts of a design
+& %equal
+User is limited by the space available
+& %decrease
+Designs spread across canvases have higher diffusion, lower visibility, and may require hard mental operations to reference other canvases
+\\
+\hline
+Secondary notation	
+& %increase
+Second notations can be attached to scraps and move with scraps; custom shape of scrap can be used; color of connectors can be used to capture meaning
+& %equal
+Users can sketch in any secondary notation
+& %decrease
+Annotations outside of a scrap do move with a scrap and the annotation is left behind
+\\
+\hline
+Viscosity	
+& %increase
+
+& %equal
+Users can sketch anything they want; a full whiteboard is less likely to be changed because it contains many important decisions
+& %decrease
+Scraps make sketched content not ``locked in'' such that can easily be moved and manipulated; gestures make manipulating scraps a fluid action
+\\
+\hline
+Visibility	
+& %increase
+
+& %equal
+Sufficiently small designs are entirely visible on the whiteboard
+& %decrease
+Designs diffused across multiple canvases have very low visibility, leading to hard mental operations
+\label{table:discussion:cognitivedimensions}
+\end{longtable}
+\end{center}
+
+\subsection{Abstraction}
+Abstraction refers to Calico's ability to support representations at different levels of abstraction. Since Calico at its most basic supports plain sketching, it inherently allows maximum flexibility in what can be represented, much the same as the traditional whiteboard. 
+
+Calico, however, improves on the regular whiteboard because users can manipulate those abstractions at the level of scraps or, when using intentional interfaces, entire canvases. On the whiteboard, the designer can only draw and erase strokes. In Calico, they have scraps to depict abstractions, which support quick movement of the drawn abstractions, implicit grouping by stacking scraps, and have arrows that remain attached to the scrap as it is moved. Intentional interfaces enables the user to explore different levels of abstraction across multiple canvases, and supports the user in navigating between these levels of abstraction by linking canvases. 
+
+When the content of a design session is suffuciently small, the whiteboard may have a better expereince than Calico because all abstractions are available in one space, while in Calico they may be diffused across several canvases. When on a single whiteboard, the designer can immediately look at all levels of abstraction at once. If the content of the design grows beyond what can be sketched on the whiteboard, then Calico becomes more useful, as it can capture all sketched content across several canvases, whereas on the whiteboard that content would need to be erased, or scattered across multiple whiteboards, posters, or pages. 
+
+\subsection{Closeness of Mapping}
+%You can draw in any notation. Factors that increasing is that you can manipulate notations at the level of scraps and connectors. factors that decrease it is annotations like cardinality... they don't move along with connectors.
+
+%Very similar to the whiteboard. Compared tot he whiteboard, all that is preserved. Now I've given people the way to manipulate them as wel.
+
+Closeness of mapping refers to how closely representations map to the referred concepts. Calico is similar to the whiteboard in this regard in that designers are at liberty to sketch any representation. If the designers decide that there is a more suitable representation, they are able to create a new sketch that depicts that representation simply by drawing its corresponding shapes. These shapes, then, can be turned into scraps when so desired. 
+
+When using scraps, Calico has the positive consequence that representations can be manipulated as objects, which may more closely map to the mental model of the designer than plain strokes would. Further, where on the whiteboard representations may need to be erased and redrawn to create a sketch that closely matches the desired notation, scraps are reused by copying them. 
+
+A negative consequence of using scraps is that certain visual visual annotations, do not move along with scraaps and connectors. This may cause sketches to become less closely mapped to their concept as cardinality annotations may become disassociated from their target sketch. This may cause additional work as users will need to manually move annotations with scraps, or simply leave the annotation behind after the scrap is moved. 
+
+%
+%- people could get very close to what they are representing. Importing screenshots into the environment is a big one.
+%- interaction designs could manipulate their objects directly, no indirect names
+%- software people could import snippets of code
+%- researchers imported screenshots of user interfaces, source code, etc.
+
+\subsection{Consistency}
+Consistency refers to the degree to which features of structures and syntax are used the same way throughout. Calico does not provide an automated method to enforce consistency. As with sketching, maintaining consistency between elements and sketches is up to the users to ``socially'' enforce \cite{Petre2013BookChapter}. If all content can be condensed to a single whiteboard, the designer can refer back to previous sketches to check for consistency. On Calico, since the designer is encouraged to use multiple canvases, it may be more difficult to manually verify consistency across all canvases.
+
+However, if the design is too large for a single whiteboard, Calico would provide some help over the whiteboard. Where on the whiteboard sketches would need to be erased, the designer may save them in Calico, and refer back to them to verify consistency between old sketches and new.
+
+%- consistency brought by calico comes from copying, none beyond other, unless enforced by personal discipline.
+%- palette supported this, but seldom used this way
+%- multiple perspectives enforced consistency,
+%- researchers used multiple documents, hard to maintain consistency across those
+
+\subsection{Diffuseness}
+
+%There's a cost with Calico - it makes things more diffuse. By taking the original whiteboard, cutting it into pieces, I've actually made it a little bit harder (speaking of Calico). 
+%
+%Counter argument is that people work with it different. They partition it differently. The jury is out. 
+%
+%Can't say there's moderate support for diffusement, instead say there's moderate support for reducing diffuseness.
+%
+%I don't have as much as much space in an individual Calico canvas as the whiteboard. If everything can be sketched on the whiteboard, it's superior because I can see everything at once. However, if the design grows beyond the space of a whiteboard, diffuseness becomes obliviousness on the whiteboard because what is not immediately visible has been erased. Calico incrementally becomes more important because diffuseness on the whiteboard has become obliviousness, sketches are no longer exist, but in Calico they do. However, in Calico there is now the navigation problem among these things. The structure of intentional interfaces is one way we address that. It is unclear... it doesn't erase diffuseness, it doesn't moderately support it, but what it does do is acknowledge it, and we have built features to address that. More research is required to determine how well the features combat diffuseness, the support is there.
+
+Diffuseness refers to how much the meaning of sketches is spread out across multiple sketches. Calico potentially increases diffuseness because the potential for an unlimited number of canvases may encourage designers to break up their designs across multiple canvases. On the whiteboard, designers are forced to limit their design sketches to the limits of the whiteboard.  If everything can be sketched on the whiteboard, then it is superior because designers can see everything at once. 
+
+However, if the design grows beyond the space of a whiteboard, Calico's functionality helps in dealing with diffuseness. On the whiteboard, diffuseness becomes obliviousness because what is not immediately visible has been erased. Calico incrementally becomes more important because, while on the whiteboard sketches no longer exist because they have been erased, in Calico they remain. Yet, this raises a new issue, which is the problem of how to navigate between sketches in Calico. The structure of intentional interfaces is one approach to managing the diffuseness. It is unclear if intentional interfaces effectively addresses diffusenss, as it does not remove it. What it does do is acknowledge it, and gives the user tools to work around manage it themselves. More research is required to determine how well the features combat the consequences of increased diffuseness.
+
+%Further, enabling one to copy canvases and transfer content using the palette encourages diagrams to be diffuse. However, intentional interfaces mitigates these issues by helping to navigate designs diffused across different canvases. By providing links between those  canvases, users can more easily find content immediately relevant to the current canvas. Intentional interfaces does not provide a fully comprehensive solution to diffused diagrams, but it does moderately support it in a lightweight fashion.
+
+\subsection{Error-proneness}
+
+Error-proneness refers to the degree to which a notation induces ``careless mistakes'' \cite{Petre2013BookChapter}. As with plain sketching, Calico does not provide any safe guards against errors. Individuals are free to improvise and switch between notations, which may increase their tendency to perform errors if there is no clearly defined standard notation. 
+
+While Calico does not alert the user of when they have performed an error, Calico's features do automate certain actions which may reduce the likelihood of errors. Scraps and connectors, for example, provide flexibility in creating representations by enabling the moving, resizing, and rotating existing sketches. They maintain the structure of objects as they are moved, which may help when working with box-and-arrow diagrams. In comparison to plain sketching, scraps and connectors help prevent errors by making additions to representations, like process flow diagrams, less tedious so they do not require diagrams to be redrawn when repositioning elements, as one would have to if sketching at the whiteboard. On the other hand, designers recognize that there is value in redrawing a sketch from scratch because each time a sketch is redrawn, its contents are re-evaluated \cite{petre2009insights}, and copying existing sketches removes this opportunity.
+
+%The research group benefited from the use of scraps, which helped avoid errors by removing much of the tedium in working with their state diagram. When working with their state diagram on the whiteboard, they reported that it had become too large to manage. After moving to Calico, they had more flexiblity in managing their space. They were able to create more space by moving text-scraps, which moved all connectors with the scrap as well and retain the shape of the diagram. Further, the flexiblity to create connectors with custom paths, as opposed to straight lines, made connectors more legible. 
+
+%Overally, scraps and connectors helped prevent errors by making adding additions to the state diagram less tedious, and not requiring diagrams to be redrawn to reposition elements.
+
+%No safeguards against errors, other than what was socially enforced by the designers.
+%
+%- repeated elements helped avoid using the wrong elements, and reviewing content in meetings helped catch errors
+
+
+\subsection{Hard Mental Operations}
+%By making it electronic, and breaking it into pieces, you gain, but you lose something too. On the whiteboard, when people start to erase, you gain.
+
+Hard mental operations refers to information that needs to be referenced or is nested. Similar to the cognitive dimension of diffuseness, in a simple or small design, both the plain whiteboard and Calico are equal in that all parts of the design are visible and there may be little need to reference outside information. However, in larger projects, Calico may have more hard mental operations because the design may be diffused across several canvases requiring the user to reference sketches outside the immediate space. Users may need to use the intentional interface feature to move between canvases to reference other sketches, or use the palette to move content so that it can be referenced in the active canvas. For a large design on a plain whiteboard, content may need to be erased, and Calico may provide better support because that content would be preserved.
+
+Calico further reduces hard mental operations in other sutiations. It allows users to both import content and copy content to the canvas they are currently in. First, image scraps allow users to import existing artifacts into a canvas to refer to while sketching. For example, a developer may import source they are working on, or a diagram created in another tool. Second, scraps allow users to move content so that it is positioned side-by-side to what they are currently working on. Third, the palette allows users to copy content between canvases so that they can reference old content in the new space. Fourth, the navigation button in intentional interfaces allows users to return back to the most recently visited canvas. While this may still quality as needed to refer to parts of the design outside of the immediate visibility, the feature reduces the effort needed to do so.
+
+%In the case of the OSS group, the developers needed to reference information that was spread across several canvases. Members from their team reported that they did not need to do so often all members were already familiar with the depicted system. When they did need information to be available more immediately, they copied content onto the target canvas. The developer working with source code did so by pasting screenshots of his code into his canvas. In the case of the interaction designers, they pasted pictures of people they interviewed, however they needed to reference their notes from their interviews. The researchers, however, had a greater need to perform hard mental operations because of the scale of their state diagrams. The researchers who originally developed the system eventually internalized the diagram to a degree that they no longer needed to reference it, however the researcher that needed to be onboarded created additional diagrams, such as tables, in order to help him mentally step through the state diagram. In his case, he mitigated the need to reference other canvases by copying the pieces of the state diagram that he needed into his own canvases.
+
+%Overall, the ability to copy content within Calico somewhat reduced the need to reference other canvases. Scraps, intentional interfaces, and the palette were helpful for both importing screenshots and copying content to the immediate working area.
+
+%How often did designers need to reference elsewhere and nest?
+%
+%- the OSS group had to incur hard mental operations by referencing across diagrams because of multiple levels of abstraction
+%	- they moved to high levels of abstractions, and use cases
+%	- hard to interpret what was there because had to keep track of everything
+%- the interaction design group had to do lots of hard mental operations because interviews not represented. Also placing along axies, and mult. perspectives
+%- researchers experienced a lot of hard mental operations because of the terseness of the diagrams (paths, etc.)
+
+\subsection{Hidden Dependencies}
+
+%On the whiteboard, everything is there. I can glance over on the whiteboard, but I can't in Calico.
+
+Hidden dependencies refers to representations that are dependent on one another, but the dependencies are not visible because they are either not declared or not in a person's field-of-view. As observed in past studies \cite{dekel2007notation}, sketches that cross several spaces result in having dependencies on other spaces that are not explicitly stated. Sketches that begin in one canvas in Calico may extend onto another canvas, or across mediums, such as their own computer or paper, if the users are using Calico as a complementary tool. This could occur, for example, when canvases depict different perspectives or abstractions. 
+
+The intentional interfaces feature in Calico helps in declaring and finding these hidden dependencies on other sketches by providing features that group canvases of related content. Clusters in intentional interfaces help group canvases into sets of similar topics. Linking canvases into chains provides a second level of grouping that help designers in finding related sketches. These features do not solve the issue of revealing all hidden dependencies, but they do improve working with them by by making those dependencies easier to find.
+
+\subsection{Premature Commitment}
+A notation or representation that causes a user to \textit{prematurely commit} means that it requires a person to make a decision before they have the information they need \cite{Petre2013BookChapter}. Sketches and content produced in Calico are typically used to support conversations or thinking through a design, and thus there is less of a concern to prematurely commit because all content is provisional. The sketchy appearance of content within Calico visually re-enforces the notion that content is provisional. Also, the ease of changing content, such as drawing an ``X'' symbol over rejected content, allows for decisions to be rejected without permanently discarding the idea. In this regard, Calico is equivalent to the whiteboard which also has these qualities of provisionality. 
+
+However, Calico further reduces premature commitment in comparison to the whiteboard by making sketches more easily copied and reproduced. Features such as scraps, the palette, and intentional interfaces make it easier to explore alternatives. For example, while on a whiteboard, a user may be hesitant to erase a large figure or deviate because they do not want to lose previous work. In Calico, they can simply create a copy of it in a new canvas, or continue their work in a new blank canvas.
+
+%Members from all groups reported not feeling pressured to commit to decisions within Calico. The OSS group reported that they valued the ideas and tasks generated from using Calico rather than the sketches themselves. They reported that they sometimes immediately revisited sketches after meetings in order experiment with alternatives before returning to their desk to implement a new change. The OSS group did email snapshots of sketches from Calico to themselves, but reported that these emails were archival and served to remind them of the ideas generated. The ideas were not considered committed until they were implemented into the system. In the research group, the members used the sketches from Calico in support of implementing their software system and writing an academic conference publication. One of the researchers remarked that nothing in Calico was permanent until ``it was written in the [academic conference] paper''. 
+
+%Overall, the provisionality of content and the ease with which it can be changed, i.e., low viscosity, lowered the tendency for content to be prematurely committed in Calico. However, there is very little gain in this regard over the whiteboard. The ease of copying content reduces the tedium in exploring alternatives, but this was only marginally beneficial for the groups with respect to preventing premature commitment.
+
+%Calico provided a sketching look and feel to elements. Users consciously commited to decision by converting handwritten text into rectangular scraps and sometimes formal connectors.
+
+%- there is not a sense of commitment to what is on the board.
+%- research group turned to calico/whiteboard because it gave the sense of freedom from commitment
+
+\subsection{Progressive Evaluation}
+Progressive evaluation refers to the ability to run a simulation or obtain feedback on a representation that is only partially complete in order to determine its correctness. While Calico does not directly support progressive evaluations, it does support users in manually judging the ``rightness'' of a sketch by supporting the reviewing and explanation of sketches. Much like the whiteboard, designs may be manually reviewed and discussed by close inspection. 
+
+With large designs, Calico provides some additional benefit with intentional interfaces, which aids users in navigating between canvases to review them. However, as the sketch grows too large, it becomes progressively more difficult to manually evaluate all sketches. Further, the collaborative aspect of Calico allows remote designers to obtain feedback, during which the fading highlighter would help during group reviews to discuss content. In local designs, the fading highlighter further helps progressive evaluations by making the sketches cleaner, evaluative marks are not left behind using the fading highlighter. However, this could be considered a loss in comparison to the whiteboard as well, as designers could potentially refer back to these marks to remind them of their evaluation.
+
+%The intentional interface feature supported the OSS group in reviewing their contents by allowing them to zoom out and switch between canvases quickly. The OSS group reported that they would switch to the cluster-view, zoom in to the canvases they had been working on, and pan while discussing them. During group meetings, they further used the fading highlighter during discussions and evaluations of components, drawing paths taken by data between components during their explanations. The researchers, similarly, engaged in verbal dialog to review their designs. The researchers engaged in review of their designs, particularly the state diagram that summarized their software system. They stepped through the state diagram to verify its correctness, and also used it in support of evaluating the completeness of their software system. They used the sketch to keep track of what was and what was not implemented, and updated their state diagram with this information.
+
+%Overall, Calico supported individuals in performing a manual evaluation of their designs. In this regard it could be considered similar to the whiteboard, but intentional interfaces provided the benefit of reviewing multiple canvases, and also the quality that Calico was an online shared resource that was shared by everyone. 
+
+%- all groups used intentional interfaces to review, summarized, and proceed. different perspectives
+
+\subsection{Provisionality}
+Provisionality refers to the quality that indecision or options can be expressed \cite{Petre2013BookChapter}. Given that sketching is the primary mode of operation in Calico, individuals are free to break away from formal notation to declare multiple alternatives. Users can always erase a sketch to change a value, or simply cross out a sketch so that a design can be rejected without visually removing it from the design space. Calico goes further in this supporting provisionality by supporting the quick generation of alternatives using duplication features such as scrap copying, canvas copying, and the palette. With intentional interfaces, uses can explicitly express entire canvases as being an alternative by tagging it as such within intentional interfaces.
+
+%The OSS group used the fading highlighter to propose ideas about sketches that they were not sure of yet. After discussing a box-and-arrow diagram using the fading highlighter for more than twenty minutes, they changed elements within that diagram. They did so by drawing a large ``X'' over the component, and wrote the name of an alternative component next to the component with an ``X'' on it. In another instance, members in the OSS group used intentional interfaces to create a copy of a canvas, and tagged the canvas an ``alternative''. They did so on multiple occassions, such as during a group discussion, and also in individual design sessions. The research group expressed options in another fashion. In their case, they performed a major refactoring of their system, effectively diverging from the design in their previous sketches. Rather than deleting these old sketches, they moved to another cluster to sketch the design of their refactored system. They considered the contents of the old cluster as an archive of the first version of their system. 
+ 
+%Overall, Calico provides some improvements in provisionality over the whiteboard. Within a canvas, Calico is much the same as a whiteboard in that the user has the flexibility to sketch alternative names. Across multiple canvases, intentional interfaces helps manage options at a larger scale by providing tags to label canvases as alternatives. Further, the ability to copy and create new canvases and clusters encouraged more sketching, and possibly exploration of alternatives.
+
+%Everything in Calico was considered provisional and outside the formal specfications. Provisionality was reduced by copying content onto another medium. Teams walked away from designs, and return to them in order to be reminded.
+
+\subsection{Role Expressiveness}
+
+Role expressiveness refers to a reader's ability to see how the parts fit into the whole design, and how those parts relate to one another \cite{Petre2013BookChapter}. In other words, a reader can independently interpret what each part in a sketch does without further information. Given that users have the flexibility to sketch any notation they need, the limiting factor in both the regular whiteboard and Calico is the space available to create representations. With enough space, the role of each part can be better understood if all details are visible. On the whiteboard, this means that a sketch must be sufficiently small. In Calico, this means that there is a virtually unlimited amount of space, but the user must then content with a high amount of diffusion and low visibility. Intentional interfaces provides the means to manage the space needed to explore a design across multiple sketches to depict all parts of a design.
+
+With Calico, there is the potential to address this issue using intentional interfaces by using several canvases to include all parts of a design. However, there is a further issue. Within the context of the informal design activities that Calico supports, designers typically only draw as much as they need to, which results in partial diagrams with minimal detail. As such, designers may create representations that have poor role expressiveness due to minimal detail. Very often, the original designer may need to be consulted in order to understand their sketch. However, content in sketches may be easier understood by looking at related content and hidden dependencies, which the intentional interfaces feature may help the designer do by navigating between canvases linked into chains. 
+
+
+\subsection{Secondary Notation}
+
+Secondary notation refers to the use of formalisms that deviate from primary established notations. Because of the freeform nature of sketching within Calico, users have the flexibility to overlay additional detail in sketches and use improvised notations as needed. Within Calico, users may choose to represent concepts using scraps with connectors as an alternative to basic sketching, in which case they can use the shape of scraps, as well as the colors of connectors to overlay meaning. Users may add annotations to scraps, such as drawing a symbol in the corner of a scrap, text content in the scrap with a color that has an assigned significance, or by using connectors in creative ways.
+
+
+\subsection{Viscosity}
+
+Viscosity refers to a medium's resistance to change. Similar to a regular whiteboard, the contents in Calico exhibit a low viscosity because content can always be erased and redrawn in any manner. 
+
+Calico has three features which potentially reduce viscosity in comparison to plain sketching: content is moveable, gestures make manipulating content faster, and content can be copied. First, all sketched content can be moved using scraps, as opposed to the whiteboard where it must be redrawn. The capacity to move content means that sketched content is not ``locked in'' like a whiteboard, but instead content is less viscous because it can be adjusted. Second, with sufficient familiarity with scrap gestures in Calico, moving content can potentially be done quickly with minimal effort. A user may be less likely to modify content if accomplish that task requires a great deal of effort. In Calico, users do not need to switch modes or move their hand away from sketches, allowing them to move content fluidly without distracting them away from plain sketching. 
+
+
+\subsection{Visibility}
+
+Visibility refers to how easily all parts of a design are visible, or at least how easy it is to juxtapose two parts of a design \cite{Petre2013BookChapter}. As with a whiteboard, a design is highly visible so long as it is small enough to fit within a single space. In Calico, designs that are diffused across multiple canvases will have much less visibility than designs that are limited to a single canvas. The intentional interfaces feature attempts to address this issue by making it easier to navigate between canvses, and also to zoom out to the cluster view and view all canvases at once, albeit at a low-detailed perspective.
+
+%Also, juxtaposing parts of a design is easier in Calico due to scraps, the palette, and intentional interfaces. Scraps allow users to reconfigure a diagram such that two parts can be placed next to one another by moving them or copying them. The palette allows parts of the design to be copied to other canvases to compare them. Intentional interfaces increases the ease of moving between parts of the design, and organizes the canvases so that it is easier to step through a design. Further, two canvases can be placed next to one another in the cluster view for comparison.
+
+\subsection{Summary}
+
+Overall, the major benefits of Calico over the whiteboard are that intentional interfaces allows more content to be preserved whereas on the whiteboard it would be erased, and the fluidity of manipulation offered by scraps. The benefits make content less viscous, more provisional, promote secondary notations, role expressiveness, and reduce error proneness. What is lost in these features is that designs may be more diffuse, and because of that diffuseness, require more hard mental operations, have less visibility, more hidden dependencies, and be harder to progressively evaluate. For each benefit gained through features, Calico loses the simplicity of the whiteboard, but attempts to mitigate these losses through the other features.
+
+\section{Overall strengths and weaknesses}
+\label{discussion:overall-strengths-weaknesses}
+
+\section{Interviews with users}
+\label{discussion:interviews}
+
+%In the previous sections, I found that Calico's features adequately support the broad set of design behaviors and discussed the strengths and weaknesses of those behaviors. In this section, I corroborate those findings with a deeper discussion of the features. I do so by first performing a cognitive dimensions analysis of Calico's features at a hypothetical level. I then review the feedback from the interviews.
+
+
+
+\subsection{Interviews}
+%//I've already made my interviews, now it's just my opinions
+%It's clear that each group is using Calico very differently. They're finding different strangths and weaknesses. Interactions designers... not having an infinite canvas. When push came to shove, they made a lot of use of Calico. 
+%There is the open source group, they didn't make big use of scraps, but they did represent code. Not our intention, but big use. One of the members used code because he had a large whiteboard.
+%The research group. One of the guys did a lot of prep work.
+%//the important part is that there is a lot of different uses of Calico, and Calico held up. All designs were created. 
+%//Design group stated that not having an infinite canvas was a hurdle
+%//what we got from the researchers were comments like this:
+%//what we got fromt he oss group were like this:
+%//if you pull out real quotes, it's stronger.
+%//roll context into discussion. 
+%
+%Characterizing each session
+
+In the previous section, I examine the capability of Calico's features to support design from the perspective of a cognitivie dimensions analysis. In this section, I discuss the feedback received on the features from the participants interviewed in each group.
+
+From the interviews and observations, what is clear is that each group used Calico very differently. Each group used Calico to support different activities, with different amounts of people, and in different settings. These groups subsequently found different strengths and weaknesses in Calico.
+
+The interaction designers used Calico to simulate activities that would have normally involved physical artifacts over a physical whiteboard. As such, many of the comments that came from the interaction design group related to Calico's strengths and weaknesses as they compared to the physical artifacts that the interaction designers normally used. For example, a strength that the interaction designers found was its ability to import images and arrange them as they would have on a physical whiteboard. Explaining why this was important, one member of the interaction design group stated, ``It's really hard to say 'that person or this person'. Much easier to speak to a face''. They found that Calico's strengths were those that enabled actions not easily done with physical artifacts. For example, replication of artifacts encouraged the interactions designers to explore more perspectives than they would have had they used actual physical artifacts. Calico's features further allowed them not only arrange the images themselves, but also the sketches generated around those images, in which they could arrange and copy written text to organize the whiteboard. 
+
+However, they found some experiences in Calico still not on par with using the physical whiteboard. They viewed the gestures of moving scraps too slow, where one member of the interaction group stated that ``the overhead in manipulating was too much''. Further, they found the space available in canvases being too small compared to the boards they normally use, stating that they were ``blocked by the physical limitations of the [electronic] board''. Despite these obstacles, they overcame such obstacles, making dozens of canvases with sketches and scraps. They made real progress in a real design task within their professional work.
+
+The OSS group took on a very different approach to Calico, using it in group design discussions of three or more people, and also personal sessions over both software components and software code. A strength of Calico in this setting was to increase their capability to do more in the same space. For example, intentional interfaces encouraged members to brainstorm more, where one member of the group states, ``we're more willing to draw any random thing on there because we know that we can erase it, or go to a new canvas at any point. I would say more random ideas get thrown on there.'' The OSS group in particular took advantage of free space to create dozens of canvases. For example, they consecutively chained canvases within intentional interfaces to generate sets of canvases that together formed narratives, such as how data steps through software components, or how a user interface behaves. Some of their use was also unexpected. The sessions involving source code came as a surprise, as I did not expect the developers to drop paste screenshots of actual code into Calico, but these sessions became some of the most interesting, as they involved a great deal of impromptu notations to step through source code.
+
+%``I had something where I needed to get my thoughts written out as far as I was trying to design...''
+%``It was really useful to switch... I used a lot of color. It kind of helped me identify, like, which kind of objects are important. The other thing was that I wanted to look at the XML code that was relevant to this diagram, so I went on my machine, logged in over the web browser, took a screenshot of my code, and pasted it in to the canvas. That way when it came in over here on the board, I could look at the code from the screenshot, and do my work based on that. So that was very helpful.''
+%``Having it in one page, one screen, was helpful.''
+%``I ended up taking a different direction in the strategy I was working. So I just copied the canvas, I made an alternative, yeah, so that was nice. I made another screenshot of different code.''
+
+The research group presented a third unique setting in which meetings were distributed, had a member that did a lot of design up front before the group design sessions began, and generated very large process diagrams that described the entire behavior of their software system. As opposed to the other groups, the research group members were more isolated from one another, and used meetings to review their work, plan what to do next. The research group viewed one of Calico's strengths in their setting as being able to carry on meetings with remote members, where one member stated: ``I think the biggest benefit was crossing space and time. Being able to pause and resume'', and ``the main benefit was that after I left, we were able to reference all those things that we created while I was there pretty easily..''. They viewed Calico as more beneficial than photos of a whiteboard, stating that ``you can't go back and edit that.'' Further, one member of the research group prepared his work ahead of time for meetings, stating: ``I could have done this in a powerpoint as well''... ``it's much better [to have done it in Calico] because later when I show it, I can have people changing it, and in powerpoint you cannot sketch and draw.'' This particular member further found the visual structure of intentional interfaces helpful when reviewing work from past meetings, stating ``if you're designing a complex thing with stages and you're trying to tell a story, you can say: okay we've tried that, would you like to see all this path we went through?'' Calico served as a virtual meeting space for the members that helped maintain continuity of meetings across the duration of the project.
+
+%--- christian
+%``we had one whole design that was thrown away''
+%
+%``designs get very complex... you want to keep a history of what you've done, the branches that you've pruned. Having a structure is essential. If you're designing a complex thing with stages and you're trying to tell a story, you can say: okay we've tried that, would you like to see all this path we went through? If you don't have the structure you'll have to create it somewhere else. If it's already here...''
+
+The takeaway was that each session introduced a unique way of using Calico. Each group had a different set of needs, a different setting and setup of people, and yet, Calico held up to a significant portion of their needs. Each group followed through with their design sessions and completed work in actual projects without abandoning their use of the tool. That is not to say that it was a perfect match for all groups. One of the teams, the interaction design group, did say that they would not continue to use Calico because its features did not match their needs, such as an infinite canvas and the system having difficulty with the number of images they used. This may either mean that their needs would be better suited by another tool, or further research is needed within the Calico environment.
+
+Further, from the interviews, three observations stood out: 1) Calico did not interfere with their normal design process, 2) Calico deployments still have issues that need to be addressed that are intrusive, and 3) that Calico led to positive changes in their design habits.
+
+First, the OSS group and the research group reported that Calico and its features did not prevent them from carrying out their design as they normally would have, while the interaction design group reported that Calico somewhat got in the way of their normal design activity. The OSS group reported that they did not feel any loss of expressive control in using Calico in comparison to the whiteboard, and reported that they normally would have performed many of the same activities on the whiteboards available in the immediate area. The research group reported that they formerly carried out their designs on the whiteboard, and transitioned to using Calico for the same activities. The interaction design group reported that it closely approximated the whiteboard, but they found that the quality of sketch input forced them to write large and that the system lagged at times, which was distracting during their sessions.
+
+%Did it prevent you from doing what you normally would have done?
+%- quality of sketching on whiteboards was largest compromise. Tablets helped, but was not the same (1,2,3)
+
+Second, there were some issues that were commonly intrusive among the three groups. Nearly all groups reported that the large electronic whiteboards diminished the quality of their own handwriting, forcing them to either write slower, or write larger. The OSS group connected to their Calico server using either tablets or their own computers, which they reported was preferred in producing clearer handwriting due to precise input. All groups used text-scraps to produce legible text as well. All groups also reported that launching Calico on their own machines was sometimes a hurdle. The OSS group reported that it was less of an obstacle for them because of the availability of tablets preloaded with Calico. The research group reported trouble setting up Calico on the laptops of new members of their group. Lastly, the members of the interaction design group were accustomed to a different set of gestures and interaction design patterns from their own set of digital sketching tools, particularly OneNote, which led to confusion with Calico's features, such as how to use scraps and gestures.
+
+%Features that detracted
+%- going against the grain... people are accustomed to their existing tools.
+%- too slow to bring up
+%- turned to word documents to supplement activity
+
+Third, all groups reported some positive changes to their existing design habits. All groups reported that they had a sensation of having more free space, and reported that they created more sketches than they normally would have as a result. The research group reported that they created more complex sketches as a result of scraps and connectors, which helped them address a deeper level of complexity in their design. Both the OSS group and the research group reported that, since they did not feel a need to delete unused sketches, they returned to old sketches more often.
 
 \section{How well the features support the design behaviors}
 \label{discussion:designbehaviors}
@@ -129,510 +647,12 @@ While the other behaviors were well supported, bringing work together was likely
 
 It is possible that the intentional interfaces feature did not adequately support bringing together work because of its lack of fluidity in juxtaposing sketches. Users in the OSS group and research group turned to the palette for juxtaposing elements sketches across canvases, but such an action takes several steps to copy the contents to be juxtaposed to another canvas. Alternatively, users also used the back and forward button to navigate to recently visited canvases in order to compare the current canvas with previous canvases, but such a solution puts the burden on the user to remember previous canvases. Instead, the users should have been able to place canvases side-by-side in the cluster view, which would have allowed them to bring work together from multiple canvases simultaneously.
 
-\section{Strengths and weaknesses of each feature}
-\label{discussion:strengths-and-weaknesses}
 
-In this section, I exam each feature on its own merits to discuss their strengths and weaknesses.
-%* individual features strengths and weaknesses - what's my sense of the individual features and how well are they working.
 
-\subsection{Scraps}
-Scraps, on the whole, were a relatively successful feature in Calico, and a significant improvement of their Calico Version One counterpart. Scraps replaced the lasso functionality to manipulate sketches, which enabled users to manipulate content without changing modes. Scraps also depicted software representations such as software components, process flows, and user interfaces. They sometimes were used to represent lists, though not often. While there is much room for improvement, such as the ability to change its fill and border color, scraps saw a significant amount of use across all groups. 
 
-A strong quality of scraps were their flexibility in representing diagrams. While scraps were not always used in favor of regular whiteboard sketching, they were used often and yielded benefits such as helping diagrams evolve more gracefully and arranging content. Actions which become natural when using scraps, such as annotating it with a color patch, underline, are not straightforward in other mediums. The same actions could be done with drawing tools, but arranging sketches would be more complex. Alternatively one could design using a more formal tool which would allow for easy arranging of sketches, but the tool may not be able to freely add annotations or symbols. The flexibility afforded by scraps led to the unexpected behaviors in the experiment, such as when the interaction design group tagged them using color and the research group color coded their scraps as well. In comparison to Calico Version One, which saw a relatively narrow set of representations created with scraps in experiments, Calico Version Two yielded much larger variety of representations created with scraps. It is possible that the longer term evaluation led to more time to become accustomed to using scraps, however, it is more likely that the revised functionality of scraps led to this improvement.
 
-What scraps lacked, however, was more expressive power in its visual features. Users could not change the blue color of scraps and their outline, which many users requested the ability to do. Users in the studies commented that they wished to create text scraps without the blue boarder, as they felt that it made the sketch ``visually busy''. In another session, a user wanted to create text scraps with text of different colors in order to encode meaning, but instead used hand-written text in order to use colors. While these and other features may have been useful, their absence did not obstruct the sessions as users found ways around them, and users remarked that these sessions were provisional.
 
-Scraps gestures and the selection scrap were both a strong and weak point for scraps, depending on the situation. Particularly with longterm users, scrap gestures became a powerful tool to quickly move and copy content. When working with box-and-arrow diagram for software, they allowed content to be rearranged quickly. When working with lists, they allowed individuals to adjust spacing in handwritten text or make more space. In user interfaces, they enabled rearranging of elements to simulate using the sketched interfaces. Unfortunately when used to categorize large number of scraps, as the interaction designers did, the gestures were perceived as too slow. The interaction designers, in this case, requested a separate mode specifically targeted at moving scraps.
 
-A weakness of scrap gestures was that they required some practice to become fluid. Gestures such as the landing zone to create scraps were enabled very quick manipulation, but new users required some training before they could trigger the gesture reliably. 
-
-Scrap gestures in Calico Version Two, however, was a large improvement on the scrap gestures in Calico Version One, which were not discoverable and were reported as unpredictable. In contrast, the bubble menu in Calico Version Two was reported as being straightforward and discoverable. Further, the landing zone used to create scraps was self discovered by users, while the equivalent action in Calico Version One was also difficult to discover. 
-
-Lastly, the ability to convert regular hand-drawn sketches into scraps, i.e., refine them, further benefited teams. This addressed a significant issue in Calico Version One, which was that individuals often did not use scraps because they would first hand draw a box, and later draw a scrap around the box, resulting with a hand-drawn box inside a scrap. While not used often, users at field sites did use it for both refining existing sketches into scraps and as a recovery mechanism when they failed to trigger the ``landing zone'' gesture correctly.  Users further refined their scraps by using list scraps, which organized scraps into a linear compact list. 
-
-A summary of the strengths and weaknesses of scraps are as follows:
-
-\subsubsection{Strengths}
-
-\begin{itemize}
-	\item Flexible nature is useful in creating many representations relevant to software
-	\item Gestures enable quick manipulation of hand drawn sketches and scraps without mode switching
-	\item Existing hand drawn boxes could be refined into scraps
-	\item Bubble menu is self discoverable
-\end{itemize}
-
-\subsubsection{Weaknesses}
-\begin{itemize}
-	\item Requires training to use properly
-	\item Gestures are slow for continuous arranging of a large number of scraps
-	\item Could not change scrap color or border, text scraps were ``visually heavy''
-\end{itemize}
-
-%refinment - how well it worked, where it came from.
-%	- wants to explore notion of refinement better (foreshadow future work)
-%- difficult to expand content
-%- heavyweight... people wanted text without border and blue background
-%- visual vocabulary not strong. cannot make different colors, any rich text editing in text scraps
-%- writing on text scraps requires shift away from the baord
-%- overlapping features (shrinktocontents / make rectangle)
-%- managing consistency
-%- gesture interaction made content hard to select sometimes	
-%
-%\subsubsection{Strengths}
-%- Right click, press and hold... worked well. We arrived at these over a period of different iterations.
-%	- tool works across multiple devices, and is robust.
-%	
-%- temp scrap versus permanent scraps	
-%- refinement from sketch
-%
-%
-%- made content interactive
-%
-%
-%\subsubsection{Weaknesses}
-%
-%	- What we want to explore is shrink wrapped scraps... Another is refinement that we want to explore, when people decide uml (foreshadow what's coming in future work).
-%- gestures require training, conflict with existing user design touch patterns
-
-
-
-	
-%\textbf{Scraps.} The use of this feature was augmented by basic sketching, the palette, and the fading highlighter. The OSS group and research group sketched over existing scraps to add detail and annotations. By using freeform sketching on and around scraps, the designers were afforded an ``escape from formalism'', and had flexibility in what they could represent in scraps. For example, some annotated cardinality on scraps, some added call-outs and annotations. The OSS, interaction design, and research groups reported that the palette increased the value of scraps by making scraps available across several canvases, which was performed, albeit rarely, by all groups studied. The OSS and research groups found that intentional interfaces supported scraps indirectly by the copy-canvas feature. In the OSS group, participants copied content across canvases, enlargened a scrap, and sketched out more detail pertaining to the enlarged scrap. The fading highlighter feature was used by the OSS and research groups in group meetings to explain walkthroughs in which data is passed between scraps linked together by formal or informal arrows. The fading highlighter provided the benefit of both not leaving marks on the board, but also did not trigger any gestures.	
-
-\subsection{Palette}
-
-While the palette significantly improved on the palette of Calico Version One, it still remained one of the weaker features in Calico Version Two. This was due most in part because the palette did not noticeably support impromtu notations for software oriented groups. However, while not performing strongly in this specific design behavior, the palette succeeded in other aspects, such as supporting impromtu notations for storyboards and acting as a global clipboard to transfer content between canvases.
-
-While the palette did not succeed in supporting the fourth design behavior in most cases, it may have been that software designers performed the design behavior in ways that I did not expect. Users in software groups often recreated sketches using different perspectives, meaning that each depicted component needed to be redrawn differently. Users often only needed to sketch the name of a component, which could be created much more quickly manually using scraps than finding the component in the palette. Also, the availability of the copy functionality in numerous forms lessened the need for the palette. For example, when users sketching a software system wanted to create an alternative or move perspectives, they often used the ``copy canvas'' button in intentional interfaces, or used the ``copy scrap'' button in a scrap's bubble menu.
-
-In other cases, the palette performed strongly. First, the palette served to bootstrap a design session for interaction designers by importing several dozen images  from outside of Calico. The imported images drove the design session which spanned several days. Second, the palette actually did serve to store a set of graphical icons that were improvised by the interaction design group in their design sessions. Members from the interaction design group found these icons useful in creating storyboards. Third, all groups used the palette to juxtapose new sketches against previously created ones. They did so by using the palette as a global clipboard to copy old sketches to the canvas with the newly created sketch.
-
-Some aspects of the palette also could have used further improvement. Users had a difficult time in locating items in the palette when it contain in excess of twenty or more scraps. Also, users wished to add sketches to the palette without first making the sketch into a scrap. Users reported that making the sketch into a scrap made it too heavy.
-
-A summary of the strengths and weaknesses of the palette are as follows:
-
-\subsubsection{Strengths}
-
-\begin{itemize}
-	\item Bootstrapped design sessions by importing existing artifacts into multiple canvases
-	\item Used to build set of reusable icons in storyboards
-	\item Used as a global clipboard to copy content across canvases in order to juxtapose them
-\end{itemize}
-
-\subsubsection{Weaknesses}
-\begin{itemize}
-	\item Not helpful in supporting in creating impromtu notations for software system sketches
-	\item Hard to find scraps in palette when it has many items (more than twenty)
-	\item Users could not add plain sketches to the palette, must be added to a scrap first
-\end{itemize}
-
-
-%\textbf{Palette.} The use of the palette was improved by basic sketching, and scraps. All three groups found that basic sketching made the palette more useful because they could populate it with the set of shapes that was useful to their current task. All three groups also reported that scraps themselves complemented the palette not only because scraps because they provided a vehicle to reuse sketches, but the ability to resize and rotate scraps made scraps much more reusable. Users of Calico Version One reported not using the palette because it could not be resized or rotated. In contrast, in Calico Version Two, the OSS group, for example, placed scraps in the shape of block arrows in the palette, and rotated them as needed. 
-%
-%In feedback, all three groups reqested the ability to save a sketch to the palette without saving the sketch as a scrap first.
-		
-\subsection{Intentional interfaces}
-
-Intentional interfaces was a relatively successful feature in Calico. It advanced on the concept of the grid from Calico Version One, and satisfied numerous design behaviors in doing so. It provided qualities that were not available in the grid interface, such as names for canvases, relationships, order, and in some cases chronology of work. Intentional interfaces, however, had some weak points as well. Navigation was sometimes clumsy in the cluster view, juxtaposing sketches across canvases was difficult, and understanding the relationships between canvases was sometimes difficult for new users. Individuals relied on intentional interfaces to organize and navigate their sketches.
-
-Many of the grouping mechanisms in intentional interfaces improved upon the grid interface in Calico Version One. While the grid was well received by users of Calico Version One, users increasingly desired ways to separate and categorize their content. Intentional addressed this problem in several steps. First, clusters provided a generic method to divide canvases into topics, which helped partition content between different projects in Calico.
-
-Second, linking canvases provided another level of organization of canvases, which also provided an ordering to the canvases. Providing an ordering to the canvases was shown to be beneficial in practice as it allowed a set of canvases to compose a narrative. A sequence of canvases could show a walkthrough of a software architecture as well as the exploration of the design space across multiple perspectives, abstractions, and alternatives. Further, grouping canvases by linking them helps users better recall design sessions and understand the content of their sketches several months afterwards.
-
-A third benefit of intentional interfaces was the immediateness of free space. In comparison to the regular whiteboard, users felt more at ease in creating more sketches because they could always create more space and return back to previous sketches. 
-
-%	- are an advance over the grid. people do like the grid, but 
-%	- intentional interfaces gives us something that we didn't have before, such as names for canvases, relationships, order (and in some cases chronoloy)
-%	- seeing that people are starting to use this./
-
-Users encountered a few issues using intentional interfaces as well. First, the movement between the canvas and the cluster view was not a smooth transition for the user. When loading the cluster view, the perspective always zoomed out, which made the individual canvases too small to distinguish. Second, users had a difficult time understanding the shape of the cluster when creating new canvases from within a canvas itself. One use from the OSS group described the shape of the cluster as ``wizardry'', in which it was a mystery to him as to where new canvases would appear. Third, users could not easily compare contents between canvases.
-
-%- "I actually like the chain system, and each of the items that start a chain."
-%- "It seems a little weird that this and this one are related, but not really."
-%- "Navigation is strange sometimes. Every time I want to go to the next item in the continuation, there's no way to do that in here."
-%- <<have to jump between views. can use the drop down menu, but he wants to see it before jumping into it.>>
-
-A summary of the strengths and weaknesses of intentional interfaces are as follows:
-
-\subsubsection{Strengths}
-
-\begin{itemize}
-	\item clusters provided first level grouping for canvases
-	\item ordering allows a narrative to emerge from canvases
-	\item chaining canvases helps users in recalling sessions
-	\item can immediately jump to new/copy canvas
-\end{itemize}
-
-\subsubsection{Weaknesses}
-
-\begin{itemize}
-	\item view jumped around a lot in cluster view
-	\item shape of cluster view a mystery... requested minimap ``wizardry''
-	\item difficult to directly compare content in canvases
-\end{itemize}		
-
-
-%Members from the OSS group, interaction design group, and research group all remarked that Calico, and to some extent, intentional interfaces, helped them recover past rationale by illuminating details from their past sessions. They deleted fewer canvases, which provided them with more sketches to reference. Rather than creating new iterations in-place and overwriting past iterations, they iterated on their design on newer canvases, establishing a history that would not have been saved on whiteboards. With more canvases, members from all groups had more sketches available to remind them of design paths explored. In the case of the OSS group and the research group, they created chains of canvases that provided further context. The chains served to group canvases into design sessions, and also provide an ordering to the canvases, which either took on the meaning of reminding the sketchers of the chronology of the canvases within the design exploration, or allowed the canvases to build on the content of the previous canvases. Members from the OSS group and research group both used these ordering, and tags, to provide cues to the meaning of content within the canvases. Most canvases were tagged as a ``continuation'', but they found the ``alternative'' tag helpful in explicitly marking a canvas as such. They also remarked that naming canvases was important in remembering their purpose.
-
-%Despite the affordances that Calico and the intentional interfaces did provide, users remarked that there were several moments in which they wanted to declare more details, but were unable to do so. When linking canvases by tagging, members of the OSS group and research group wanted to provide direct links between canvases. For example, they wanted to label three canvases as being an alternative of the same canvas. Or, they desired to use multiple tags on a canvas. Further, design was not always linear, but rather a canvas may have references that lead to several other canvases. For example, the OSS group depicted a set of components, and defined the detail of those components in later canvases. Other group members desired to insert notes and annotations within canvases, but did not do so because there was not enough space.
-
-%\textbf{Intentional Interfaces.} The intentional interfaces feature was made more useful by the presence of the palette, and the fading highlighter. All three groups used the palette to make content from other canvases available in the current canvas. The palette provided a convenient mechanism to move parts of sketches between canvases. With respect to the fading highlighter, the OSS and research groups found the fading highlighter to be helpful in walkthroughs in the intentional interface. Both groups used intentional interfaces to look over what they had done, and would step through their design while using the fading highlighter to trace over sketches and scraps.
-%
-%The intentional interface feature did not receive any noticeable benefit from the other features, however the evaluations hinted at ways that it they could have. Designers saw the cluster-view as another canvas in itself and desired a way to sketch over, draw connections between, and tag canvases. They saw problems in that the radial cluster would re-arrange itself every time a new canvas was added, but saw organizing canvases as part of the design activity. With regard to scraps, designers expressed the desire to choose a scrap or circle an area of a canvas, and declare another canvas as pertaining to that scrap or area. With respect to the palette, the designers wished to create template canvases, such as a canvas with a pre-made table, or axis with four quadrants. Such templates helped guide their thinking. 
-
-\subsection{Fading highlighter}
-
-%//highlighter working, but it could be improved. 
-%	- different colors
-%	- Awareness icons for different people.
-	
-The highlighter feature worked well for a particular set of scenarios. The fading highlighter stands on its own as users did not combine its use with other features, but it addressed its design behaviors as no other feature could. Particularly it supported users in mentally simulating over their work, and also in explaining concepts to others. 
-
-While the fading highlighter addressed these situations well, it could still be improved to provide better support the two design behaviors that it targets. First, it could provide better support for explaining sketches by providing better awareness features. For example, the strokes could somehow show who is making the stroke. Second, mental simulations could be better supported if the sequence of strokes were somehow recorded. Many of the mental simulations explain how data is moved between components. If this explanation could be captured, and later played back, particularly with audio explanations, the design rational within the design sessions could be played back.
-
-\subsubsection{Strengths}
-
-\begin{itemize}
-	\item Good for explaining sketches and mental simulations
-\end{itemize}
-
-
-\subsubsection{Weaknesses}	
-
-\begin{itemize}
-	\item Strokes made with highlighter are anonymous
-	\item Explanations made with the fading highlighter are not recorded
-\end{itemize}
-
-
-	
-%Some of the context of design sessions could not be captured due to the limitations of the technology. Reviews confirmed that much of the design that takes place with Calico happens by talking over designs, pointing at figures, and gesturing to nothing in particular. One remote collaborator reported that being able to see participants using video conferencing tools was important because it allowed him to see the gestures of others. In the OSS group, usage logs showed that users viewed canvases without interacting with it for long periods of time, and interviews confirmed that developers were using the image to discuss the next steps. The sketch played an important role, but no evidence of this was evident from Calico without asking the developers. In a similar situation, usage logs demonstrated a intensive periods of usage for the highlighter in the OSS group, but upon playing back a slideshow of the usage, members of the OSS group could not recall the topic they used it to discuss.
-
-
-
-%\textbf{Basic sketching and features.} The use of this feature was augmented by all other features, which includes scraps, the palette, intentional interfaces, and the fading highlighter. Both the OSS group and the Research group scraps useful for manipulating sketches, which they found useful to move, resize, copy, rotate, and group sketches. They also found that using gestures made manipulating sketches to be helpful. All three groups found the palette to be helpful in supporting regular sketching. The palette supported sketching by reducing work by making sketches with repeated items more simple. Further, individuals created sketches which served as templates within the palette, and sometimes copied these onto a canvas. The OSS group and the research group found intentional interfaces to be helpful in their designs. It provided a bird's eye perspective in order to review and step through the sketches they created, and created the sense of plenty of space, which encouraged all groups to create more sketches. With respect to the fading highlighter, the OSS groups and research groups reported that they found it helpful to trace over sketches without modifying those sketches. They used it to support explanations of sketches, and in the case of the researchers, distributed explanations. Both groups reported, however, they sometimes while ``in the heat of the moment'' they forgot this feature existed, preferring to simply gesture over a sketch with their hands.
-
-%In contrast to other groups, the interaction design group did not find scraps helpful during their designs. They found that manipulating sketch content by using scrap gestures to be ``jarring'', in which they found the sudden shift from sketching to manipulating to happen too quickly. They reported that they would rather use lasso as a different mode. 
-
-
-
-
-\section{Corroborating features}
-\label{discussion:corroborating-features}
-
-In the previous sections, I found that Calico's features adequately support the broad set of design behaviors and discussed the strengths and weaknesses of those behaviors. In this section, I corroborate those findings with a deeper discussion of the features. I do so by first performing a cognitive dimensions analysis of Calico's features at a hypothetical level. I then review the feedback from the interviews.
-
-\subsection{Cognitive dimensions analysis}
-%//not going to go through full analysis for each dimension.
-%//analysis of dim number one: Calico strengths, calico weakness
-%strengths: scraps stay in same shape
-%weakness: 
-%//you put them in a table that summarizes it
-%make each section summarize the table.
-%//no defending, this is only my opinion
-
-
-
-%The interview questions provide a high-level perspectiv//not going to go through full analysis for each dimension.
-%//analysis of dim number one: Calico strengths, calico weakness
-%strengths: scraps stay in same shape
-%weakness: 
-%//you put them in a table that summarizes it
-%make each section summarize the table.
-%//no defending, this is only my opinione of the overall usability on Calico and its features. 
-In order to examine usability of Calico's features in more detail, I perform a cognitive dimensions analysis \cite{Green96usabilityanalysis} of Calico. The cognitive dimensions framework focuses on the relatioship between the arifact and the user. The analysis framework provides a set of vocabulary and lens to consider the implications and trade-offs of representational features in the context of user activities. 
-
-It should also be noted that software design sessions at the whiteboard have previously been examined using the cognitive dimensions framework \citep{Petre2013BookChapter}. In this section, I build on this past work, and use the findings as a comparison point for each cognitive dimension between Calico and the regular whiteboard.
-
-\subsubsection{Summary}
-Table \ref{table:discussion:cognitivedimensions} summarizes the proceeding analysis. In most cases, Calico's features provided benefits to one or more cognitive dimensions. Intentional interfaces played a large role in finding relevent canvases in designs diffused across canvases. Scraps and the palette made sketches less viscious and easier to manipulate. Overall, Calico improved on the regular whiteboard for the following dimensions: abstraction, hard mental operations, premature commitment, provisionality, secondary notation, viscosity, and visibility. Calico also had some shortcomings for some of the groups. These can be attributed to inefficient support for the cognitive dimensions of consistency and error-proneness. Support for all other dimensions, including closeness of mapping, diffuseness, hidden dependencies, progressive evaluation, and role expressiveness received moderate support.
-
-\begin{center}
-\begin{longtable}{|p{6cm}|c|c|c|}
-\caption{What CDs Analysis Highlights about Calico}\\
-\hline
-\textbf{Cognitive Dimension} & \textbf{Low support}& \textbf{Moderate support}& \textbf{High support}\\
-\hline
-\endfirsthead
-\multicolumn{2}{c}%
-{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
-\hline
-\textbf{Cognitive Dimension} & \textbf{Low support}& \textbf{Moderate support}& \textbf{High support} \\
-\hline
-\endhead
-\hline \multicolumn{2}{r}{\textit{Continued on next page}} \\
-\endfoot
-\hline
-\endlastfoot
-Abstraction	& & &X  \\
-\hline
-Closeness of mapping	& &X &  \\
-\hline
-Consistency	&X & &  \\
-\hline
-Diffuseness	& &X &  \\
-\hline
-Error-proneness	&X & &  \\
-\hline
-Hard mental operations	& & &X  \\
-\hline
-Hidden dependencies	& &X &  \\
-\hline
-Premature commitment & & &X  \\
-\hline
-Progressive evaluation & &X &  \\
-\hline
-Provisionality & & &X  \\
-\hline
-Role expressiveness & &X &  \\
-\hline
-Secondary notation & & &X  \\
-\hline
-Viscosity & & &X  \\
-\hline
-Visibility & & &X  
-\label{table:discussion:cognitivedimensions}
-\end{longtable}
-\end{center}
-
-\subsubsection{Abstraction}
-Abstraction refers to Calico's ability to support representations at different levels of abstraction. Since plain sketching inherently allows maximum flexibility in what can be represented, the tool enables users to generate their own representations at different levels of abstraction, much the same as the traditional whiteboard. Calico, however, further supports using levels of abstraction with scraps and intentional interfaces. Scraps support encapsulating objects, given that scraps become inherently grouped when stacked. Intentional interfaces enables the user to depict different levels of abstraction across multiple canvases, and supports the user in navigating between these levels of abstraction by linking canvases. In contrast, a person using a regular whiteboard may be constrained by space, or may have difficulty navigating between levels of abstraction if the depicted figures are scattered across multiple whiteboards, posters, or pages. 
-
-%In practice, the OSS group made the greatest use of abstractions across their designs. They represented the same sketches from several perspectives, reusing content between canvases with slight variations. They did so by copying scraps between canvases, and making those scraps larger to write more content inside that scrap. The interaction design group seldom used levels of abstraction, but rather they used several perspectives across canvases. The research group also used multiple levels of abstraction for state diagrams, however, they reported struggling with precisely what level of abstraction to use. When sketching, they felt more comfortable visually depicting their system using state diagrams. However, during conversations, they assigned sections of the state diagrams names, indicating the presence of a higher level of abstraction than just the individual states depicted. They only used these names verbally, and never wrote the names on the state diagram to avoid adding complexity to the diagram.
-%
-%Overall, Calico provided more benefit to depicting levels of abstraction than the regular whiteboard for the OSS group. Scraps and linking canvases using intentional interfaces supported them in their exploration. It is interesting to note that a single canvas may branch out to multiple canvases, each defining a particular component in more detail. Calico could be improved by providing direct linking between a scrap, and the canvas in which that scrap is defined in more detail.
-
-%calico's ability to support abstraction?
-%
-%- information was encapsulated at a variety of levels of abstraction, range was flexible
-%- calico provides scraps to function as abstractions
-%- people used scraps between canvases and changed their level of abstraction
-%- the research group struggled with the right level of abstraction
-%- the interaction designers moved between levels of abstraction
-
-\subsubsection{Closeness of Mapping}
-Closeness of mapping refers to how closely representations map to the referred concepts. Calico is similar to the whiteboard in this regard in that designers are at liberty to sketch any representation. If the designers decide that there is a more suitable representation, they are able to create a new sketch using that representation, which they can do by simply sketching it or represent those objects using scraps. When using scraps, Calico has both advantages and disadvantages with respect to sketching. A positive consequence of using scraps is that representations can be reused by copying them, and they can more easily be manipulated to more closely represent the design as it evolved. A negative consequence of using scraps is that the visual appearance of scraps and connectors cannot be changed, i.e., scraps will always remain blue with a thin outline and connectors may only have one arrowhead. Its visual representation may not map as closely to the concept it depicts as a regular sketch. The user can compensate by sketching around a scrap, such as writing numbers next to a connector to indicate cardinality, but if a user moves the scrap, the cardinality number will not move with the scrap.
-
-%For instance, OSS group members used square scraps to represent objects and long rectangular scraps to represent event handlers. Further, in practice, the ability to import images and screenshots was an important feature to maintain closeness of mapping. Individuals from both the OSS group and the researcher group imported screenshots of code both to initiate new work, and to review the mapping between a sketched design and that code. In the case of reviewing code, a research group member drew ``call-outs'' from pieces of code to explain the logic used. In the case of the interaction designers, they reported that they could have represented the people interviewed using written names, but found that importing images of the faces of those they interviewed evoked their memories much better.
-
-%How closely do calico's representations map to a domain?
-%
-%- people could get very close to what they are representing. Importing screenshots into the environment is a big one.
-%- interaction designs could manipulate their objects directly, no indirect names
-%- software people could import snippets of code
-%- researchers imported screenshots of user interfaces, source code, etc.
-
-\subsubsection{Consistency}
-Consistency refers to the degree to which features of structures and syntax are used the same way throughout. Calico does not provide an automated method to provide consistency. As with sketching, maintaining consistency between elements and sketches is up to the users to ``socially'' enforce \cite{Petre2013BookChapter}. Calico does, however, help a design reuse the representations they have created by allowing them to be copied. Features such as copying scraps, the palette, and copying entire canvases allowed users to repeat elements with little effort. Scraps themselves can be manipulated and reused in design, decreasing the need redraw sketches as one would have on the whiteboard, which reduces the number of elements to maintain. Ultimately, however, Calico does not properly support maintaining consistency between sketches.
-
-%The OSS group used repeated elements by copying scraps, using the palette, and copying canvases when creating alternatives. They created different perspectives of the same components, creating both user interface mockups and box-and-arrow diagrams, and maintained consistency in the coloring of connectors in box-and-arrow diagrams. The interaction design group created template canvases, which they copied to explore new perspectives. The interaction design group created a set of icons in the palette to represent actions in a user story, and reused these icons in their stories. The research group used the canvas copy feature to juxtapose the same sketch against different sketches. They reported that maintaining consistency was difficult in dense state diagrams. In such complex diagrams, they needed to express design decisions within components, which lead to several impromtu notations that were not consistent with other diagrams, such as colored connectors and colored underlines. The research group reported that they copied the contents of sketches into more formal diagramming tools and into word documents, which did not always use the same syntax and structures. After transferring content into these formal tools, they no longer maintained the sketched in Calico, as the effort to maintain them outweighed their benefit.
-
-%While the reusability of scraps and canvases within intentional interfaces did reduce the burden of maintaining consistency in designs in some cases, when put into practice, these were only a marginal improvement in comparison to the regular whiteboard. Users across the three groups manually maintained consistent use for features features of sturctures and syntax in their designs. In some cases, such as with the research group, users did not desire consistency, and valued out of date canvases as archival sketches.
-
-%- consistency brought by calico comes from copying, none beyond other, unless enforced by personal discipline.
-%- palette supported this, but seldom used this way
-%- multiple perspectives enforced consistency,
-%- researchers used multiple documents, hard to maintain consistency across those
-
-\subsubsection{Diffuseness}
-Diffuseness refers to how much the meaning of sketches is spread out across multiple sketches. The potential for an unlimited number of canvases with intentional interfaces may encourage designers to break up their designs across multiple canvases, as opposed to the whiteboard where a designer may be more likely to be conservative in using space. Further, enabling one to copy canvases and transfer content using the palette encourages diagrams to be diffuse. However, intentional interfaces mitigates these issues by helping to navigate designs diffused across different canvases. By providing links between those  canvases, users can more easily find content immediately relevant to the current canvas. Intentional interfaces does not provide a fully comprehensive solution to diffused diagrams, but it does moderately support it in a lightweight fashion.
-
-%The OSS group created very diffuse diagrams by creating several copies of box-and-arrow diagrams with subtle changes, or different levels of abstraction. These canvases were grouped into chains by tagging the canvases as ``continuation'' in intentional interfaces, which they used to explore the design of a component in a step-wise fashion. The OSS group reportedly created use case diagrams in order to ``wrap their minds around what's going on'', referring to the diagrams in Figure \ref{fig:ossgroup:session2}. One of the members of the researchers further reported that without linking canvases with tags, he would have a difficult time recalling the meaning of contents in his past sketches. In contrast, the interaction designers attempted to reduce diffuseness by keeping related content contained within its originating canvas. The research group also maintained all details of a state diagram within one sketch, wanting to also maintain a global view of their entire design at all times.
-
-%Overall, the intentional interfaces feature was the most useful tool in combating designs from becoming diffused to the point that relevant information in a design would be lost. Clusters within intentional interfaces provided a first means for grouping canvases, which helped separate projects between members in the research group, but not as much in the OSS group since they primarily used one cluster for all design meeting. Grouping and linking canvases using tags in intentional interfaces benefited the OSS group in linking canvases within a particular design session, and also helped one member of the research group in linking canvases within his own sessiosn as well. These features, while they do not prevent diffuseness of diagram, instead help make it manageable.
-
-%How diffuse were the representations created in calico? (i.e., were multiple diagrams required to show one concept?)
-%
-%- unlimited whiteboard space encourages diffuseness
-%- work by OSS group was very diffuse because they spread meaning across multiple canvases
-%- work by interaction designers was not diffuse because each canvas was an evolving set of ideas
-%- researchers was much less diffused because they concentrated on one diagram, but had to mentally remember things
-
-\subsubsection{Error-proneness}
-
-Error-proneness refers to the degree to which a notation induces ``careless mistakes'' \cite{Petre2013BookChapter}. As with plain sketching, Calico does not provide any safe guards against errors. Individuals are free to improvise and switch between notations, which may increase their tendency to perform errors if there is no clearly defined standard notation. 
-
-While Calico does not alert the user of when they have performed an error, Calico's features do automate certain actions which may reduce the likelihood of errors. Scraps \& connectors, for example, provide flexibility in creating representations by enabling the moving, resizing, and rotating existing sketches. They maintain the structure of objects as they are moved, which may help when working with box-and-arrow diagrams. In comparison to plain sketching, scraps \& connectors help prevent errors by making adding additions to representations, like process flow diagrams, less tedious and do not require diagrams to be redrawn when repositioning elements, as one would have to if sketching at the whiteboard.
-
-%The research group benefited from the use of scraps, which helped avoid errors by removing much of the tedium in working with their state diagram. When working with their state diagram on the whiteboard, they reported that it had become too large to manage. After moving to Calico, they had more flexiblity in managing their space. They were able to create more space by moving text-scraps, which moved all connectors with the scrap as well and retain the shape of the diagram. Further, the flexiblity to create connectors with custom paths, as opposed to straight lines, made connectors more legible. 
-
-%Overally, scraps and connectors helped prevent errors by making adding additions to the state diagram less tedious, and not requiring diagrams to be redrawn to reposition elements.
-
-%No safeguards against errors, other than what was socially enforced by the designers.
-%
-%- repeated elements helped avoid using the wrong elements, and reviewing content in meetings helped catch errors
-
-
-\subsubsection{Hard Mental Operations}
-Hard mental operations refers to information that needs to be referenced or is nested. In a simple or small design, all parts of the design may be visible and there may be little need to reference outside information. However, in larger projects, the design may be broken up across across many whiteboards, posters, and papers. Similarly in Calico, representations may be diffused across several canvases requiring the user to reference sketches outside the immediate space. Users may need to use the intentional interface feature to move between canvases to reference other sketches, or use the palette to move content so that it can be referenced in the active canvas. 
-
-Calico mitigates the need to reference other canvases by allowing users to both import content and copy content to the canvas they are currently in. First, image scraps allow users to import existing artifacts into a canvas to refer to while sketching. For example, a developer may import source they are working on, or a diagram created in another tool. Second, scraps allow users to move content so that it is positioned side-by-side to what they are currently working on. Third, the palette allows users to copy content between canvases so that they can reference old content in the new space. Fourth, the navigation button in intentional interfaces allows users to return back to the most recently visited canvas. While this may still quality as needed to refer to parts of the design outside of the immediate visibility, the feature reduces the effort needed to do so.
-
-%In the case of the OSS group, the developers needed to reference information that was spread across several canvases. Members from their team reported that they did not need to do so often all members were already familiar with the depicted system. When they did need information to be available more immediately, they copied content onto the target canvas. The developer working with source code did so by pasting screenshots of his code into his canvas. In the case of the interaction designers, they pasted pictures of people they interviewed, however they needed to reference their notes from their interviews. The researchers, however, had a greater need to perform hard mental operations because of the scale of their state diagrams. The researchers who originally developed the system eventually internalized the diagram to a degree that they no longer needed to reference it, however the researcher that needed to be onboarded created additional diagrams, such as tables, in order to help him mentally step through the state diagram. In his case, he mitigated the need to reference other canvases by copying the pieces of the state diagram that he needed into his own canvases.
-
-%Overall, the ability to copy content within Calico somewhat reduced the need to reference other canvases. Scraps, intentional interfaces, and the palette were helpful for both importing screenshots and copying content to the immediate working area.
-
-%How often did designers need to reference elsewhere and nest?
-%
-%- the OSS group had to incur hard mental operations by referencing across diagrams because of multiple levels of abstraction
-%	- they moved to high levels of abstractions, and use cases
-%	- hard to interpret what was there because had to keep track of everything
-%- the interaction design group had to do lots of hard mental operations because interviews not represented. Also placing along axies, and mult. perspectives
-%- researchers experienced a lot of hard mental operations because of the terseness of the diagrams (paths, etc.)
-
-\subsubsection{Hidden Dependencies}
-Hidden dependencies refers to representations that are dependent on one another, but the dependencies are not visible because it is either not declared or not in a person's field-of-view. As observed in past studies \cite{dekel2007notation}, sketches that cross several spaces result in having dependencies on other spaces that are not explicitly stated. Sketches that begin in one canvas in Calico may extend onto another canvas, or across mediums, such as their own computer or paper, if the users are using Calico as a complementary tool. This could occur, for example, when canvases depicted different perspectives or abstractions. 
-
-The intentional interfaces feature in Calico helps in finding these hidden dependencies on other sketches by providing features that group canvases of related content. Clusters in intentional interfaces help group clusters into radial clusters, which separate sketches of different topics. Linking canvases into chains further helps group content by chaining them. These features do not solve the issue of revealing all hidden dependencies, but they does help the user in find the dependencies by making those dependencies easier to find.
-
-%In the OSS group, the participants spread their diagrams across multiple canvases with different perspectives. Across these different canvases, they depicted several types of perspectives, such as copies of the same sketch with different annotations, the same entities using different notations, and different pieces of larger diagrams. In a canvas depicting a piece of a larger whole, an arrow pointed at the end of the canvas, depicting the flow of data onto another component off-canvas. However, most canvases did not have explicit dependencies between them, but they referenced the same element, and referred to content in other canvases. The developers worked around this issue by linking canvases with related content using intentional interface tags. When walking through their sketches during interviews, they remembered the chronology of their sketches by stepping through canvas links in the cluster view. They sometimes made explicit references between canvases as well.   
-
-%The researcher group had issues similar to the OSS group, where dependencies between mutliple views in their design were diffused across multiple canvases. In their case, information was spread across outside word documents, whiteboard sketches made prior to using Calico, and diagrams created in other tools. The research group members relied on their memory and cross checking documents to find dependencies between these different sources. Within Calico itself, one of the researchers reported that chaining canvases played an important role in helping him to recover hidden dependencies and make sense of content in his canvases. He reported that many canvases would be senseless without being grouped in the same cluster as other canvases, and having been linked within intentional interfaces.
-
-%Overall, the grouping mechanisms provided by intentional interfaces did prove useful in finding hidden dependencies. It does not solve the issue of revealing all hidden dependencies, but it does help the user in find the dependencies when they are actively looking.
-
-%Drawing across multiple canvases 
-%
-%- intentional interfaces helped the researchers with hidden dependencies, the OSS group too
-%- few inherent dependencies with interaction designers
-%- oss group used colors to indicate meaning, and dependencies were not shown
-%- everything must be understood
-
-
-\subsubsection{Premature Commitment}
-A notation or representation that causes a user to \textit{prematurely commit} means that it requires a person to make a decision before they have the information they need \cite{Petre2013BookChapter}. Sketches and content produced in Calico are typically used to support conversations or thinking through a design, and thus there is less of a concern to prematurely commit because all content is provisional. The sketchy appearance of content within Calico visually re-enforces the notion that content is provisional. Also, the ease of changing content, such as drawing an ``X'' symbol over rejected content, allows for decisions to be rejected without permanently discarding the idea. In this regard, Calico is equivalent to the whiteboard which also has these qualities of provisionality. 
-
-However, Calico further reduces premature commitment in comparison to the whiteboard by making sketches more easily copied and reproduced. Features such as scraps, the palette, and intentional interfaces make it easier to explore alternatives. For example, while on a whiteboard, a user may be hesitant to erase a large figure or deviate because they do not want to lose previous work. In Calico, they can simply create a copy of it in a new canvas, or continue their work in a new blank canvas.
-
-%Members from all groups reported not feeling pressured to commit to decisions within Calico. The OSS group reported that they valued the ideas and tasks generated from using Calico rather than the sketches themselves. They reported that they sometimes immediately revisited sketches after meetings in order experiment with alternatives before returning to their desk to implement a new change. The OSS group did email snapshots of sketches from Calico to themselves, but reported that these emails were archival and served to remind them of the ideas generated. The ideas were not considered committed until they were implemented into the system. In the research group, the members used the sketches from Calico in support of implementing their software system and writing an academic conference publication. One of the researchers remarked that nothing in Calico was permanent until ``it was written in the [academic conference] paper''. 
-
-%Overall, the provisionality of content and the ease with which it can be changed, i.e., low viscosity, lowered the tendency for content to be prematurely committed in Calico. However, there is very little gain in this regard over the whiteboard. The ease of copying content reduces the tedium in exploring alternatives, but this was only marginally beneficial for the groups with respect to preventing premature commitment.
-
-%Calico provided a sketching look and feel to elements. Users consciously commited to decision by converting handwritten text into rectangular scraps and sometimes formal connectors.
-
-%- there is not a sense of commitment to what is on the board.
-%- research group turned to calico/whiteboard because it gave the sense of freedom from commitment
-
-\subsubsection{Progressive Evaluation}
-Progressive evaluation refers to the ability to run a simulation or obtain feedback on a representation that is only partially complete in order to determine its correctness. While Calico does not directly support progressive evaluations, it does support users in manually judging the ``rightness'' of a sketch by supporting the reviewing and explanation of sketches. Much like the whiteboard, designs may be manually reviewed and discussed by close inspection. However, Calico provides some additional benefit with intentional interfaces, which aids users in navigating between canvases to review them. Further, the collaborative aspect of Calico allows remote designers to obtain feedback, during which the fading highlighter would help during group reviews to discuss content. With these features, everyone both local and remote are working synchronously on the same design, allowing them to evaluate it together.
-
-%The intentional interface feature supported the OSS group in reviewing their contents by allowing them to zoom out and switch between canvases quickly. The OSS group reported that they would switch to the cluster-view, zoom in to the canvases they had been working on, and pan while discussing them. During group meetings, they further used the fading highlighter during discussions and evaluations of components, drawing paths taken by data between components during their explanations. The researchers, similarly, engaged in verbal dialog to review their designs. The researchers engaged in review of their designs, particularly the state diagram that summarized their software system. They stepped through the state diagram to verify its correctness, and also used it in support of evaluating the completeness of their software system. They used the sketch to keep track of what was and what was not implemented, and updated their state diagram with this information.
-
-%Overall, Calico supported individuals in performing a manual evaluation of their designs. In this regard it could be considered similar to the whiteboard, but intentional interfaces provided the benefit of reviewing multiple canvases, and also the quality that Calico was an online shared resource that was shared by everyone. 
-
-%- all groups used intentional interfaces to review, summarized, and proceed. different perspectives
-
-\subsubsection{Provisionality}
-Provisionality refers to the quality that indecision or options can be expressed \cite{Petre2013BookChapter}. Given that sketching is the primary mode of operation in Calico, individuals are free to break away from formal notation to declare multiple alternatives. Users can always erase a sketch to change a value, or simply cross out a sketch so that a design can be rejected without visually removing it from the design space. Calico goes further in this supporting provisionally by supporting the quick generation of alternatives using duplication features such as scrap copying, canvas copying, and the palette. With intentional interfaces, uses can explicitly express entire canvases as being an alternative by tagging it as such within intentional interfaces.
-
-%The OSS group used the fading highlighter to propose ideas about sketches that they were not sure of yet. After discussing a box-and-arrow diagram using the fading highlighter for more than twenty minutes, they changed elements within that diagram. They did so by drawing a large ``X'' over the component, and wrote the name of an alternative component next to the component with an ``X'' on it. In another instance, members in the OSS group used intentional interfaces to create a copy of a canvas, and tagged the canvas an ``alternative''. They did so on multiple occassions, such as during a group discussion, and also in individual design sessions. The research group expressed options in another fashion. In their case, they performed a major refactoring of their system, effectively diverging from the design in their previous sketches. Rather than deleting these old sketches, they moved to another cluster to sketch the design of their refactored system. They considered the contents of the old cluster as an archive of the first version of their system. 
- 
-%Overall, Calico provides some improvements in provisionality over the whiteboard. Within a canvas, Calico is much the same as a whiteboard in that the user has the flexibility to sketch alternative names. Across multiple canvases, intentional interfaces helps manage options at a larger scale by providing tags to label canvases as alternatives. Further, the ability to copy and create new canvases and clusters encouraged more sketching, and possibly exploration of alternatives.
-
-%Everything in Calico was considered provisional and outside the formal specfications. Provisionality was reduced by copying content onto another medium. Teams walked away from designs, and return to them in order to be reminded.
-
-\subsubsection{Role Expressiveness}
-
-Role expressiveness refers to a reader's ability to see how the parts fit into the whole design, and how those parts relate to one another \cite{Petre2013BookChapter}. In other words, can a reader interpret what each part in a sketch does. Given that users have the flexibility to create representations with adequate role expressiveness, the limiting factor is the space available to create representations. With enough space, the role of each part can be better understood if all details are visible. Intentional interfaces provides the means to create the space needed to explore a design across multiple sketches to depict all parts of a design.
-
-With Calico, there is the potential to address this issue using intentional interfaces by using several canvases to include all parts of a design. However, there is a further issue. Within the context of the informal design activities that Calico supports, designers typically only draw as much as they need to, which results in partial diagrams with minimal detail. As such, designers may create representations that have poor role expressiveness due to minimal detail. Very often, the original designer may need to be consulted in order to understand their sketch. However, content in sketches may be easier understood by looking at related content and hidden dependencies, which the the intentional interfaces feature may help the designer do by navigating between canvases linked into chains. 
-
-%The OSS group created multiple sketches that were diffused across several canvases, but reused the same scraps across these different canvases with connectors both hand drawn and formal. Each canvas taken independently, they had low role expressiveness because of their low amount of detail. However, taken into context with the canvases linked using tags within intentional interfaces, the roles of each component were much more clearly understood. They used a mixture of in-place annotations to explain the details of components, drew arrows between components, and elaborated on components using handwritten lists. The interaction designers created multiple representations to explore different perspectives that categorized the people they interviewed, however each canvas was generally independent of others and the role of elements of each sketch were discernible while reviewing their sketches. They used one- and two-dimensional plots so that the people they interviewed could be directly compared against each other, and the topic of the canvas was clearly labeled. They also included user stories, which helped show the role of different generated personas. The research group generated many sparse sketches, however the role of elements in their state diagrams were clear because they depicted the entire state diagram for their system. In other canvases, they created further state diagrams and juxtaposed them against tables, however these were more sparsely labeled, and their role were only discernible by asking the researchers themselves. They reported that many details were revealed in their discussions by verbal explanations and gestures.
-
-%Overall, intentional interfaces was the feature that most greatly impacted role expressiveness in Calico. It provided space to create multiple sketches to depict all parts of a design. Otherwise, Calico is much the same as a whiteboard with respect to its ability to support role expressiveness.
-
-\subsubsection{Secondary Notation}
-
-Secondary notation refers to the use of formalisms that deviate from primary established notations. Because of the freeform nature of sketching within Calico, users have the flexibility to overlay additional detail in sketches and use improvised notations as needed. Within Calico, users may choose to represent concepts using scraps with connectors as an alternative to sketching, in which case they can use the shape of scraps, as well as the colors of connectors to overlay meaning. Users may add annotations to scraps, such as drawing a symbol in the corner of a scrap, text content in the scrap with a color that has an assigned significance, or by using connectors in creative ways.
-
-%Across all three groups, users used basic sketching to overlay secondary notations on existing diagrams. The OSS group members wrote freehand annotations next to diagrams for descriptions. The developer who used Calico to help him refactor code used several custom annotations and formalisms that were reported to be natural in the moment, but the developer could not recall the meaning of his own annotations after the fact. The interaction designers mixed and matched their annotations to allow for several layers of categorization, such as tagging, circling, organizing into tables, etc. The researchers used similar strategies of circling and tagging. For example, they tagged elements in their state diagrams that had not been implemented yet by underlying them in red. 
-
-%Both the OSS group and the researchers also used scraps and connectors to encode secondary annotations. Both groups used plain sketches to annotate connectors with labels and, in rare cases, cardinality. In cases where they pasted source code as images, they used ``call-outs'' to describe portions of the code. A consequence of using plain sketches was that the freehand annotations were left behind when scraps and connectors were moved.
-
-%Overall, Calico provided limited support for secondary notations. Most usage of secondary notations were done with plain sketching, however scraps were tagged using colors to overlay additional meaning.
-
-%- secondary notations present in interaction designer sessions (tagging)
-%- secondary notations present in OSS group sessions (colors)
-%- researchers used it as euler diagrams
-
-\subsubsection{Viscosity}
-
-Viscosity refers to a medium's resistance to change. Similar to a regular whiteboard, the contents in Calico exhibit a low viscosity because content can always be erased. Calico has three features which potentially reduce viscosity in comparison to plain sketching: content is moveable, gestures make manipulating content faster, and content can be copied. First, all sketched content can be moved using scraps, as opposed to the whiteboard where it must be redrawn. The capacity to move content enables designers to organize content. Second, with sufficient familiarity with scrap gestures in Calico, moving content can potentially be done quickly. Users do not need to switch modes or move their hand away from sketches, allowing them to move content quickly without distracting them away from plain sketching. Third, designers can experiment more easily with alternatives by copying content. Both copying scraps and copying canvases enable designers to rapidly generate variations of content without needing to redraw it each time.
-
-%The OSS group reported that the freedom to copy and create new canvases encouraged them to sketch more and attempt new variations. The interaction designers did a significant amount of arranging of scraps, using scraps to sort people interviewed within matrices. They copied canvases in order to explore new perspectives for personas. Within the research group, members reported that they were more likely to edit existing content in Calico because scraps made editing box-and-arrow diagrams easier than the whiteboard. The researchers reported that working with state diagrams on the whiteboard became a tedious task to manage as it grew large. When they transitioned the same sketch to Calico, they reported that scraps and connectors allowed them to quickly reposition elements in the state diagram, and grow it more ``organically''. Interestingly, the researchers reported that the longer content existed in Calico, the more hesitant they were to change it. Instead, they experimented by copying canvases, but doing so lead to consistency issues between canvases.
-
-%Both the interaction designers and the researchers encountered some resistance to change when their boards became filled with content. In both situations, members of the respective groups reported that it was important to maintain all content in the same canvas, and as a result, did not have space available to create new content.
-
-%Overall, the ability to move content using scraps and copy content using intentional interfaces was Calico's largest benefit to reducing viscosity. All groups reported that it was easier to change a sketch that was in Calico, and felt less apprehensive about exploring new sketches because all past sketches were saved.
-
-%- moving scraps gives it lower viscosity
-%- copying canvases reduces viscosity
-%- content is more viscous as whiteboard fills up
-%- scraps become viscous because adding becomes an issue
-
-\subsubsection{Visibility}
-
-Visibility refers to how easily all parts of a design are visible, or at least how easy it is to juxtapose two parts of a design \cite{Petre2013BookChapter}. As with a whiteboard, a design is highly visible so long as it is small enough to fit within a single space. In the case of Calico, it is easier to spread designs across multiple canvases, in which case intentional interfaces may be helpful to navigate between canvases and parts of the design. Also, juxtaposing parts of a design is easier in Calico due to scraps, the palette, and intentional interfaces. Scraps allow users to reconfigure a diagram such that two parts can be placed next to one another by moving them or copying them. The palette allows parts of the design to be copied to other canvases to compare them. Intentional interfaces increases the ease of moving between parts of the design, and organizes the canvases so that it is easier to step through a design. Further, two canvases can be placed next to one another in the cluster view for comparison.
-
-%The OSS group reported that the intentional interface feature was helpful for viewing different parts of their design. When reviewing sketches, they used the navigation buttons to move between sketches, and also used the cluster view to zoom in to relevant canvases and pan between them. The research group did not benefit as much as the OSS group from intentional interfaces with respect to visibility. In the research group, one member copied content from visual dense canvases using the palette and juxtaposed it against other sketches as a reference.
-
-%The research also encountered some difficulties with respect to visibility. Most members in their group did not chain their canvases using tags, and instead created a large radial ring of canvases in the cluster view. They found it difficult to navigate between canvases. They did, however, find the backwards and forwards navigation button helpful in this regard. The research also created a large state diagram in a single canvas, which became visually dense and difficult to visually parse. 
-
-%Overall, intentional interfaces provided benefit to visibility when canvases were chained with tags, but less so linking canvases. Scraps and the palette were further helpful for moving content and copying content so that they could be referenced.
-
-\subsection{Interviews}
-%//I've already made my interviews, now it's just my opinions
-%It's clear that each group is using Calico very differently. They're finding different strangths and weaknesses. Interactions designers... not having an infinite canvas. When push came to shove, they made a lot of use of Calico. 
-%There is the open source group, they didn't make big use of scraps, but they did represent code. Not our intention, but big use. One of the members used code because he had a large whiteboard.
-%The research group. One of the guys did a lot of prep work.
-%//the important part is that there is a lot of different uses of Calico, and Calico held up. All designs were created. 
-%//Design group stated that not having an infinite canvas was a hurdle
-%//what we got from the researchers were comments like this:
-%//what we got fromt he oss group were like this:
-%//if you pull out real quotes, it's stronger.
-%//roll context into discussion. 
-%
-%Characterizing each session
-
-In the previous section, I examine the capability of Calico's features to support design from the perspective of a cognitivie dimensions analysis. In this section, I discuss the feedback received on the features from the participants interviewed in each group.
-
-From the interviews and observations, what is clear is that each group used Calico very differently. Each group used Calico to support different activities, with different amounts of people, and in different settings. These groups subsequently found different strengths and weaknesses in Calico.
-
-The interaction designers used Calico to simulate activities that would have normally involved physical artifacts over a physical whiteboard. As such, many of the comments that came from the interaction design group related to Calico's strengths and weaknesses as they compared to the physical artifacts that the interaction designers normally used. For example, a strength that the interaction designers found was its ability to import images and arrange them as they would have on a physical whiteboard. Explaining why this was important, one member of the interaction design group stated, ``It's really hard to say 'that person or this person'. Much easier to speak to a face''. They found that Calico's strengths were those that enabled actions not easily done with physical artifacts. For example, replication of artifacts encouraged the interactions designers to explore more perspectives than they would have had they used actual physical artifacts. Calico's features further allowed them not only arrange the images themselves, but also the sketches generated around those images, in which they could arrange and copy written text to organize the whiteboard. 
-
-However, they found some experiences in Calico still not on par with using the physical whiteboard. They viewed the gestures of moving scraps too slow, where one member of the interaction group stated that ``the overhead in manipulating was too much''. Further, they found the space available in canvases being too small compared to the boards they normally use, stating that they were ``blocked by the physical limitations of the [electronic] board''. Despite these obstacles, they overcame such obstacles, making dozens of canvases with sketches and scraps. They made real progress in a real design task within their professional work.
-
-The OSS group took on a very different approach to Calico, using it in group design discussions of three or more people, and also personal sessions over both software components and software code. A strength of Calico in this setting was to increase their capability to do more in the same space. For example, intentional interfaces encouraged members to brainstorm more, where one member of the group states, ``we're more willing to draw any random thing on there because we know that we can erase it, or go to a new canvas at any point. I would say more random ideas get thrown on there.'' The OSS group in particular took advantage of free space to create dozens of canvases. For example, they consecutively chained canvases within intentional interfaces to generate sets of canvases that together formed narratives, such as how data steps through software components, or how a user interface behaves. Some of their use was also unexpected. The sessions involving source code came as a surprise, as I did not expect the developers to drop paste screenshots of actual code into Calico, but these sessions became some of the most interesting, as they involved a great deal of impromptu notations to step through source code.
-
-%``I had something where I needed to get my thoughts written out as far as I was trying to design...''
-%``It was really useful to switch... I used a lot of color. It kind of helped me identify, like, which kind of objects are important. The other thing was that I wanted to look at the XML code that was relevant to this diagram, so I went on my machine, logged in over the web browser, took a screenshot of my code, and pasted it in to the canvas. That way when it came in over here on the board, I could look at the code from the screenshot, and do my work based on that. So that was very helpful.''
-%``Having it in one page, one screen, was helpful.''
-%``I ended up taking a different direction in the strategy I was working. So I just copied the canvas, I made an alternative, yeah, so that was nice. I made another screenshot of different code.''
-
-The research group presented a third unique setting in which meetings were distributed, had a member that did a lot of design up front before the group design sessions began, and generated very large process diagrams that described the entire behavior of their software system. As opposed to the other groups, the research group members were more isolated from one another, and used meetings to review their work, plan what to do next. The research group viewed one of Calico's strengths in their setting as being able to carry on meetings with remote members, where one member stated: ``I think the biggest benefit was crossing space and time. Being able to pause and resume'', and ``the main benefit was that after I left, we were able to reference all those things that we created while I was there pretty easily..''. They viewed Calico as more beneficial than photos of a whiteboard, stating that ``you can't go back and edit that.'' Further, one member of the research group prepared his work ahead of time for meetings, stating: ``I could have done this in a powerpoint as well''... ``it's much better [to have done it in Calico] because later when I show it, I can have people changing it, and in powerpoint you cannot sketch and draw.'' This particular member further found the visual structure of intentional interfaces helpful when reviewing work from past meetings, stating ``if you're designing a complex thing with stages and you're trying to tell a story, you can say: okay we've tried that, would you like to see all this path we went through?'' Calico served as a virtual meeting space for the members that helped maintain continuity of meetings across the duration of the project.
-
-%--- christian
-%``we had one whole design that was thrown away''
-%
-%``designs get very complex... you want to keep a history of what you've done, the branches that you've pruned. Having a structure is essential. If you're designing a complex thing with stages and you're trying to tell a story, you can say: okay we've tried that, would you like to see all this path we went through? If you don't have the structure you'll have to create it somewhere else. If it's already here...''
-
-The takeaway was that each session introduced a unique way of using Calico. Each group had a different set of needs, a different setting and setup of people, and yet, Calico held up to a significant portion of their needs. Each group followed through with their design sessions and completed work in actual projects without abandoning their use of the tool. That is not to say that it was a perfect match for all groups. One of the teams, the interaction design group, did say that they would not continue to use Calico because its features did not match their needs, such as an infinite canvas and the system having difficulty with the number of images they used. This may either mean that their needs would be better suited by another tool, or further research is needed within the Calico environment.
-
-Further, from the interviews, three observations stood out: 1) Calico did not interfere with their normal design process, 2) Calico deployments still have issues that need to be addressed that are intrusive, and 3) that Calico led to positive changes in their design habits.
-
-First, the OSS group and the research group reported that Calico and its features did not prevent them from carrying out their design as they normally would have, while the interaction design group reported that Calico somewhat got in the way of their normal design activity. The OSS group reported that they did not feel any loss of expressive control in using Calico in comparison to the whiteboard, and reported that they normally would have performed many of the same activities on the whiteboards available in the immediate area. The research group reported that they formerly carried out their designs on the whiteboard, and transitioned to using Calico for the same activities. The interaction design group reported that it closely approximated the whiteboard, but they found that the quality of sketch input forced them to write large and that the system lagged at times, which was distracting during their sessions.
-
-%Did it prevent you from doing what you normally would have done?
-%- quality of sketching on whiteboards was largest compromise. Tablets helped, but was not the same (1,2,3)
-
-Second, there were some issues that were commonly intrusive among the three groups. Nearly all groups reported that the large electronic whiteboards diminished the quality of their own handwriting, forcing them to either write slower, or write larger. The OSS group connected to their Calico server using either tablets or their own computers, which they reported was preferred in producing clearer handwriting due to precise input. All groups used text-scraps to produce legible text as well. All groups also reported that launching Calico on their own machines was sometimes a hurdle. The OSS group reported that it was less of an obstacle for them because of the availability of tablets preloaded with Calico. The research group reported trouble setting up Calico on the laptops of new members of their group. Lastly, the members of the interaction design group were accustomed to a different set of gestures and interaction design patterns from their own set of digital sketching tools, particularly OneNote, which led to confusion with Calico's features, such as how to use scraps and gestures.
-
-%Features that detracted
-%- going against the grain... people are accustomed to their existing tools.
-%- too slow to bring up
-%- turned to word documents to supplement activity
-
-Third, all groups reported some positive changes to their existing design habits. All groups reported that they had a sensation of having more free space, and reported that they created more sketches than they normally would have as a result. The research group reported that they created more complex sketches as a result of scraps and connectors, which helped them address a deeper level of complexity in their design. Both the OSS group and the research group reported that, since they did not feel a need to delete unused sketches, they returned to old sketches more often.
 
 %Did it encourage you to do anything that you wouldn't have done?
 %- return to sketches...
